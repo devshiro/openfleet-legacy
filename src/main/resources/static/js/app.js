@@ -4,3 +4,7 @@
 $("document").ready(function () {
     //alert("Page Loaded! Script runnin!");
 })
+
+function func() {
+    
+}
