@@ -1,0 +1,19 @@
+//Colors
+$main-color: #c5c5c5;
+
+$off-color: #FAFAFA;
+$theme-color: #a5e8fa;
+
+$main-color: $theme-color;
+
+$darken-theme-color: #8ad3e5;
+
+
+//Overriding bootstrap variables
+//navbar
+$navbar-height: 30px !default;
+$navbar-default-bg: $main-color !default;
+$navbar-default-link-hover-bg: darken($navbar-default-bg, 10%) !default;
+$navbar-margin-bottom: 0px;
+//listgroup
+$list-group-active-bg:  darken($navbar-default-bg, 10%) !default;

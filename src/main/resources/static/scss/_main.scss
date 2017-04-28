@@ -1,0 +1,38 @@
+// Main stylesheet
+body{
+  background: #f4f4f4;
+}
+
+a.navbar-brand{
+  padding-top: 5px;
+  padding-bottom: 5px;
+  #favicon{
+    max-height: 20px;
+  }
+}
+
+//header
+#header{
+  background: $darken-theme-color;
+  color: #FFF;
+  padding-bottom:10px;
+  margin-bottom: 15px;
+}
+
+//Breadcrumb
+.breadcrumb{
+  background-color: #cccccc;
+  color: #333333;
+
+  a{
+    color: #333333;
+  }
+}
+
+//modals
+.modal-header{
+  background-color: $darken-theme-color;
+  color: #FFF;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}

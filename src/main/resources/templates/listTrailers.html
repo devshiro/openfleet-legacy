@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Meta and viewport settings -->
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE-edge"/>
+    <meta name="viewport" content="width-device-width, initial-scale=1"/>
+
+    <!-- Header Section -->
+    <title>OpenFleet</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+
+</head>
+<body>
+
+<!-- Top navigation bar -->
+<div th:replace="navbar :: navbar-top"></div>
+
+<!-- Header -->
+<div th:replace="header :: header-top"></div>
+
+<!-- Main container -->
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Tractor list</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped table-hover">
+                <tr>
+                    <th>#</th>
+                    <th>Manufacturer</th>
+                    <th>Type</th>
+                    <th>Date of Manufacture</th>
+                    <th>Date of Acquire</th>
+                    <th>Date of Supervision</th>
+                    <th>Plate no.</th>
+                    <th>Chassis no.</th>
+                    <th>Weight</th>
+                    <th>Max Load Weight</th>
+                    <th>&nbsp;</th>
+                </tr>
+                <tr th:each="trailer : ${trailerList}">
+                    <td th:text="${trailer.id}">id</td>
+                    <td th:text="${trailer.manufacturer}">id</td>
+                    <td th:text="${trailer.type}">id</td>
+                    <td th:text="${trailer.date_of_manufacture}">id</td>
+                    <td th:text="${trailer.date_of_acquire}">id</td>
+                    <td th:text="${trailer.date_of_supervision}">id</td>
+                    <td th:text="${trailer.plate_number}">id</td>
+                    <td th:text="${trailer.chassis_number}">id</td>
+                    <td th:text="${trailer.weight}">id</td>
+                    <td th:text="${trailer.max_load_weight}">id</td>
+                    <td>
+                        <div class="dropdown">
+                            <a data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                            <!--<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><span class="caret"></span></button>-->
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><i class="fa fa-trash"></i> Delete</a></li>
+                                <li><a th:href="@{/trailer(id=${trailer.id})}"><i class="fa fa-pencil"></i> Edit</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- footer -->
+<div th:replace="footer :: footer"></div>
+
+
+<!-- Scripts -->
+<script src="/bower_components/jquery/dist/jquery.js"></script>
+<script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
+</body>
+</html>
