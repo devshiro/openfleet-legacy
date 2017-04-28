@@ -8,7 +8,6 @@ import com.markbudai.openfleet.model.Trailer;
 import com.markbudai.openfleet.model.Vehicle;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
