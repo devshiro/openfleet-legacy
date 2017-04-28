@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Meta and viewport settings -->
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE-edge"/>
+    <meta name="viewport" content="width-device-width, initial-scale=1"/>
+
+    <!-- Header Section -->
+    <title>OpenFleet</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+
+</head>
+<body>
+
+<!-- Top navigation bar -->
+<div th:replace="navbar :: navbar-top"></div>
+
+<!-- Header -->
+<div th:replace="header :: header-top"></div>
+
+<!-- Main container -->
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Vehicle</h3>
+        </div>
+        <div class="panel-body">
+            <form class="form-group">
+                <label>Tractor</label>
+                <select class="form-control">
+                    <option th:each="tractor : ${tractorList}" th:value="${tractor.id}" th:text="${tractor}"/>
+                </select>
+                <label>Trailer</label>
+                <select class="form-control">
+                    <option th:each="trailer : ${trailerList}" th:value="${trailer.id}" th:text="${trailer}"/>
+                </select>
+                <button type="button" class="btn btn-success">Save</button>
+                <button type="button" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- footer -->
+<div th:replace="footer :: footer"></div>
+
+
+<!-- Scripts -->
+<script src="/bower_components/jquery/dist/jquery.js"></script>
+<script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
+</body>
+</html>

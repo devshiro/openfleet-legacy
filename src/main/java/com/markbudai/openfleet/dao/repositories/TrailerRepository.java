@@ -21,6 +21,14 @@ public class TrailerRepository implements TrailerProvider{
                 LocalDate.of(2017,02,02),LocalDate.of(2020,01,01),
                 "SSS-444","aaaaaaaaaaaaaaaaa",1000,4000);
         trailerList.add(trailer);
+        Trailer t2 = new Trailer(2,"Berger","ecotrail LTN",LocalDate.of(2016,5,10),
+                LocalDate.of(2017,03,03),LocalDate.of(2020,05,01),
+                "XXF-432","AXG45700002A2F341",4745,39000);
+        trailerList.add(t2);
+        Trailer t3 = new Trailer(3,"Bodex","64t",LocalDate.of(2016,9,12),
+                LocalDate.of(2017,03,03),LocalDate.of(2020,9,01),
+                "HGF-707","CXG45700032A2F541",5635,64000);
+        trailerList.add(t3);
     }
 
     @Override
