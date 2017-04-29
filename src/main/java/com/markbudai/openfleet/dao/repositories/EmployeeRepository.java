@@ -29,7 +29,7 @@ public class EmployeeRepository implements EmployeeProvider {
         employeeList.clear();
         Location home = locationProvider.getLocationById(1);
         employeeList.add(new Employee(1,"John","Doe", LocalDate.of(1993,04,12),
-                home,"000","Jane Doe","111","22222",home));
+                home,"000","Jane Doe","111","22222",home,LocalDate.of(2017,01,01),null));
     }
 
     @Override

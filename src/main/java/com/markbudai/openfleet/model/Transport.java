@@ -9,6 +9,7 @@ import java.util.Set;
 public class Transport {
     private long id;
     private Vehicle vehicle;
+    private Driver driver;
     private LocalDateTime start;
     private LocalDateTime finish;
     private Location place_of_load;
