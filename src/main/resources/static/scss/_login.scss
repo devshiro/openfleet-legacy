@@ -1,8 +1,18 @@
 body#loginBody{
-  padding-top: 40px;
-  padding-bottom: 40px;
   background-color: #EEEEEE;
   background-image: url('/img/login-bg.jpg');
+
+  .container{
+    display: table;
+    position: absolute;
+    height:100%;
+    width:100%;
+
+    .middle{
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
 
   .form-signin{
     max-width: 330px;
@@ -11,7 +21,7 @@ body#loginBody{
 
     .form-signin-heading{
       margin-bottom: 10px;
-      color: #f9f9f9;
+      color: #333333;
     }
     .form-control{
       position: relative;
