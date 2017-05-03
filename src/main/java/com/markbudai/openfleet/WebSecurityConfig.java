@@ -42,8 +42,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .withUser("user").password("password").roles("USER");*/
         auth
                 .ldapAuthentication()
-                    .userDnPatterns("uid={0},ou=people")
-                    .groupSearchBase("ou=groups")
+                    .userDnPatterns("uid={0},ou=managers")
+                    .groupSearchBase("ou=managers")
                     .contextSource(contextSource())
                     .passwordCompare()
                         .passwordEncoder(new LdapShaPasswordEncoder())
@@ -53,6 +53,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Bean
     public DefaultSpringSecurityContextSource contextSource(){
-        return new DefaultSpringSecurityContextSource(Arrays.asList("ldap://localhost:8389/"),"dc=springframework,dc=org");
+        return new DefaultSpringSecurityContextSource(Arrays.asList("ldap://localhost:8389/"),"dc=openfleet,dc=org");
     }
 }

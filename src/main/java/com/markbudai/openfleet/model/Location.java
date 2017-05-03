@@ -1,14 +1,20 @@
 package com.markbudai.openfleet.model;
 
+import javax.persistence.*;
+
 /**
  * Representation of Address
  */
+@Entity
 public class Location {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String country;
     private String region;
     private String city;
     private String street;
+    @Column(name = "house_number")
     private String houseNo;
     private String zipcode;
 
