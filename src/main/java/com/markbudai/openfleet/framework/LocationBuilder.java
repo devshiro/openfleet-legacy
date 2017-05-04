@@ -1,6 +1,7 @@
 package com.markbudai.openfleet.framework;
 
 import com.markbudai.openfleet.model.Location;
+import org.springframework.web.context.request.WebRequest;
 
 /**
  * Created by Mark on 2017. 03. 24..
@@ -54,5 +55,34 @@ public class LocationBuilder {
 
     public void reset(){
         loc = new Location();
+    }
+
+    public static Location buildFromWebRequest(WebRequest request){
+        Location loc = new Location();
+        if(request.getParameter("country").isEmpty()){
+            return null;
+        }
+        loc.setCountry(request.getParameter("country"));
+        if(request.getParameter("city").isEmpty()){
+            return null;
+        }
+        loc.setCity(request.getParameter("region"));
+        if(request.getParameter("region").isEmpty()){
+            return null;
+        }
+        loc.setRegion(request.getParameter("region"));
+        if(request.getParameter("street").isEmpty()){
+            return null;
+        }
+        loc.setStreet(request.getParameter("street"));
+        if(request.getParameter("houseNo").isEmpty()){
+            return null;
+        }
+        loc.setHouseNo(request.getParameter("houseNo"));
+        if(request.getParameter("zipcode").isEmpty()){
+            return null;
+        }
+        loc.setZipcode(request.getParameter("zipcode"));
+        return loc;
     }
 }

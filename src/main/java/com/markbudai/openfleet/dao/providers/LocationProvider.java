@@ -10,4 +10,5 @@ import java.util.List;
 public interface LocationProvider {
     List<Location> getAllLocations();
     Location getLocationById(long id);
+    void addLocation(Location location);
 }

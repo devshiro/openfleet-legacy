@@ -1,12 +1,14 @@
 package com.markbudai.openfleet.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Representation of Address
  */
 @Entity
-public class Location {
+@Table(name = "Location")
+public class Location implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;

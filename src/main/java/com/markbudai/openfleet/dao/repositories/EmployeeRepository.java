@@ -5,7 +5,12 @@ import com.markbudai.openfleet.dao.providers.LocationProvider;
 import com.markbudai.openfleet.model.Employee;
 import com.markbudai.openfleet.model.Location;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,33 +19,31 @@ import java.util.stream.Collectors;
 /**
  * Created by Mark on 2017. 04. 28..
  */
-public class EmployeeRepository implements EmployeeProvider {
+@Transactional
+@Repository
+public class EmployeeRepository {
 
-    @Autowired
-    private LocationProvider locationProvider;
-
-    private List<Employee> employeeList;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     public EmployeeRepository(){
-        employeeList = new ArrayList<>();
     }
 
     private void setUpRepository(){
-        employeeList.clear();
-        Location home = locationProvider.getLocationById(1);
-        employeeList.add(new Employee(1,"John","Doe", LocalDate.of(1993,04,12),
-                home,"000","Jane Doe","111","22222",home,LocalDate.of(2017,01,01),null));
+       // employeeList.add(new Employee(1,"John","Doe", LocalDate.of(1993,04,12),
+       //         home,"000","Jane Doe","111","22222",home,LocalDate.of(2017,01,01),null));
     }
 
-    @Override
     public List<Employee> getAllEmployees() {
-        setUpRepository();
-        return employeeList;
+        Query query = entityManager.createQuery("select e from Employee e");
+        return query.getResultList();
     }
 
-    @Override
     public Employee getEmployeeById(long id) {
-        setUpRepository();
-        return employeeList.stream().filter(p->p.getId() == id).collect(Collectors.toList()).get(0);
+        return entityManager.find(Employee.class,id);
+    }
+
+    public void addEmployee(Employee e){
+        entityManager.persist(e);
     }
 }

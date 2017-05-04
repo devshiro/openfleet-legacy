@@ -10,4 +10,6 @@ import java.util.List;
 public interface EmployeeProvider {
     List<Employee> getAllEmployees();
     Employee getEmployeeById(long id);
+    void addEmployee(Employee e);
+
 }

@@ -2,6 +2,7 @@ package com.markbudai.openfleet;
 
 import com.markbudai.openfleet.dao.providers.*;
 import com.markbudai.openfleet.dao.repositories.*;
+import com.markbudai.openfleet.services.EmployeeService;
 import com.markbudai.openfleet.services.LocationService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,20 +17,20 @@ import java.util.Arrays;
 @Configuration
 public class BeanProvider {
 
-    @Bean
-    public LocationService locationProvider(){
+    /*@Bean
+    public LocationProvider locationProvider(){
         return new LocationService();
-    }
+    }*/
 
     @Bean
     public TractorProvider tractorProvider(){
         return new TractorRepository();
     }
 
-    @Bean
+    /*@Bean
     public EmployeeProvider employeeProvider(){
-        return new EmployeeRepository();
-    }
+        return new EmployeeService();
+    }*/
 
     @Bean
     public TrailerProvider trailerProvider(){

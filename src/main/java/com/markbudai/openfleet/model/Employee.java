@@ -1,25 +1,52 @@
 package com.markbudai.openfleet.model;
 
+import org.hibernate.annotations.*;
+
+import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import java.io.Serializable;
 import java.time.LocalDate;
+import org.hibernate.annotations.Parameter;
 
 /**
  * Created by Mark on 2017. 03. 24..
  */
-public class Employee {
+@Entity
+@Table(name = "Employee")
+public class Employee implements Serializable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-            private String firstName;
-            private String lastName;
-            private LocalDate dateOfBirth;
-            private Location placeOfBirth;
-            private String socialInsuranceNo;
-            private String mothersName;
-            private String taxNo;
-            private String driversCardNo;
-            private Location placeOfLiving;
-            private LocalDate employmentDate;
-            private LocalDate endOfEmploymentDate;
+    @Column(name = "first_name")
+    private String firstName;
+    @Column(name = "last_name")
+    private String lastName;
+    @Column(name = "date_of_birth")
+    private LocalDate dateOfBirth;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "place_of_birth")
+    private Location placeOfBirth;
+    @Column(name = "social_insurance_no")
+    private String socialInsuranceNo;
+    @Column(name = "mothers_name")
+    private String mothersName;
+    @Column(name = "tax_no")
+    private String taxNo;
+    @Column(name = "drivers_card_no")
+    private String driversCardNo;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "place_of_living")
+    private Location placeOfLiving;
+    @Column(name = "employment_date")
+    private LocalDate employmentDate;
+    @Column(name = "end_of_employment_date")
+    @Type(type = "java.time.LocalDate")
+    private LocalDate endOfEmploymentDate;
 
-            public Employee(){}
+    public Employee() {
+    }
 
     public Employee(long id, String firstName, String lastName, LocalDate dateOfBirth, Location placeOfBirth, String socialInsuranceNo, String mothersName, String taxNo, String driversCardNo, Location placeOfLiving, LocalDate employmentDate, LocalDate endOfEmploymentDate) {
         this.id = id;
@@ -180,7 +207,7 @@ public class Employee {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return new StringBuilder().append(this.firstName).append(" ").append(this.lastName).toString();
     }
 }
