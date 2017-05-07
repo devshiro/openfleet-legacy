@@ -38,4 +38,15 @@ public class LocationRepository {
     public void saveLocation(Location location){
         entityManager.persist(location);
     }
+
+    public void updateLocation(Location location){
+        entityManager.merge(location);
+    }
+
+    public void deleteLocation(long id){
+        Location loc = entityManager.find(Location.class, id);
+        if(loc != null){
+            entityManager.remove(loc);
+        }
+    }
 }

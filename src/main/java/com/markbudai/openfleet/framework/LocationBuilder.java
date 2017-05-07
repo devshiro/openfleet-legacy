@@ -59,6 +59,9 @@ public class LocationBuilder {
 
     public static Location buildFromWebRequest(WebRequest request){
         Location loc = new Location();
+        if(!(request.getParameter("id").isEmpty())){
+            loc.setId(Long.parseLong(request.getParameter("id")));
+        }
         if(request.getParameter("country").isEmpty()){
             return null;
         }
@@ -66,7 +69,7 @@ public class LocationBuilder {
         if(request.getParameter("city").isEmpty()){
             return null;
         }
-        loc.setCity(request.getParameter("region"));
+        loc.setCity(request.getParameter("city"));
         if(request.getParameter("region").isEmpty()){
             return null;
         }

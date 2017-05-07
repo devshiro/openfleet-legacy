@@ -1,6 +1,9 @@
 package com.markbudai.openfleet.model;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -19,5 +22,5 @@ public class Transport {
     private long cargo_count;
     private Location place_of_unload;
     private LocalDateTime time_of_unload;
-    private Set<TransferCost> costs;
+    private List<TransferCost> costs;
 }

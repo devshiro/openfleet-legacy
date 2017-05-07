@@ -27,12 +27,13 @@
         </div>
         <div class="panel-body">
             <form class="form-horizontal" method="post" th:action="@{/location/add}" onsubmit="return validate()">
+                <input name="id" type="hidden" th:value="${location} ? ${location.id} : ''" />
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group" id="countryGroup">
                             <label class="control-label col-sm-2" for="countryInput">Country</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control col-sm-8" id="countryInput" name="country"/>
+                                <input type="text" class="form-control col-sm-8" id="countryInput" name="country" th:value="${location} ? ${location.country} : ''"/>
                             </div>
                         </div>
                     </div>
@@ -40,7 +41,7 @@
                         <div class="form-group" id="regionGroup">
                                 <label class="control-label col-sm-2" for="regionInput">Region</label>
                             <div class="col-sm-8">
-                                <input type="text" id="regionInput" name="region" class="form-control col-sm-8"/>
+                                <input type="text" id="regionInput" name="region" class="form-control col-sm-8" th:value="${location} ? ${location.region} : ''"/>
                             </div>
                         </div>
                     </div>
@@ -50,7 +51,7 @@
                         <div class="form-group" id="cityGroup">
                                 <label class="control-label col-sm-2" for="cityInput">City</label>
                             <div class="col-sm-8">
-                                <input type="text" id="cityInput" name="city" class="form-control"/>
+                                <input type="text" id="cityInput" name="city" class="form-control" th:value="${location} ? ${location.city} : ''"/>
                             </div>
                         </div>
                     </div>
@@ -58,7 +59,7 @@
                         <div class="form-group" id="streetGroup">
                                 <label class="control-label col-sm-2" for="streetInput">Street</label>
                             <div class="col-sm-8">
-                                <input type="text" id="streetInput" name="street" class="form-control"/>
+                                <input type="text" id="streetInput" name="street" class="form-control" th:value="${location} ? ${location.street} : ''"/>
                             </div>
                         </div>
                     </div>
@@ -68,7 +69,7 @@
                         <div class="form-group" id="houseNoGroup">
                                 <label class="control-label col-sm-2" for="houseNoInput">House Number</label>
                             <div class="col-sm-8">
-                                <input type="text" id="houseNoInput" name="houseNo" class="form-control"/>
+                                <input type="text" id="houseNoInput" name="houseNo" class="form-control" th:value="${location} ? ${location.houseNo} : ''"/>
                             </div>
                         </div>
                     </div>
@@ -76,7 +77,7 @@
                         <div class="form-group" id="zipcodeGroup">
                                 <label class="control-label col-sm-2" for="zipcodeInput">Zipcode</label>
                             <div class="col-sm-8">
-                                <input type="text" id="zipcodeInput" name="zipcode" class="form-control"/>
+                                <input type="text" id="zipcodeInput" name="zipcode" class="form-control" th:value="${location} ? ${location.zipcode} : ''"/>
                             </div>
                         </div>
                     </div>

@@ -11,4 +11,6 @@ public interface LocationProvider {
     List<Location> getAllLocations();
     Location getLocationById(long id);
     void addLocation(Location location);
+    void updateLocation(Location location);
+    void deleteLocation(long id);
 }

@@ -11,5 +11,7 @@ public interface EmployeeProvider {
     List<Employee> getAllEmployees();
     Employee getEmployeeById(long id);
     void addEmployee(Employee e);
+    void updateEmployee(Employee e);
 
+    void fireEmployee(long id);
 }

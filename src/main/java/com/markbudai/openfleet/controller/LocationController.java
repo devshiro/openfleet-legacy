@@ -8,9 +8,10 @@ import com.markbudai.openfleet.services.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
+
+import java.util.List;
 
 /**
  * Created by Mark on 2017. 04. 28..
@@ -18,8 +19,12 @@ import org.springframework.web.context.request.WebRequest;
 @Controller
 public class LocationController {
 
-    @Autowired
     private LocationProvider locationProvider;
+
+    @Autowired
+    public LocationController(LocationProvider provider){
+        this.locationProvider = provider;
+    }
 
     @RequestMapping("/locations/list")
     public String listLocations(Model model) {
@@ -39,7 +44,32 @@ public class LocationController {
     @PostMapping("location/add")
     public String saveLocation(Model model, WebRequest request){
         Location loc = LocationBuilder.buildFromWebRequest(request);
-        locationProvider.addLocation(loc);
+        if(loc.getId() != 0){
+            locationProvider.updateLocation(loc);
+        } else {
+            locationProvider.addLocation(loc);
+        }
         return listLocations(model);
+    }
+
+    @RequestMapping("location/edit")
+    public String editLocation(Model model, @RequestParam("id") long id){
+        model.addAttribute("title","Locations");
+        Location loc = locationProvider.getLocationById(id);
+        model.addAttribute("location",loc);
+        return "locationDetails";
+    }
+
+    @RequestMapping("location/delete")
+    public String deleteLocation(Model model, @RequestParam("id") long id){
+        locationProvider.deleteLocation(id);
+        return listLocations(model);
+    }
+
+
+    @RequestMapping(value = "/api/locations", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody List<Location> allLocations(){
+        List<Location> locations = locationProvider.getAllLocations();
+        return locations;
     }
 }

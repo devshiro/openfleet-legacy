@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Mark on 2017. 05. 03..
@@ -20,7 +22,9 @@ public class EmployeeService  implements EmployeeProvider{
 
     @Override
     public List<Employee> getAllEmployees() {
-       return employeeRepository.getAllEmployees();
+       return employeeRepository.getAllEmployees().stream()
+               .filter(p->p.getEndOfEmploymentDate()==null)
+               .collect(Collectors.toList());
     }
 
     @Override
@@ -31,5 +35,20 @@ public class EmployeeService  implements EmployeeProvider{
     @Override
     public void addEmployee(Employee e) {
         employeeRepository.addEmployee(e);
+    }
+
+    @Override
+    public void updateEmployee(Employee e) {
+        employeeRepository.updateEmployee(e);
+    }
+
+    @Override
+    public void fireEmployee(long id) {
+        //set endOfEmploymentDate
+        Employee e = employeeRepository.getEmployeeById(id);
+        if(e != null){
+            e.setEndOfEmploymentDate(LocalDate.now());
+            employeeRepository.updateEmployee(e);
+        }
     }
 }

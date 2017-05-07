@@ -2,8 +2,8 @@
  * Created by Mark on 2017. 05. 04..
  */
 $('document').ready(function(){
-    //alert(1);
-    $('#countryInput').change(function () {
+    //TODO: attach automatically by adding a framework-testable class to the input groups.
+    /*$('#countryInput').change(function () {
         tester('country');
     })
     $('#regionInput').change(function () {
@@ -20,17 +20,14 @@ $('document').ready(function(){
     })
     $('#zipcodeInput').change(function () {
         tester('zipcode');
-    })
+    })*/
+    attachTester('country');
+    attachTester('region');
+    attachTester('city');
+    attachTester('street');
+    attachTester('houseNo');
+    attachTester('zipcode');
 });
-
-
-var tester = function (selector) {
-    if($('#'+selector+'Input').val() === ''){
-        $('#'+selector+'Group').removeClass('has-success').addClass('has-error');
-    } else {
-        $('#'+selector+'Group').removeClass('has-error').addClass('has-success');
-    }
-}
 
 function validate() {
     var country = $('#countryInput').val();

@@ -46,4 +46,8 @@ public class EmployeeRepository {
     public void addEmployee(Employee e){
         entityManager.persist(e);
     }
+
+    public void updateEmployee(Employee e){
+        entityManager.merge(e);
+    }
 }

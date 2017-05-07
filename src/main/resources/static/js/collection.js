@@ -23,3 +23,18 @@ function drawChart() {
         chart.draw(data, null);
     });
 }
+
+function attachTester(selector){
+    $('#'+selector+'Input').change(function () {
+        tester(selector);
+    })
+}
+
+
+function tester(selector) {
+    if($('#'+selector+'Input').val() === ''){
+        $('#'+selector+'Group').removeClass('has-success').addClass('has-error');
+    } else {
+        $('#'+selector+'Group').removeClass('has-error').addClass('has-success');
+    }
+}

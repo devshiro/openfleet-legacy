@@ -4,27 +4,59 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * Representation of Address
+ * Class representing an Address.
  */
 @Entity
 @Table(name = "Location")
 public class Location implements Serializable{
+    /**
+     * Id of the location.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    /**
+     * The country.
+     */
     private String country;
+    /**
+     * The region.
+     */
     private String region;
+    /**
+     * The city.
+     */
     private String city;
+    /**
+     * The street.
+     */
     private String street;
+    /**
+     * The house number.
+     */
     @Column(name = "house_number")
     private String houseNo;
+    /**
+     * The zipcode.
+     */
     private String zipcode;
 
     /**
-     * Constructor of Location
+     * Empty constructor for the location.
+     * Used by Hibernate.
      */
     public Location() {}
 
+    /**
+     * Constructor for the location.
+     * @param id The id of the location object.
+     * @param country The country of the Address.
+     * @param region The region of the Address.
+     * @param city The city of the Address.
+     * @param street The street of the Address.
+     * @param houseNo The house number of the Address.
+     * @param zipcode The zipcode of the Address.
+     */
     public Location(long id, String country, String region, String city, String street, String houseNo, String zipcode) {
         this.id = id;
         this.country = country;
@@ -35,6 +67,10 @@ public class Location implements Serializable{
         this.zipcode = zipcode;
     }
 
+    /**
+     * Gets the id   of the Location object.
+     * @return the id of the object.
+     */
     public long getId() {
         return id;
     }
