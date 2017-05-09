@@ -36,5 +36,4 @@ public class TrailerController {
         model.addAttribute("trailer",trailerProvider.getTrailerById(id));
         return "trailerDetails";
     }
-
 }

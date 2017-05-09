@@ -6,7 +6,10 @@
             </pattern>
         </encoder>
     </appender>
-    <root level="trace">
+    <!--<root level="TRACE">
         <appender-ref ref="STDOUT"/>
-    </root>
+    </root>-->
+    <logger name="com.markbudai.openfleet" level="TRACE">
+        <appender-ref ref="STDOUT"/>
+    </logger>
 </configuration>

@@ -42,7 +42,6 @@ public class Employee implements Serializable{
     @Column(name = "employment_date")
     private LocalDate employmentDate;
     @Column(name = "end_of_employment_date")
-    @Type(type = "java.time.LocalDate")
     private LocalDate endOfEmploymentDate;
 
     public Employee() {

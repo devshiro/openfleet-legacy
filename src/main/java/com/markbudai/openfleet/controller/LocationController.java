@@ -1,10 +1,8 @@
 package com.markbudai.openfleet.controller;
 
 import com.markbudai.openfleet.dao.providers.LocationProvider;
-import com.markbudai.openfleet.dao.repositories.LocationRepository;
-import com.markbudai.openfleet.framework.LocationBuilder;
+import com.markbudai.openfleet.framework.builder.LocationBuilder;
 import com.markbudai.openfleet.model.Location;
-import com.markbudai.openfleet.services.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +19,8 @@ public class LocationController {
 
     private LocationProvider locationProvider;
 
+    private static String viewPrefix = "location/";
+
     @Autowired
     public LocationController(LocationProvider provider){
         this.locationProvider = provider;
@@ -31,14 +31,14 @@ public class LocationController {
         model.addAttribute("path","/locations/list");
         model.addAttribute("title","Locations");
         model.addAttribute("locationList",locationProvider.getAllLocations());
-        return "listLocations";
+        return viewPrefix+"listLocations";
     }
 
     @RequestMapping("locations/new")
     public String newLocation(Model model){
         model.addAttribute("path","/locations/list");
         model.addAttribute("title","Locations");
-        return "locationDetails";
+        return viewPrefix+"locationDetails";
     }
 
     @PostMapping("location/add")
@@ -57,7 +57,7 @@ public class LocationController {
         model.addAttribute("title","Locations");
         Location loc = locationProvider.getLocationById(id);
         model.addAttribute("location",loc);
-        return "locationDetails";
+        return viewPrefix+"locationDetails";
     }
 
     @RequestMapping("location/delete")

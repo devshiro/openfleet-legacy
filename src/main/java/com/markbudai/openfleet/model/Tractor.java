@@ -1,11 +1,16 @@
 package com.markbudai.openfleet.model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
 /**
  * Created by Mark on 2017. 04. 14..
  */
+@Entity
+@Table(name = "Tractor")
 public class Tractor {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String manufacturer;
     private String type;
@@ -17,6 +22,7 @@ public class Tractor {
     private double fuel_norm;
     private long weight;
     private long max_weight;
+    private LocalDate date_of_sell;
 
     public Tractor() {}
 
@@ -120,6 +126,14 @@ public class Tractor {
 
     public void setMax_weight(long max_weight) {
         this.max_weight = max_weight;
+    }
+
+    public LocalDate getDate_of_sell() {
+        return date_of_sell;
+    }
+
+    public void setDate_of_sell(LocalDate date_of_sell) {
+        this.date_of_sell = date_of_sell;
     }
 
     @Override

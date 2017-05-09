@@ -1,4 +1,4 @@
-package com.markbudai.openfleet.framework;
+package com.markbudai.openfleet.framework.builder;
 
 import com.markbudai.openfleet.dao.providers.LocationProvider;
 import com.markbudai.openfleet.model.Employee;
@@ -23,7 +23,7 @@ public class EmployeeBuilder {
     }
 
 
-    public Employee build(WebRequest request){
+    public Employee buildFromWebRequest(WebRequest request){
         Employee e = new Employee();
         if(!request.getParameter("id").isEmpty()){
             e.setId(Long.parseLong(request.getParameter("id")));

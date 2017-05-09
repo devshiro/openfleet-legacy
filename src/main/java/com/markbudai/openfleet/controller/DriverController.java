@@ -3,6 +3,8 @@ package com.markbudai.openfleet.controller;
 import com.markbudai.openfleet.dao.providers.DriverProvider;
 import com.markbudai.openfleet.model.Driver;
 import com.markbudai.openfleet.pojo.SamplePieData;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,11 +22,19 @@ import java.util.List;
 @Controller
 public class DriverController {
 
-    @Autowired
+    private static Logger logger = LoggerFactory.getLogger(DriverController.class);
+
     private DriverProvider driverProvider;
+
+    @Autowired
+    public DriverController(DriverProvider provider){
+        this.driverProvider = provider;
+        logger.debug("{} created.",this.getClass());
+    }
 
     @RequestMapping("/drivers/list")
     public String listDrivers(Model model){
+        logger.debug("Serving /drivers/list");
         model.addAttribute("path","/drivers/list");
         model.addAttribute("title","Drivers");
         model.addAttribute("driverList",driverProvider.getAllDrivers());

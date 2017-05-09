@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Meta and viewport settings -->
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE-edge"/>
+    <meta name="viewport" content="width-device-width, initial-scale=1"/>
+
+    <!-- Header Section -->
+    <title>OpenFleet</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+
+</head>
+<body>
+
+<!-- Top navigation bar -->
+<div th:replace="navbar :: navbar-top"></div>
+
+<!-- Header -->
+<div th:replace="header :: header-top"></div>
+
+<!-- Main container -->
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Tractor</h3>
+        </div>
+        <div class="panel-body">
+            <form class="form-group" method="post" th:action="@{/tractor/add}">
+                <input id="hiddenId" name="id" type="hidden" th:value="${tractor} ? ${tractor.id} : ''" />
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group" id="manufacturerGroup">
+                            <label class="control-label col-sm-2">Manufacturer</label>
+                            <div class="col-sm-8">
+                                <input id="manufacturerInput" type="text" name="manufacturer" class="form-control" th:value="${tractor} ? ${tractor.manufacturer} : ''"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group" id="typeGroup">
+                            <label class="control-label col-sm-2">Type</label>
+                            <div class="col-sm-8">
+                                <input id="typeInput" type="text" name="type" class="form-control" th:value="${tractor} ? ${tractor.type} : ''"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group" id="dateOfManufactureGroup">
+                            <label class="control-label col-sm-2">Date of Manufacture</label>
+                            <div class="col-sm-8">
+                                <input id="dateOfManufactureInput" type="date" name="date_of_manufacture" class="form-control" th:value="${tractor} ? ${tractor.date_of_manufacture} : ''"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group" id="dateOfAcquireGroup">
+                            <label class="control-label col-sm-2">Date of Acquire</label>
+                            <div class="col-sm-8">
+                                <input id="dateOfAcquireInput" type="date" name="date_of_acquire" class="form-control" th:value="${tractor} ? ${tractor.date_of_acquire} : ''"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group" id="dateOfSupervisionGroup">
+                            <label class="control-label col-sm-2">Date of Supervision</label>
+                            <div class="col-sm-8">
+                                <input id="dateOfSupervisionInput" type="date" name="date_of_supervision" class="form-control" th:value="${tractor} ? ${tractor.date_of_supervision} : ''"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group" id="plateNumberGroup">
+                            <label class="control-label col-sm-2">Plate Number</label>
+                            <div class="col-sm-8">
+                                <input id="plateNumberInput" type="text" name="plate_number" class="form-control" th:value="${tractor} ? ${tractor.plate_number} : ''"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group" id="chassisNumberGroup">
+                            <label class="control-label col-sm-2">Chassis Number</label>
+                            <div class="col-sm-8">
+                                <input id="chassisNumberInput" type="text" name="chassis_number" class="form-control" th:value="${tractor} ? ${tractor.chassis_number} : ''"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group" id="fuelNormGroup">
+                            <label class="control-label col-sm-2">Fuel Norm</label>
+                            <div class="col-sm-8">
+                                <input id="fuelNormInput" type="text" name="fuel_norm" class="form-control" th:value="${tractor} ? ${tractor.fuel_norm} : ''"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group" id="weightGroup">
+                            <label class="control-label col-sm-2">Weight</label>
+                            <div class="col-sm-8">
+                                <input id="weightInput" type="text" name="weight" class="form-control" th:value="${tractor} ? ${tractor.weight} : ''"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group" id="maxWeightGroup">
+                            <label class="control-label col-sm-2">Max Weight</label>
+                            <div class="col-sm-8">
+                                <input id="maxWeightInput" type="text" name="max_weight" class="form-control" th:value="${tractor} ? ${tractor.max_weight} : ''"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" value="Save" class="btn btn-success"/>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- footer -->
+<div th:replace="footer :: footer"></div>
+<script src="js/tractor.js"></script>
+</body>
+</html>

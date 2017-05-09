@@ -16,22 +16,6 @@ import java.util.Arrays;
  */
 @Configuration
 public class BeanProvider {
-
-    /*@Bean
-    public LocationProvider locationProvider(){
-        return new LocationService();
-    }*/
-
-    @Bean
-    public TractorProvider tractorProvider(){
-        return new TractorRepository();
-    }
-
-    /*@Bean
-    public EmployeeProvider employeeProvider(){
-        return new EmployeeService();
-    }*/
-
     @Bean
     public TrailerProvider trailerProvider(){
         return new TrailerRepository();

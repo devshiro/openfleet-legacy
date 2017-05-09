@@ -1,4 +1,4 @@
-package com.markbudai.openfleet.framework;
+package com.markbudai.openfleet.framework.builder;
 
 import com.markbudai.openfleet.model.Location;
 import org.springframework.web.context.request.WebRequest;

@@ -10,4 +10,8 @@ import java.util.List;
 public interface TractorProvider {
     List<Tractor> getAllTractors();
     Tractor getTractorById(long id);
+    void addTractor(Tractor tractor);
+    void updateTractor(Tractor tractor);
+    void sellTractor(long id);
+
 }
