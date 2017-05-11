@@ -9,4 +9,5 @@ import java.util.List;
  */
 public interface TransportProvider {
     List<Transport> getAllTransports();
+    void addTransport(Transport t);
 }

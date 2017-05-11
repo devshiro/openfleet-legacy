@@ -17,8 +17,12 @@ import java.util.List;
 @Component
 public class LocationService  implements LocationProvider{
 
-    @Autowired
     private LocationRepository locationRepository;
+
+    @Autowired
+    public LocationService(LocationRepository repository){
+        this.locationRepository = repository;
+    }
 
     @Override
     public List<Location> getAllLocations(){

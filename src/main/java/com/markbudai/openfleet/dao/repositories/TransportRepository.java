@@ -1,40 +1,40 @@
 package com.markbudai.openfleet.dao.repositories;
 
-import com.markbudai.openfleet.dao.providers.DriverProvider;
-import com.markbudai.openfleet.dao.providers.TransportProvider;
-import com.markbudai.openfleet.dao.providers.VehicleProvider;
 import com.markbudai.openfleet.model.Transport;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
  * Created by Mark on 2017. 04. 29..
  */
-public class TransportRepository implements TransportProvider {
+@Transactional
+@Repository
+public class TransportRepository {
 
-    private List<Transport> transportList;
+    @PersistenceContext
+    private EntityManager entityManager;
 
-    @Autowired
-    private VehicleProvider vehicleProvider;
+    public TransportRepository(){}
 
-    @Autowired
-    private DriverProvider driverProvider;
-
-
-    public TransportRepository(){
-        transportList = new ArrayList<>();
+    public List<Transport> getAllTransports(){
+        Query query = entityManager.createQuery("select t from Transport t");
+        return query.getResultList();
     }
 
-    private void setUpRepository(){
-        transportList.clear();
+    public void addTransport(Transport t){
+        entityManager.persist(t);
     }
 
+    public void updateTransport(Transport t){
+        entityManager.merge(t);
+    }
 
-    @Override
-    public List<Transport> getAllTransports() {
-        return null;
+    public Transport getTransportById(long id){
+        return entityManager.find(Transport.class, id);
     }
 }

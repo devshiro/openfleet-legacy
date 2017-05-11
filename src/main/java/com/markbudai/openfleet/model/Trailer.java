@@ -1,11 +1,16 @@
 package com.markbudai.openfleet.model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
 /**
  * Created by Mark on 2017. 04. 14..
  */
+@Entity
+@Table(name = "Trailer")
 public class Trailer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String manufacturer;
     private String type;
@@ -16,6 +21,7 @@ public class Trailer {
     private String chassis_number;
     private long weight;
     private long max_load_weight;
+    private LocalDate date_of_sell;
 
     public Trailer() {
     }
@@ -113,8 +119,56 @@ public class Trailer {
         this.max_load_weight = max_load_weight;
     }
 
+    public LocalDate getDate_of_sell() {
+        return date_of_sell;
+    }
+
+    public void setDate_of_sell(LocalDate date_of_sell) {
+        this.date_of_sell = date_of_sell;
+    }
+
     @Override
     public String toString(){
         return new StringBuilder().append(this.getManufacturer()).append(" ").append(this.getType()).toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Trailer)) return false;
+
+        Trailer trailer = (Trailer) o;
+
+        if (getWeight() != trailer.getWeight()) return false;
+        if (getMax_load_weight() != trailer.getMax_load_weight()) return false;
+        if (getManufacturer() != null ? !getManufacturer().equals(trailer.getManufacturer()) : trailer.getManufacturer() != null)
+            return false;
+        if (getType() != null ? !getType().equals(trailer.getType()) : trailer.getType() != null) return false;
+        if (getDate_of_manufacture() != null ? !getDate_of_manufacture().equals(trailer.getDate_of_manufacture()) : trailer.getDate_of_manufacture() != null)
+            return false;
+        if (getDate_of_acquire() != null ? !getDate_of_acquire().equals(trailer.getDate_of_acquire()) : trailer.getDate_of_acquire() != null)
+            return false;
+        if (getDate_of_supervision() != null ? !getDate_of_supervision().equals(trailer.getDate_of_supervision()) : trailer.getDate_of_supervision() != null)
+            return false;
+        if (getPlate_number() != null ? !getPlate_number().equals(trailer.getPlate_number()) : trailer.getPlate_number() != null)
+            return false;
+        if (getChassis_number() != null ? !getChassis_number().equals(trailer.getChassis_number()) : trailer.getChassis_number() != null)
+            return false;
+        return getDate_of_sell() != null ? getDate_of_sell().equals(trailer.getDate_of_sell()) : trailer.getDate_of_sell() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getManufacturer() != null ? getManufacturer().hashCode() : 0;
+        result = 31 * result + (getType() != null ? getType().hashCode() : 0);
+        result = 31 * result + (getDate_of_manufacture() != null ? getDate_of_manufacture().hashCode() : 0);
+        result = 31 * result + (getDate_of_acquire() != null ? getDate_of_acquire().hashCode() : 0);
+        result = 31 * result + (getDate_of_supervision() != null ? getDate_of_supervision().hashCode() : 0);
+        result = 31 * result + (getPlate_number() != null ? getPlate_number().hashCode() : 0);
+        result = 31 * result + (getChassis_number() != null ? getChassis_number().hashCode() : 0);
+        result = 31 * result + (int) (getWeight() ^ (getWeight() >>> 32));
+        result = 31 * result + (int) (getMax_load_weight() ^ (getMax_load_weight() >>> 32));
+        result = 31 * result + (getDate_of_sell() != null ? getDate_of_sell().hashCode() : 0);
+        return result;
     }
 }

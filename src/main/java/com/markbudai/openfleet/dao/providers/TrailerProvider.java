@@ -10,4 +10,7 @@ import java.util.List;
 public interface TrailerProvider {
     List<Trailer> getAllTrailers();
     Trailer getTrailerById(long id);
+    void addTrailer(Trailer trailer);
+    void updateTrailer(Trailer trailer);
+    void sellTrailer(long id);
 }

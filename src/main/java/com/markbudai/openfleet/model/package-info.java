@@ -1,4 +1,4 @@
 /**
- * Created by Mark on 2017. 04. 13..
+ * Package that contains model classes for the software.
  */
 package com.markbudai.openfleet.model;

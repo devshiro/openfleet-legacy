@@ -8,10 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Optional;
+
 import org.hibernate.annotations.Parameter;
 
 /**
- * Created by Mark on 2017. 03. 24..
+ * A class representing the employees of the company.
+ * @author Mark Budai
  */
 @Entity
 @Table(name = "Employee")
@@ -44,9 +47,27 @@ public class Employee implements Serializable{
     @Column(name = "end_of_employment_date")
     private LocalDate endOfEmploymentDate;
 
+    /**
+     * Empty constructor for creating an Employee Object
+     */
     public Employee() {
     }
 
+    /**
+     * Constructor for creating an Employee Object.
+     * @param id the id of the Employee
+     * @param firstName the first name of the Employee
+     * @param lastName the last name of the employee
+     * @param dateOfBirth the birthdate of the employee
+     * @param placeOfBirth the birthplace of the employee
+     * @param socialInsuranceNo the social insurance number of the employee
+     * @param mothersName the full name of the employee's mother
+     * @param taxNo the tax number of the employee
+     * @param driversCardNo the driver's card number of the employee
+     * @param placeOfLiving the post address of the employee
+     * @param employmentDate the start date of employment for the employee
+     * @param endOfEmploymentDate the end date of employment for the employee
+     */
     public Employee(long id, String firstName, String lastName, LocalDate dateOfBirth, Location placeOfBirth, String socialInsuranceNo, String mothersName, String taxNo, String driversCardNo, Location placeOfLiving, LocalDate employmentDate, LocalDate endOfEmploymentDate) {
         this.id = id;
         this.firstName = firstName;
@@ -62,98 +83,194 @@ public class Employee implements Serializable{
         this.endOfEmploymentDate = endOfEmploymentDate;
     }
 
+    /**
+     * Gets the id of the employee
+     * @return the id of the employee
+     */
     public long getId() {
         return id;
     }
 
+    /**
+     * Sets the id of the employee
+     * @param id the id of the employee
+     */
     public void setId(long id) {
         this.id = id;
     }
 
+    /**
+     * Gets the first name of the employee
+     * @return the first name of the employee
+     */
     public String getFirstName() {
         return firstName;
     }
 
+    /**
+     * Sets the first name of the employee
+     * @param firstName the first name of the employee
+     */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
+    /**
+     * Gets the last name of the employee
+     * @return the last name of the employee
+     */
     public String getLastName() {
         return lastName;
     }
 
+    /**
+     * Sets the last name of the employee
+     * @param lastName the last name of the employee
+     */
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
+    /**
+     * Gets the birthdate of the employee
+     * @return the birthdate of the employee
+     */
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
+    /**
+     * Sets the birthdate of the employee
+     * @param dateOfBirth the birthdate of the employee
+     */
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
+    /**
+     * Gets the birthplace of the employee
+     * @return the birthplace of the employee
+     */
     public Location getPlaceOfBirth() {
         return placeOfBirth;
     }
 
+    /**
+     * Sets the birthplace of the employee
+     * @param placeOfBirth the birthplace of the employee
+     */
     public void setPlaceOfBirth(Location placeOfBirth) {
         this.placeOfBirth = placeOfBirth;
     }
 
+    /**
+     * Gets the social insurance number of the employee
+     * @return the social insurance number of the employee
+     */
     public String getSocialInsuranceNo() {
         return socialInsuranceNo;
     }
 
+    /**
+     * Sets the social insurance number of the employee
+     * @param socialInsuranceNo the social insurance number of the employee
+     */
     public void setSocialInsuranceNo(String socialInsuranceNo) {
         this.socialInsuranceNo = socialInsuranceNo;
     }
 
+    /**
+     * Gets the employee's mother's full name
+     * @return the employee's mother's full name
+     */
     public String getMothersName() {
         return mothersName;
     }
 
+    /**
+     * Sets the employee's mother's full name
+     * @param mothersName the employee's mother's full name
+     */
     public void setMothersName(String mothersName) {
         this.mothersName = mothersName;
     }
 
+    /**
+     * Gets the tax number of the employee
+     * @return the tax number of the employee
+     */
     public String getTaxNo() {
         return taxNo;
     }
 
+    /**
+     * Sets the tax number of the employee
+     * @param taxNo the tax number of the employee
+     */
     public void setTaxNo(String taxNo) {
         this.taxNo = taxNo;
     }
 
+    /**
+     * Gets the driver's card number of the employee
+     * @return the driver's card number of the employee
+     */
     public String getDriversCardNo() {
         return driversCardNo;
     }
 
+    /**
+     * Sets the driver's card number of the employee
+     * @param driversCardNo the driver's card number of the employee
+     */
     public void setDriversCardNo(String driversCardNo) {
         this.driversCardNo = driversCardNo;
     }
 
+    /**
+     * Gets the address of the employee
+     * @return the address of the employee
+     */
     public Location getPlaceOfLiving() {
         return placeOfLiving;
     }
 
+    /**
+     * Sets the address of the employee
+     * @param placeOfLiving the address of the employee
+     */
     public void setPlaceOfLiving(Location placeOfLiving) {
         this.placeOfLiving = placeOfLiving;
     }
 
+    /**
+     * Gets the employment date of the employee
+     * @return the employment date of the employee
+     */
     public LocalDate getEmploymentDate() {
         return employmentDate;
     }
 
+    /**
+     * Sets the employment date of the employee
+     * @param employmentDate the employment date of the employee
+     */
     public void setEmploymentDate(LocalDate employmentDate) {
         this.employmentDate = employmentDate;
     }
 
+    /**
+     * Gets the end of employment date of the employee
+     * @return the end of employment date of the employee
+     */
     public LocalDate getEndOfEmploymentDate() {
         return endOfEmploymentDate;
     }
 
+    /**
+     * Sets the end of employment date of the employee
+     * @param endOfEmploymentDate the end of employment date of the employee
+     */
     public void setEndOfEmploymentDate(LocalDate endOfEmploymentDate) {
         this.endOfEmploymentDate = endOfEmploymentDate;
     }

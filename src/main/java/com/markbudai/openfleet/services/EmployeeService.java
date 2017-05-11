@@ -17,8 +17,12 @@ import java.util.stream.Collectors;
 @Service
 public class EmployeeService  implements EmployeeProvider{
 
-    @Autowired
     private EmployeeRepository employeeRepository;
+
+    @Autowired
+    public EmployeeService(EmployeeRepository repository){
+        this.employeeRepository = repository;
+    }
 
     @Override
     public List<Employee> getAllEmployees() {

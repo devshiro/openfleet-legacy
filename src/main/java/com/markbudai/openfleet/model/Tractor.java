@@ -140,4 +140,49 @@ public class Tractor {
     public String toString(){
         return new StringBuilder().append(this.getManufacturer()).append(" ").append(this.getType()).toString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Tractor)) return false;
+
+        Tractor tractor = (Tractor) o;
+
+        if (Double.compare(tractor.getFuel_norm(), getFuel_norm()) != 0) return false;
+        if (getWeight() != tractor.getWeight()) return false;
+        if (getMax_weight() != tractor.getMax_weight()) return false;
+        if (getManufacturer() != null ? !getManufacturer().equals(tractor.getManufacturer()) : tractor.getManufacturer() != null)
+            return false;
+        if (getType() != null ? !getType().equals(tractor.getType()) : tractor.getType() != null) return false;
+        if (getDate_of_manufacture() != null ? !getDate_of_manufacture().equals(tractor.getDate_of_manufacture()) : tractor.getDate_of_manufacture() != null)
+            return false;
+        if (getDate_of_acquire() != null ? !getDate_of_acquire().equals(tractor.getDate_of_acquire()) : tractor.getDate_of_acquire() != null)
+            return false;
+        if (getDate_of_supervision() != null ? !getDate_of_supervision().equals(tractor.getDate_of_supervision()) : tractor.getDate_of_supervision() != null)
+            return false;
+        if (getPlate_number() != null ? !getPlate_number().equals(tractor.getPlate_number()) : tractor.getPlate_number() != null)
+            return false;
+        if (getChassis_number() != null ? !getChassis_number().equals(tractor.getChassis_number()) : tractor.getChassis_number() != null)
+            return false;
+        return getDate_of_sell() != null ? getDate_of_sell().equals(tractor.getDate_of_sell()) : tractor.getDate_of_sell() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = getManufacturer() != null ? getManufacturer().hashCode() : 0;
+        result = 31 * result + (getType() != null ? getType().hashCode() : 0);
+        result = 31 * result + (getDate_of_manufacture() != null ? getDate_of_manufacture().hashCode() : 0);
+        result = 31 * result + (getDate_of_acquire() != null ? getDate_of_acquire().hashCode() : 0);
+        result = 31 * result + (getDate_of_supervision() != null ? getDate_of_supervision().hashCode() : 0);
+        result = 31 * result + (getPlate_number() != null ? getPlate_number().hashCode() : 0);
+        result = 31 * result + (getChassis_number() != null ? getChassis_number().hashCode() : 0);
+        temp = Double.doubleToLongBits(getFuel_norm());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (int) (getWeight() ^ (getWeight() >>> 32));
+        result = 31 * result + (int) (getMax_weight() ^ (getMax_weight() >>> 32));
+        result = 31 * result + (getDate_of_sell() != null ? getDate_of_sell().hashCode() : 0);
+        return result;
+    }
 }

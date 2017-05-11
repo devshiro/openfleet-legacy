@@ -16,18 +16,4 @@ import java.util.Arrays;
  */
 @Configuration
 public class BeanProvider {
-    @Bean
-    public TrailerProvider trailerProvider(){
-        return new TrailerRepository();
-    }
-
-    @Bean
-    public VehicleProvider vehicleProvider(){
-        return new VehicleRepository();
-    }
-
-    @Bean
-    public DriverProvider driverProvider(){
-        return new DriverRepository();
-    }
 }

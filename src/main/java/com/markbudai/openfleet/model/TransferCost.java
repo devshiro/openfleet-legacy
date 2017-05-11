@@ -1,7 +1,9 @@
 package com.markbudai.openfleet.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Currency;
+import java.util.Date;
 
 /**
  * Created by Mark on 2017. 04. 13..
@@ -14,13 +16,15 @@ public class TransferCost {
     private long id;
     private String costDescription;
     private long amount;
+    private LocalDate date;
     private Currency currency;
 
     public TransferCost(){}
 
-    public TransferCost(String costDescription, long amount, Currency currency) {
+    public TransferCost(String costDescription, long amount, LocalDate date, Currency currency) {
         this.costDescription = costDescription;
         this.amount = amount;
+        this.date = date;
         this.currency = currency;
     }
 
@@ -31,20 +35,28 @@ public class TransferCost {
 
         TransferCost that = (TransferCost) o;
 
-        if (id != that.id) return false;
-        if (amount != that.amount) return false;
-        if (costDescription != null ? !costDescription.equals(that.costDescription) : that.costDescription != null)
+        if (getAmount() != that.getAmount()) return false;
+        if (getCostDescription() != null ? !getCostDescription().equals(that.getCostDescription()) : that.getCostDescription() != null)
             return false;
-        return currency != null ? currency.equals(that.currency) : that.currency == null;
+        if (getDate() != null ? !getDate().equals(that.getDate()) : that.getDate() != null) return false;
+        return getCurrency() != null ? getCurrency().equals(that.getCurrency()) : that.getCurrency() == null;
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (costDescription != null ? costDescription.hashCode() : 0);
-        result = 31 * result + (int) (amount ^ (amount >>> 32));
-        result = 31 * result + (currency != null ? currency.hashCode() : 0);
+        int result = getCostDescription() != null ? getCostDescription().hashCode() : 0;
+        result = 31 * result + (int) (getAmount() ^ (getAmount() >>> 32));
+        result = 31 * result + (getDate() != null ? getDate().hashCode() : 0);
+        result = 31 * result + (getCurrency() != null ? getCurrency().hashCode() : 0);
         return result;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public long getId() {
@@ -77,5 +89,13 @@ public class TransferCost {
 
     public void setCurrency(Currency currency) {
         this.currency = currency;
+    }
+
+
+    @Override
+    public String toString(){
+        return new StringBuilder().append(this.getAmount()).append(" ").append(this.getCurrency().getSymbol())
+                .append(" for ").append(this.getCostDescription())
+                .toString();
     }
 }

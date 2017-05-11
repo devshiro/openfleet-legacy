@@ -1,16 +1,17 @@
 package com.markbudai.openfleet.controller;
 
 import com.markbudai.openfleet.dao.providers.TrailerProvider;
+import com.markbudai.openfleet.framework.builder.TrailerBuilder;
 import com.markbudai.openfleet.model.Trailer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.web.context.request.WebRequest;
 
 /**
  * Created by Mark on 2017. 04. 26..
@@ -18,15 +19,23 @@ import java.util.List;
 @Controller
 public class TrailerController {
 
-    @Autowired
     private TrailerProvider trailerProvider;
+
+    private static Logger logger = LoggerFactory.getLogger(TrailerController.class);
+
+    private static String viewPrefix = "trailer/";
+
+    @Autowired
+    public TrailerController(TrailerProvider provider){
+        this.trailerProvider = provider;
+    }
 
     @RequestMapping("/trailers/list")
     public String listTrailers(Model model){
         model.addAttribute("trailerList",trailerProvider.getAllTrailers());
         model.addAttribute("path","/trailers/list");
         model.addAttribute("title","Trailers");
-        return "listTrailers";
+        return viewPrefix+"listTrailers";
     }
 
     @RequestMapping("/trailer")
@@ -34,6 +43,33 @@ public class TrailerController {
         model.addAttribute("path","/trailer");
         model.addAttribute("title","Trailer Details");
         model.addAttribute("trailer",trailerProvider.getTrailerById(id));
-        return "trailerDetails";
+        return viewPrefix+"trailerDetails";
+    }
+
+    @RequestMapping("/trailer/delete")
+    public String sellTrailer(@RequestParam("id") long id, Model model){
+        trailerProvider.sellTrailer(id);
+        return listTrailers(model);
+    }
+
+    @PostMapping("/trailer/add")
+    public String addTrailer(Model model, WebRequest request){
+        logger.info("Starting trailer adding / updating method.");
+        logger.debug("Id is: {}",request.getParameter("id"));
+        if(request.getParameter("id").isEmpty()){
+            Trailer t = TrailerBuilder.buildFromWebRequest(request);
+            logger.debug("Built: {}",t);
+            trailerProvider.addTrailer(t);
+        } else {
+            Trailer t = TrailerBuilder.buildFromWebRequest(request);
+            trailerProvider.updateTrailer(t);
+        }
+        return listTrailers(model);
+    }
+
+    @RequestMapping("/trailer/new")
+    public String newTrailer(Model model){
+        model.addAttribute("title","Trailer form");
+        return viewPrefix+"trailerDetails";
     }
 }
