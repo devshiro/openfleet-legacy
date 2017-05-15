@@ -14,7 +14,6 @@ import java.util.List;
  * Created by Mark on 2017. 05. 03..
  */
 @Service
-@Component
 public class LocationService  implements LocationProvider{
 
     private LocationRepository locationRepository;

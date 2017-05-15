@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
 import java.time.LocalDate;
 
 /**
@@ -19,9 +20,10 @@ public class IndexController {
     private static Logger logger = LoggerFactory.getLogger(IndexController.class);
 
     @RequestMapping("/")
-    public String index(Model model) {
+    public String index(Model model, Principal principal) {
         model.addAttribute("path","/");
         model.addAttribute("title","Dashboard");
+        model.addAttribute("username",principal.getName());
         logger.debug("Serving Index page.");
         return "index";
     }

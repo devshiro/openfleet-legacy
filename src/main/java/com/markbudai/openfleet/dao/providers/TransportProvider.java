@@ -1,5 +1,6 @@
 package com.markbudai.openfleet.dao.providers;
 
+import com.markbudai.openfleet.model.Employee;
 import com.markbudai.openfleet.model.Transport;
 
 import java.util.List;
@@ -10,4 +11,6 @@ import java.util.List;
 public interface TransportProvider {
     List<Transport> getAllTransports();
     void addTransport(Transport t);
+    List<Transport> getTransportByEmployee(Employee e);
+    Transport getTransportById(long id);
 }

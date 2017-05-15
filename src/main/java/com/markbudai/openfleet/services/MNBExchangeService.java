@@ -2,6 +2,7 @@ package com.markbudai.openfleet.services;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -18,6 +19,7 @@ import java.util.Currency;
 /**
  * Created by Mark on 2017. 04. 13..
  */
+@Service
 public class MNBExchangeService implements ExchangeService {
 
     private Logger logger = LoggerFactory.getLogger(MNBExchangeService.class);

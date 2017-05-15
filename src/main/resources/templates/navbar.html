@@ -62,6 +62,7 @@
             </ul>
             <form class="navbar-form navbar-right" method="post" th:action="@{/logout}">
                 <input type="submit" class="btn btn-link" value="Logout"/>
+                <label th:text="${username}"></label>
             </form>
         </div>
     </div>

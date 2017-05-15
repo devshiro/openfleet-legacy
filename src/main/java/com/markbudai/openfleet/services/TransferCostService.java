@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
  * Created by Mark on 2017. 05. 09..
  */
 @Service
-@Component
 public class TransferCostService implements TransferCostProvider {
 
     private TransferCostRepository costRepository;

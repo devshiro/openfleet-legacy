@@ -18,3 +18,6 @@ public class Application {
         SpringApplication.run(Application.class,args);
     }
 }
+
+
+//TODO: Fix @Service @Component duplicate definitions (@Service is a @Component already.)

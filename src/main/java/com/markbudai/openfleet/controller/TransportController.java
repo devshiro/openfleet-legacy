@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -34,9 +35,16 @@ public class TransportController {
 
     @RequestMapping("/transport/jobs/list")
     public String transportIndex(Model model){
-        model.addAttribute("tite","Transports");
+        model.addAttribute("title","Transports");
         model.addAttribute("transports",transportProvider.getAllTransports());
         return viewPrefix+"listTransports";
+    }
+
+    @RequestMapping("/transport/job")
+    public String transportDetails(@RequestParam("id") long id, Model model){
+        model.addAttribute("title","Transports");
+        model.addAttribute("transport",transportProvider.getTransportById(id));
+        return viewPrefix+"transportDetails";
     }
 
     @RequestMapping(value = "/transports/api", method = RequestMethod.GET, produces = "application/json")

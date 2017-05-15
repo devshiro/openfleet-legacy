@@ -17,7 +17,6 @@ import java.util.stream.Collectors;
  * Created by Mark on 2017. 05. 07..
  */
 @Service
-@Component
 public class TractorService implements TractorProvider {
 
     private static Logger logger = LoggerFactory.getLogger(TractorService.class);

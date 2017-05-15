@@ -1,0 +1,69 @@
+package com.markbudai.openfleet.services;
+
+import com.markbudai.openfleet.dao.providers.EmployeeProvider;
+import com.markbudai.openfleet.dao.providers.TransportProvider;
+import com.markbudai.openfleet.framework.DateUtils;
+import com.markbudai.openfleet.model.Employee;
+import com.markbudai.openfleet.model.Transport;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
+import java.util.Currency;
+import java.util.List;
+
+/**
+ * Created by Mark on 2017. 05. 13..
+ */
+@Service
+public class PaymentService {
+
+    private static Logger logger = LoggerFactory.getLogger(PaymentService.class);
+
+    //TODO: Strore dailyFee and currency in DB. (Probably key-value store) {Redis if i have a lot of time... a LOT.}
+    private long dailyFee = 50;
+    private Currency feeCurrency = Currency.getInstance("EUR");
+
+    private EmployeeProvider employeeProvider;
+    private TransportProvider transportProvider;
+    private MNBExchangeService exchangeService;
+
+    @Autowired
+    public PaymentService(EmployeeProvider employeeProvider, TransportProvider transportProvider, MNBExchangeService exchangeService){
+        this.employeeProvider = employeeProvider;
+        this.transportProvider = transportProvider;
+        this.exchangeService = exchangeService;
+    }
+
+
+    public long getWorkDaysForEmployeeById(long id){
+        Employee e = employeeProvider.getEmployeeById(id);
+        if(e == null){ return -1L; }
+        List<Transport> transports = transportProvider.getTransportByEmployee(e);
+        return transports.stream().mapToLong(f-> DateUtils.getDaysBetween(f.getTime_of_load(),f.getTime_of_unload())).sum();
+    }
+
+    //TODO: test totalCostOfTransport
+    public double totalCostOfTransport(long id, Currency currency){
+        Transport transport = transportProvider.getTransportById(id);
+        double sum = transport.getCosts().stream().mapToDouble((f)->{
+            //convert currency to given function argument {currency}
+            BigDecimal costInCurrency = exchangeService.exchange(f.getCurrency(),new BigDecimal(f.getAmount()),currency);
+            return costInCurrency.doubleValue();
+        }).sum();
+        return sum;
+    }
+
+    //TODO: Fix monthly payment calculations
+    public BigDecimal getMonthlyFeeForEmployee(Employee e){
+        long workedDays = getWorkDaysForEmployeeById(e.getId());
+        long money = workedDays * dailyFee;
+        return new BigDecimal(money);
+    }
+
+    private void test(){
+
+    }
+}

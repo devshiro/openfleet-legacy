@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<div th:fragment="locationInputGroup">
+    <form class="form-horizontal" id="locationForm">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group" id="countryGroup">
+                    <label class="control-label col-sm-2" for="countryInput">Country</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control col-sm-8" id="countryInput" name="country"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group" id="regionGroup">
+                    <label class="control-label col-sm-2" for="regionInput">Region</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="regionInput" name="region" class="form-control col-sm-8" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group" id="cityGroup">
+                    <label class="control-label col-sm-2" for="cityInput">City</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="cityInput" name="city" class="form-control"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group" id="streetGroup">
+                    <label class="control-label col-sm-2" for="streetInput">Street</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="streetInput" name="street" class="form-control"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group" id="houseNoGroup">
+                    <label class="control-label col-sm-2" for="houseNoInput">House Number</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="houseNoInput" name="houseNo" class="form-control"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group" id="zipcodeGroup">
+                    <label class="control-label col-sm-2" for="zipcodeInput">Zipcode</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="zipcodeInput" name="zipcode" class="form-control"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <input type="button" id="submitButton" value="Save" onclick="sendData()"  class="btn btn-success"/>
+        </div>
+    </form>
+</div>
+
+</body>
+
+</html>
