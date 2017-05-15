@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
@@ -56,6 +57,28 @@ public class ApiController {
         l.add(new SamplePieData("Driver 3",1000));
 
         return l;
+    }
+
+    @RequestMapping(value = "/tractors", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody List<Tractor> tractors(){
+        return tractorProvider.getAllTractors();
+    }
+
+    @RequestMapping(value = "/trailers", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody List<Trailer> trailers(){
+        return trailerProvider.getAllTrailers();
+    }
+
+    @RequestMapping(value = "/employees", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody List<Employee> employees(){
+        return employeeProvider.getAllEmployees();
+    }
+
+
+    @RequestMapping(value = "/locations", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody List<Location> allLocations(){
+        List<Location> locations = locationProvider.getAllLocations();
+        return locations;
     }
 
     @RequestMapping(value = "/file", method = RequestMethod.GET)

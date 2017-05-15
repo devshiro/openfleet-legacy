@@ -35,7 +35,7 @@ public class Transport {
     private Location place_of_unload;
     private LocalDateTime time_of_unload;
     @OneToMany(cascade = CascadeType.ALL,targetEntity = TransferCost.class)
-    private Set<TransferCost> costs;
+    private List<TransferCost> costs;
 
 
     public Transport() {
@@ -145,12 +145,17 @@ public class Transport {
         this.time_of_unload = time_of_unload;
     }
 
-    public Set<TransferCost> getCosts() {
+    public List<TransferCost> getCosts() {
         return costs;
     }
 
-    public void setCosts(Set<TransferCost> costs) {
+    public void setCosts(List<TransferCost> costs) {
         this.costs = costs;
+    }
+
+
+    public void addCost(TransferCost cost){
+        this.costs.add(cost);
     }
 
     //TODO: Implement addCost(TransferCost cost) method.

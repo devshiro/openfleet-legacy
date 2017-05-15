@@ -3,6 +3,8 @@ package com.markbudai.openfleet.controller;
 import com.markbudai.openfleet.dao.providers.LocationProvider;
 import com.markbudai.openfleet.framework.builder.LocationBuilder;
 import com.markbudai.openfleet.model.Location;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,8 @@ import java.util.List;
 public class LocationController {
 
     private LocationProvider locationProvider;
+
+    private static Logger logger = LoggerFactory.getLogger(LocationController.class);
 
     private static String viewPrefix = "location/";
 
@@ -43,6 +47,7 @@ public class LocationController {
 
     @PostMapping("location/add")
     public String saveLocation(Model model, WebRequest request){
+        logger.trace("Adding new Location");
         Location loc = LocationBuilder.buildFromWebRequest(request);
         if(loc.getId() != 0){
             locationProvider.updateLocation(loc);
@@ -64,12 +69,5 @@ public class LocationController {
     public String deleteLocation(Model model, @RequestParam("id") long id){
         locationProvider.deleteLocation(id);
         return listLocations(model);
-    }
-
-
-    @RequestMapping(value = "/api/locations", method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody List<Location> allLocations(){
-        List<Location> locations = locationProvider.getAllLocations();
-        return locations;
     }
 }

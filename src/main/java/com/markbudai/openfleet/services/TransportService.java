@@ -45,4 +45,9 @@ public class TransportService implements TransportProvider{
     public Transport getTransportById(long id){
         return transportRepository.getTransportById(id);
     }
+
+    @Override
+    public void updateTransport(Transport t) {
+        transportRepository.updateTransport(t);
+    }
 }
