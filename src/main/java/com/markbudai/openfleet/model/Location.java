@@ -163,4 +163,10 @@ public class Location implements Serializable{
     public String toString(){
         return new StringBuilder().append(this.country).append(", ").append(this.city).toString();
     }
+
+    public String fullString(){
+        return new StringBuilder().append(this.country).append(", ").append(this.region).append(" ")
+                .append(this.city).append(" ").append(this.street).append(" ")
+                .append(this.houseNo).append(", ").append(this.zipcode).toString();
+    }
 }

@@ -88,8 +88,10 @@ public class EmployeeController {
     }
 
     @RequestMapping("/employee/payment")
-    public String employeePaymentsList(Model model){
+    public String employeePaymentsList(@RequestParam("id") long id, Model model){
         model.addAttribute("title","Payments");
+        model.addAttribute("employee",employeeProvider.getEmployeeById(id));
+        model.addAttribute(paymentService.getPayoutForEmployee(employeeProvider.getEmployeeById(id)));
         return viewPrefix+"employeePayments";
     }
 }

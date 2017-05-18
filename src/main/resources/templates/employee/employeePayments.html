@@ -23,29 +23,137 @@
 <div class="container">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Employee list</h3>
+            <h3 class="panel-title">Employee Details</h3>
         </div>
         <div class="panel-body">
-            <div class="form-group">
-                <label class="control-label">Select Employee</label>
-                <select id="employeeInput" name="employee" class="form-control"></select>
-                <button class="btn btn-default" onclick="showDetails()">Show</button>
+            <div class="row">
+                <div class="col-sm-3">
+                    <strong>First Name:</strong>
+                </div>
+                <div class="col-sm-3">
+                    <p class="font-italic" th:text="${employee.firstName}"></p>
+                </div>
+                <div class="col-sm-3">
+                    <strong>Last Name:</strong>
+                </div>
+                <div class="col-sm-3">
+                    <p class="font-italic" th:text="${employee.lastName}"></p>
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-sm-3">
+                    <strong>Date of Birth:</strong>
+                </div>
+                <div class="col-sm-3">
+                    <p class="font-italic" th:text="${employee.dateOfBirth}"></p>
+                </div>
+                <div class="col-sm-3">
+                    <strong>Place of Birth:</strong>
+                </div>
+                <div class="col-sm-3">
+                    <p class="font-italic" th:text="${employee.placeOfBirth.fullString()}"></p>
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-sm-3">
+                    <strong>Social Insurance No:</strong>
+                </div>
+                <div class="col-sm-3">
+                    <p class="font-italic" th:text="${employee.socialInsuranceNo}"></p>
+                </div>
+                <div class="col-sm-3">
+                    <strong>Tax Number:</strong>
+                </div>
+                <div class="col-sm-3">
+                    <p th:text="${employee.taxNo}"></p>
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-sm-3">
+                    <strong>Mothers Name:</strong>
+                </div>
+                <div class="col-sm-3">
+                    <p th:text="${employee.mothersName}"></p>
+                </div>
+                <div class="col-sm-3">
+                    <strong>Drivers Card Number:</strong>
+                </div>
+                <div class="col-sm-3">
+                    <p class="font-italic" th:text="${employee.driversCardNo}"></p>
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-sm-3">
+                    <strong>Place of Living:</strong>
+                </div>
+                <div class="col-sm-3">
+                    <p class="font-italic" th:text="${employee.placeOfLiving.fullString()}"></p>
+                </div>
+                <div class="col-sm-3">
+                    <strong>Employment Date:</strong>
+                </div>
+                <div class="col-sm-3">
+                    <p class="font-italic" th:text="${employee.employmentDate}"></p>
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-sm-3">
+                    <strong>End of Employment:</strong>
+                </div>
+                <div class="col-sm-3">
+                    <p class="font-italic" th:text="${employee.endOfEmploymentDate}"></p>
+                </div>
             </div>
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title" id="employeeName"></h3>
+            <h3 class="panel-title">Payouts</h3>
         </div>
         <div class="panel-body">
-            <table id="paymentTable" class="table table-bordered">
+            <div class="row">
+                <div class="col-md-2">
+                    <strong>Work days:</strong>
+                </div>
+                <div class="col-md-2">
+                    <p th:text="${payout.work_days}"></p>
+                </div>
+                <div class="col-md-2">
+                    <strong>Rest days:</strong>
+                </div>
+                <div class="col-md-2">
+                    <p th:text="${payout.rest_days}"></p>
+                </div>
+                <div class="col-md-2">
+                    <strong>Total payment:</strong>
+                </div>
+                <div class="col-md-2">
+                    <p th:text="${payout.total_payment}"></p>
+                </div>
+            </div>
+            <hr/>
+            <table class="table table-striped">
                 <thead>
-                    <tr>
-                        <th>DATE</th>
-                        <th>WORKED DAYS</th>
-                        <th>PAYMENT</th>
-                    </tr>
+                <tr>
+                    <th>Year</th>
+                    <th>Month</th>
+                    <th>Worked Days</th>
+                    <th>Payout</th>
+                </tr>
                 </thead>
+                <tbody>
+                <tr th:each="detail : ${payout.detailList}">
+                    <td th:text="${detail.year}"></td>
+                    <td th:text="${detail.month}"></td>
+                    <td th:text="${detail.workedDays}"></td>
+                    <td th:text="${detail.totalPayout}"></td>
+                </tr>
+                </tbody>
             </table>
         </div>
     </div>

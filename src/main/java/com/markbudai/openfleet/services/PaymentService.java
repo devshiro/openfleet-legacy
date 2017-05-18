@@ -6,6 +6,7 @@ import com.markbudai.openfleet.framework.DateUtils;
 import com.markbudai.openfleet.model.Employee;
 import com.markbudai.openfleet.model.Transport;
 import com.markbudai.openfleet.pojo.PaymentDetail;
+import com.markbudai.openfleet.pojo.Payout;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,5 +88,17 @@ public class PaymentService {
             paymentDetails.add(new PaymentDetail(LocalDate.now(),DateUtils.getWorkDaysBetween(c.getStart(),c.getFinish()), DateUtils.getWorkDaysBetween(c.getStart(),c.getFinish())*30));
         });
         return paymentDetails;
+    }
+
+
+    public Payout getPayoutForEmployee(Employee e){
+        if(e == null){
+            return new Payout();
+        }
+        Payout payout = new Payout();
+        payout.setWork_days(getWorkDaysForEmployeeById(e.getId()));
+        payout.setRest_days(LocalDate.now().getDayOfMonth() - payout.getWork_days());
+        payout.setDetailList(getPaymentsForEmployee(e.getId()));
+        return payout;
     }
 }
