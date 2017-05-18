@@ -37,10 +37,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
-        //in memory auth for testing
-        /*auth
-                .inMemoryAuthentication()
-                .withUser("user").password("password").roles("USER");*/
         auth
                 .ldapAuthentication()
                     .userDnPatterns("uid={0},ou=managers")

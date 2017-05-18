@@ -2,8 +2,10 @@ package com.markbudai.openfleet.controller;
 
 import com.markbudai.openfleet.dao.providers.*;
 import com.markbudai.openfleet.model.*;
+import com.markbudai.openfleet.pojo.PaymentDetail;
 import com.markbudai.openfleet.pojo.SamplePieData;
 import com.markbudai.openfleet.services.DocumentService;
+import com.markbudai.openfleet.services.PaymentService;
 import org.apache.tomcat.jni.Local;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,6 +50,9 @@ public class ApiController {
 
     @Autowired
     private TransportProvider transportProvider;
+
+    @Autowired
+    private PaymentService paymentService;
 
     @RequestMapping(value = "/drivers", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody List<SamplePieData> pieData() {
@@ -98,5 +103,17 @@ public class ApiController {
         List<Transport> list = transportProvider.getAllTransports();
         logger.debug("{}",list.get(0));
         return "index";
+    }
+
+
+    @RequestMapping(value = "/paymentDetails",method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody List<PaymentDetail> getPaymentsForEmployee(@RequestParam("id") long id){
+        List<PaymentDetail> paymentDetails = paymentService.getPaymentsForEmployee(id);
+        if(paymentDetails.isEmpty()){
+            logger.debug("No payment details created for employee with id: {}",id);
+            return null;
+        } else {
+            return paymentDetails;
+        }
     }
 }

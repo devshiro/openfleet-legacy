@@ -3,6 +3,7 @@ package com.markbudai.openfleet.controller;
 import com.markbudai.openfleet.dao.providers.EmployeeProvider;
 import com.markbudai.openfleet.framework.builder.EmployeeBuilder;
 import com.markbudai.openfleet.model.Employee;
+import com.markbudai.openfleet.services.PaymentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +24,15 @@ public class EmployeeController {
 
     private EmployeeProvider employeeProvider;
     private EmployeeBuilder builder;
+    private PaymentService paymentService;
 
     private static String viewPrefix = "employee/";
 
     @Autowired
-    public EmployeeController(EmployeeProvider provider, EmployeeBuilder builder){
+    public EmployeeController(EmployeeProvider provider, EmployeeBuilder builder,PaymentService paymentService){
         this.employeeProvider = provider;
         this.builder = builder;
+        this.paymentService = paymentService;
         logger.debug("{} created.",this.getClass());
     }
 
@@ -80,5 +83,11 @@ public class EmployeeController {
     @RequestMapping("/employee")
     public String employeeDetail(@RequestParam("id") long id, Model model){
         return editEmployee(id,model);
+    }
+
+    @RequestMapping("/employee/payment")
+    public String employeePaymentsList(Model model){
+        model.addAttribute("title","Payments");
+        return viewPrefix+"employeePayments";
     }
 }

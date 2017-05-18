@@ -25,9 +25,6 @@ public class TractorRepository {
     private EntityManager entityManager;
 
     public TractorRepository(){
-        //tractorList.add(new Tractor(1,"DAF","XF 105", LocalDate.of(2010,5,12),
-        //        LocalDate.of(2017,02,02),LocalDate.of(2020,01,01),
-        //        "SSS-666","aaaaaaaaaaaaaaaaa",22.5,1000,4000));
     }
 
     public List<Tractor> getAllTractors() {

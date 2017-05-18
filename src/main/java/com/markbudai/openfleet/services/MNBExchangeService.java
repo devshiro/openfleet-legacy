@@ -19,7 +19,6 @@ import java.util.Currency;
 /**
  * Created by Mark on 2017. 04. 13..
  */
-@Service
 public class MNBExchangeService implements ExchangeService {
 
     private Logger logger = LoggerFactory.getLogger(MNBExchangeService.class);

@@ -3,6 +3,7 @@ package com.markbudai.openfleet.controller;
 import com.markbudai.openfleet.dao.providers.TransferCostProvider;
 import com.markbudai.openfleet.dao.providers.TransportProvider;
 import com.markbudai.openfleet.framework.builder.TransferCostBuilder;
+import com.markbudai.openfleet.framework.builder.TransportBuilder;
 import com.markbudai.openfleet.model.TransferCost;
 import com.markbudai.openfleet.model.Transport;
 import org.apache.commons.collections4.Get;
@@ -35,6 +36,9 @@ public class TransportController {
     private TransferCostProvider costProvider;
 
     @Autowired
+    private TransportBuilder builder;
+
+    @Autowired
     public TransportController(TransportProvider provider){
         this.transportProvider = provider;
     }
@@ -45,6 +49,20 @@ public class TransportController {
         model.addAttribute("title","Transports");
         model.addAttribute("transports",transportProvider.getAllTransports());
         return viewPrefix+"listTransports";
+    }
+
+    @RequestMapping("/transport/new")
+    public String newTransport(Model model){
+        model.addAttribute("title","New Transport");
+        return viewPrefix+"newTransport";
+    }
+
+    @PostMapping("/transport/job/add")
+    public String addTransport(Model model, WebRequest request){
+        Transport t = builder.buildFromWebRequest(request);
+        logger.debug("Build transport: {}",t);
+        transportProvider.addTransport(t);
+        return transportIndex(model);
     }
 
     @RequestMapping("/transport/job")

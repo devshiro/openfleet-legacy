@@ -162,6 +162,12 @@
             <artifactId>javax.interceptor-api</artifactId>
             <version>1.2</version>
         </dependency>
+        <!-- JAX-WS -->
+        <dependency>
+            <groupId>com.sun.xml.ws</groupId>
+            <artifactId>jaxws-rt</artifactId>
+            <version>2.2.8</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -239,6 +245,51 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>3.0.0</version>
+            </plugin>
+            <!-- WSQL Gen -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>2.4.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <vmArgs>
+                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+                            </vmArgs>
+                            <xadditionalHeaders>true</xadditionalHeaders>
+                            <wsdlUrls>
+                                <wsdlUrl>http://www.mnb.hu/arfolyamok.asmx?wsdl</wsdlUrl>
+                            </wsdlUrls>
+                            <packageName>mnb</packageName>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- NPM BOWER -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <executable>cmd</executable>
+                    <arguments>
+                        <argument>/c</argument>
+                        <argument>"bower install"</argument>
+                    </arguments>
+                    <workingDirectory>${basedir}/src/main/resources/static</workingDirectory>
+                </configuration>
             </plugin>
         </plugins>
     </build>
