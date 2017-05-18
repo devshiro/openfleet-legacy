@@ -2,14 +2,18 @@ package com.markbudai.openfleet.services;
 
 import com.markbudai.openfleet.dao.providers.TractorProvider;
 import com.markbudai.openfleet.dao.repositories.TractorRepository;
+import com.markbudai.openfleet.framework.DateUtils;
 import com.markbudai.openfleet.model.Tractor;
+import com.markbudai.openfleet.pojo.SupervisionDetails;
+import org.apache.tomcat.jni.Local;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -67,5 +71,24 @@ public class TractorService implements TractorProvider {
         } else {
             logger.warn("Incorrect id {} no sellable tractor found.",id);
         }
+    }
+
+    @Override
+    public List<SupervisionDetails> getSupervisionList() {
+        List<SupervisionDetails> supervisionDetails = new ArrayList<>();
+        List<Tractor> tractorList = this.getAllTractors();
+        for(Tractor tractor : tractorList){
+            if(DateUtils.getDaysDifference(tractor.getDate_of_supervision(), LocalDate.now()) <= 30){
+                SupervisionDetails details = new SupervisionDetails();
+                details.setDate_of_supervision(tractor.getDate_of_supervision());
+                details.setDays_remaining(DateUtils.getDaysDifference(tractor.getDate_of_supervision(),LocalDate.now()));
+                details.setManufacturer(tractor.getManufacturer());
+                details.setType(tractor.getType());
+                details.setPlate_no(tractor.getPlate_number());
+                supervisionDetails.add(details);
+            }
+        }
+        logger.debug("in 30 days of supervision: {}",supervisionDetails.size());
+        return supervisionDetails;
     }
 }

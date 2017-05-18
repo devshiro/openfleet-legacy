@@ -1,7 +1,6 @@
 package com.markbudai.openfleet.dao.providers;
 
 import com.markbudai.openfleet.model.Employee;
-import com.markbudai.openfleet.model.TransferCost;
 import com.markbudai.openfleet.model.Transport;
 
 import java.util.List;

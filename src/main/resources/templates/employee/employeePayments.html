@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Meta and viewport settings -->
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE-edge"/>
+    <meta name="viewport" content="width-device-width, initial-scale=1"/>
+
+    <!-- Header Section -->
+    <title>OpenFleet</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+
+</head>
+<body>
+
+<!-- Top navigation bar -->
+<div th:replace="navbar :: navbar-top"></div>
+
+<!-- Header -->
+<div th:replace="header :: header-top"></div>
+
+<!-- Main container -->
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Employee list</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label class="control-label">Select Employee</label>
+                <select id="employeeInput" name="employee" class="form-control"></select>
+                <button class="btn btn-default" onclick="showDetails()">Show</button>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title" id="employeeName"></h3>
+        </div>
+        <div class="panel-body">
+            <table id="paymentTable" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>DATE</th>
+                        <th>WORKED DAYS</th>
+                        <th>PAYMENT</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- footer -->
+<div th:replace="footer :: footer"></div>
+<script type="text/javascript" src="/js/employeePayments.js"></script>
+</body>
+</html>

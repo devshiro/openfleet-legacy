@@ -21,3 +21,5 @@ public class Application {
 
 
 //TODO: Fix @Service @Component duplicate definitions (@Service is a @Component already.)
+//TODO: Vehicle Supervision/Inspection Reminder feature
+//TODO: Driver monthly evaluation (worked days, rest days) feature

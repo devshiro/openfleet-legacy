@@ -1,6 +1,7 @@
 package com.markbudai.openfleet.dao.providers;
 
 import com.markbudai.openfleet.model.Tractor;
+import com.markbudai.openfleet.pojo.SupervisionDetails;
 
 import java.util.List;
 
@@ -13,5 +14,5 @@ public interface TractorProvider {
     void addTractor(Tractor tractor);
     void updateTractor(Tractor tractor);
     void sellTractor(long id);
-
+    List<SupervisionDetails> getSupervisionList();
 }

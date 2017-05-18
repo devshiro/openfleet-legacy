@@ -6,18 +6,15 @@ import com.markbudai.openfleet.framework.DateUtils;
 import com.markbudai.openfleet.model.Employee;
 import com.markbudai.openfleet.model.Transport;
 import com.markbudai.openfleet.pojo.PaymentDetail;
-import org.apache.tomcat.jni.Local;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Currency;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,11 +45,11 @@ public class PaymentService {
         Employee e = employeeProvider.getEmployeeById(id);
         if(e == null){ return -1L; }
         List<Transport> transports = transportProvider.getTransportByEmployee(e);
-        return transports.stream().mapToLong(f-> DateUtils.getDaysBetween(f.getTime_of_load(),f.getTime_of_unload())).sum();
+        return transports.stream().mapToLong(f-> DateUtils.getWorkDaysBetween(f.getTime_of_load(),f.getTime_of_unload())).sum();
     }
 
     private long getWorkedDaysForTransports(List<Transport> transports){
-        return transports.stream().mapToLong(c-> DateUtils.getDaysBetween(c.getStart(),c.getFinish())).sum();
+        return transports.stream().mapToLong(c-> DateUtils.getWorkDaysBetween(c.getStart(),c.getFinish())).sum();
     }
 
     //TODO: test totalCostOfTransport
@@ -87,7 +84,7 @@ public class PaymentService {
                 .collect(Collectors.toList());
         List<PaymentDetail> paymentDetails = new ArrayList<>();
         transports.forEach(c->{
-            paymentDetails.add(new PaymentDetail(LocalDate.now(),DateUtils.getDaysBetween(c.getStart(),c.getFinish()), DateUtils.getDaysBetween(c.getStart(),c.getFinish())*30));
+            paymentDetails.add(new PaymentDetail(LocalDate.now(),DateUtils.getWorkDaysBetween(c.getStart(),c.getFinish()), DateUtils.getWorkDaysBetween(c.getStart(),c.getFinish())*30));
         });
         return paymentDetails;
     }

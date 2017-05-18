@@ -2,14 +2,20 @@ package com.markbudai.openfleet.services;
 
 import com.markbudai.openfleet.dao.providers.TrailerProvider;
 import com.markbudai.openfleet.dao.repositories.TrailerRepository;
+import com.markbudai.openfleet.framework.DateUtils;
+import com.markbudai.openfleet.framework.builder.TrailerBuilder;
+import com.markbudai.openfleet.model.Tractor;
 import com.markbudai.openfleet.model.Trailer;
+import com.markbudai.openfleet.pojo.SupervisionDetails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.WebRequest;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -68,5 +74,36 @@ public class TrailerService implements TrailerProvider {
             logger.warn("Incorrect id {}. No sellable trailer found!",id);
         }
 
+    }
+
+    @Override
+    public List<SupervisionDetails> getSupervisionList() {
+        List<SupervisionDetails> supervisionDetails = new ArrayList<>();
+        List<Trailer> trailerList = this.getAllTrailers();
+        for(Trailer trailer : trailerList){
+            if(DateUtils.getDaysDifference(trailer.getDate_of_supervision(), LocalDate.now()) <= 30){
+                SupervisionDetails details = new SupervisionDetails();
+                details.setDate_of_supervision(trailer.getDate_of_supervision());
+                details.setDays_remaining(DateUtils.getDaysDifference(trailer.getDate_of_supervision(),LocalDate.now()));
+                details.setManufacturer(trailer.getManufacturer());
+                details.setType(trailer.getType());
+                details.setPlate_no(trailer.getPlate_number());
+                supervisionDetails.add(details);
+            }
+        }
+        logger.debug("in 30 days of supervision: {}",supervisionDetails.size());
+        return supervisionDetails;
+    }
+
+    @Override
+    public void addOrUpdate(WebRequest request) {
+        if(request.getParameter("id").isEmpty()){
+            Trailer t = TrailerBuilder.buildFromWebRequest(request);
+            logger.debug("Built: {}",t);
+            this.addTrailer(t);
+        } else {
+            Trailer t = TrailerBuilder.buildFromWebRequest(request);
+            this.updateTrailer(t);
+        }
     }
 }

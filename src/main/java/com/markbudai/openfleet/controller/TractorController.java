@@ -36,6 +36,7 @@ public class TractorController {
         model.addAttribute("path","/tractors/list");
         model.addAttribute("title","Tractors");
         model.addAttribute("tractorList",tractorProvider.getAllTractors());
+        model.addAttribute("supervisionList",tractorProvider.getSupervisionList());
         return viewPrefix+"listTractors";
     }
 

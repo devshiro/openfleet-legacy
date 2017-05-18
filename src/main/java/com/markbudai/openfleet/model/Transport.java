@@ -158,8 +158,6 @@ public class Transport {
         this.costs.add(cost);
     }
 
-    //TODO: Implement addCost(TransferCost cost) method.
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

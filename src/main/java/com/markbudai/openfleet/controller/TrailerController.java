@@ -1,8 +1,6 @@
 package com.markbudai.openfleet.controller;
 
 import com.markbudai.openfleet.dao.providers.TrailerProvider;
-import com.markbudai.openfleet.framework.builder.TrailerBuilder;
-import com.markbudai.openfleet.model.Trailer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +33,7 @@ public class TrailerController {
         model.addAttribute("trailerList",trailerProvider.getAllTrailers());
         model.addAttribute("path","/trailers/list");
         model.addAttribute("title","Trailers");
+        model.addAttribute("supervisionList",trailerProvider.getSupervisionList());
         return viewPrefix+"listTrailers";
     }
 
@@ -56,14 +55,7 @@ public class TrailerController {
     public String addTrailer(Model model, WebRequest request){
         logger.info("Starting trailer adding / updating method.");
         logger.debug("Id is: {}",request.getParameter("id"));
-        if(request.getParameter("id").isEmpty()){
-            Trailer t = TrailerBuilder.buildFromWebRequest(request);
-            logger.debug("Built: {}",t);
-            trailerProvider.addTrailer(t);
-        } else {
-            Trailer t = TrailerBuilder.buildFromWebRequest(request);
-            trailerProvider.updateTrailer(t);
-        }
+        trailerProvider.addOrUpdate(request);
         return listTrailers(model);
     }
 

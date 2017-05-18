@@ -65,6 +65,33 @@
             </table>
         </div>
     </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Upcoming Supervisions</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>License Plate</th>
+                    <th>Manufacturer</th>
+                    <th>Type</th>
+                    <th>Date of Supervision</th>
+                    <th>Days Remaining</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="trailer : ${supervisionList}" th:class="${trailer.days_remaining &lt; 14}?'bg-danger text-white':''">
+                    <td th:text="${trailer.plate_no}"></td>
+                    <td th:text="${trailer.manufacturer}"></td>
+                    <td th:text="${trailer.type}"></td>
+                    <td th:text="${trailer.date_of_supervision}"></td>
+                    <td th:text="${trailer.days_remaining}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 <!-- footer -->

@@ -9,7 +9,11 @@ import java.time.temporal.Temporal;
  */
 public class DateUtils {
 
-    public static long getDaysBetween(Temporal from, Temporal to){
-        return Math.abs(ChronoUnit.DAYS.between(from,to) + 1);
+    public static long getWorkDaysBetween(Temporal from, Temporal to){
+        return Math.abs(ChronoUnit.DAYS.between(from,to)+1);
+    }
+
+    public static long getDaysDifference(Temporal from, Temporal to){
+        return Math.abs(ChronoUnit.DAYS.between(from,to));
     }
 }
