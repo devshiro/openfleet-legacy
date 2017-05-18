@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -26,5 +27,12 @@ public class IndexController {
         model.addAttribute("username",principal.getName());
         logger.debug("Serving Index page.");
         return "index";
+    }
+
+    @RequestMapping("/errorTest")
+    public String doSomething() throws Exception {
+        //doing something important when suddenly...
+        throw new RuntimeException("Something Happened! :c");
+        //return "index";
     }
 }

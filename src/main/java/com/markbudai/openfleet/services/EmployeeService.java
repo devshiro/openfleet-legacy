@@ -2,6 +2,7 @@ package com.markbudai.openfleet.services;
 
 import com.markbudai.openfleet.dao.providers.EmployeeProvider;
 import com.markbudai.openfleet.dao.repositories.EmployeeRepository;
+import com.markbudai.openfleet.exception.IdException;
 import com.markbudai.openfleet.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,6 +54,8 @@ public class EmployeeService  implements EmployeeProvider{
         if(e != null){
             e.setEndOfEmploymentDate(LocalDate.now());
             employeeRepository.updateEmployee(e);
+        } else {
+            throw new IdException();
         }
     }
 }

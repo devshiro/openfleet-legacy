@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Meta and viewport settings -->
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE-edge"/>
+    <meta name="viewport" content="width-device-width, initial-scale=1"/>
+
+    <!-- Header Section -->
+    <title>OpenFleet</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+
+</head>
+<body>
+
+<!-- Top navigation bar -->
+<div th:replace="navbar :: navbar-top"></div>
+
+<!-- Header -->
+<div th:replace="header :: header-top"></div>
+
+<!-- Breadcrumb -->
+<section id="breadcrumb">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="active">Dashboard</li>
+        </ol>
+    </div>
+</section>
+
+<!-- Main -->
+<section id="main">
+    <div class="container">
+        <h1>Error happened!</h1>
+        <p th:text="${exception}"></p>
+    </div>
+</section>
+
+<!-- footer -->
+<div th:replace="footer :: footer"></div>
+
+<!-- Scripts -->
+</body>
+</html>
