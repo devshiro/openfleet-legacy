@@ -20,12 +20,13 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class ExceptionController implements HandlerExceptionResolver {
 
-    private static Logger logger = LoggerFactory.getLogger(ErrorController.class);
+    private static Logger logger = LoggerFactory.getLogger(ExceptionController.class);
 
     private static String viewPrefix = "error/";
 
     @Override
     public ModelAndView resolveException(HttpServletRequest req, HttpServletResponse resp, Object o, Exception ex) {
+        logger.error("This one got through...{} ... and it came from: {}",ex,req.getRequestURL());
         ModelAndView mav = new ModelAndView();
         mav.addObject("exception",ex);
         mav.addObject("url",req.getRequestURL());

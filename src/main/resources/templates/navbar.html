@@ -4,7 +4,7 @@
 <body>
 
 <nav th:fragment="navbar-top" class="navbar navbar-default">
-    <div class="container">
+    <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
@@ -62,7 +62,6 @@
             </ul>
             <form class="navbar-form navbar-right" method="post" th:action="@{/logout}">
                 <input type="submit" class="btn btn-link" value="Logout"/>
-                <label th:text="${username}"></label>
             </form>
         </div>
     </div>

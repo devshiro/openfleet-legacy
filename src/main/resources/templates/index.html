@@ -18,42 +18,45 @@
 
 <!-- Header -->
 <div th:replace="header :: header-top"></div>
+<div class="container-fluid">
+    <!-- Breadcrumb -->
+    <section id="breadcrumb">
+        <div class="container-fluid">
+            <ol class="breadcrumb">
+                <li class="active">Logged in as: <i th:text="${username}"></i></li>
+            </ol>
+        </div>
+    </section>
 
-<!-- Breadcrumb -->
-<section id="breadcrumb">
-    <div class="container">
-        <ol class="breadcrumb">
-            <li class="active">Dashboard</li>
-        </ol>
-    </div>
-</section>
-
-<!-- Main -->
-<section id="main">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="list-group">
-                    <a href="#" class="list-group-item active">Dashboard</a>
-                    <a href="#" class="list-group-item ">Something <span class="badge">33</span></a>
-                    <a href="#" class="list-group-item ">Something <span class="badge">2</span></a>
-                    <a href="#" class="list-group-item ">Something <span class="badge">55</span></a>
-                    <a href="#" class="list-group-item ">Something <span class="badge">1</span></a>
-                </div>
-            </div>
-            <div class="col-md-9">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-pie-chart"></i> Fleet status</h3>
+    <!-- Main -->
+    <section id="main">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item active">Quick View</a>
+                        <a href="/locations/list" class="list-group-item ">Locations <span class="badge" id="locBadge">33</span></a>
+                        <a href="/employee/list" class="list-group-item ">Employees <span class="badge" id="empBadge">2</span></a>
+                        <a href="/tractors/list" class="list-group-item ">Tractors <span class="badge" id="tractorBadge">55</span></a>
+                        <a href="/trailers/list" class="list-group-item ">Trailers <span class="badge" id="trailerBadge">1</span></a>
+                        <a href="/transport/jobs/list" class="list-group-item ">Transport Jobs <span class="badge" id="jobBadge">1</span></a>
                     </div>
-                    <div class="panel-body">
-                        <div id="myPieChart"/>
+                </div>
+                <div class="col-md-9">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-pie-chart"></i> Fleet status</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="myPieChart"/>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
+</div>
 
 <!-- footer -->
 <div th:replace="footer :: footer"></div>
@@ -64,5 +67,6 @@
     google.charts.load('current', {packages: ['corechart']});
     google.charts.setOnLoadCallback(drawChart);
 </script>
+<script src="/js/index.js"></script>
 </body>
 </html>

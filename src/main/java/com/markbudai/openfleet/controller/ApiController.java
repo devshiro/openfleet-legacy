@@ -2,6 +2,7 @@ package com.markbudai.openfleet.controller;
 
 import com.markbudai.openfleet.dao.providers.*;
 import com.markbudai.openfleet.model.*;
+import com.markbudai.openfleet.pojo.Badge;
 import com.markbudai.openfleet.pojo.PaymentDetail;
 import com.markbudai.openfleet.pojo.SamplePieData;
 import com.markbudai.openfleet.services.DocumentService;
@@ -69,6 +70,17 @@ public class ApiController {
         return tractorProvider.getAllTractors();
     }
 
+    @RequestMapping(value = "/badges", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody Badge badge(){
+        Badge badges = new Badge();
+        badges.setLocation_count(this.allLocations().size());
+        badges.setEmployee_count(this.employees().size());
+        badges.setTrailer_count(this.trailers().size());
+        badges.setTractor_count(this.tractors().size());
+        badges.setJob_count(this.transportProvider.getAllTransports().size());
+        return badges;
+    }
+
     @RequestMapping(value = "/trailers", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody List<Trailer> trailers(){
         return trailerProvider.getAllTrailers();
@@ -116,4 +128,7 @@ public class ApiController {
             return paymentDetails;
         }
     }
+
+
+
 }
