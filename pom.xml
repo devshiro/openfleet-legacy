@@ -7,7 +7,9 @@
     <groupId>com.markbudai</groupId>
     <artifactId>openfleet</artifactId>
     <version>0.1</version>
+
     <description>Enterprise Java Application for managing micro and small transportation businesses.</description>
+
     <developers>
         <developer>
             <id>Chrams</id>
@@ -15,19 +17,28 @@
             <email>mark.budai@outlook.com</email>
         </developer>
     </developers>
-    <!--<scm>
-        <connection></connection>
-        <tag></tag>
-    </scm>-->
 
-    <!--<licenses>
+    <scm>
+        <connection>scm:git:https://github.com/Chrams/openfleet.git</connection>
+        <developerConnection>scm:git:https://github.com/Chrams/openfleet.git</developerConnection>
+        <tag>HEAD</tag>
+        <url>https://github.com/Chrams/openfleet</url>
+    </scm>
+
+    <inceptionYear>2017</inceptionYear>
+
+    <organization>
+        <name>University of Debrecen, Faculty of Informatics</name>
+    </organization>
+
+    <licenses>
         <license>
-            <name></name>
-            <url></url>
-            <distribution></distribution>
-            <comments></comments>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
         </license>
-    </licenses>-->
+    </licenses>
 
     <packaging>war</packaging>
 
@@ -39,7 +50,7 @@
         <mainClass>com.markbudai.openfleet.Application</mainClass>
     </properties>
 
-    <!-- Spring boot -->
+    <!-- Spring boot parent -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -177,6 +188,28 @@
 
     <build>
         <plugins>
+            <!-- Maven Enforcer Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>1.4.1</version>
+                <executions>
+                    <execution>
+                        <id>enforce-jdk-8</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <phase>validate</phase>
+                        <configuration>
+                            <rules>
+                                <requireJavaVersion>
+                                    <version>1.8.0</version>
+                                </requireJavaVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <!-- SpringBoot maven plugin for convenience -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
