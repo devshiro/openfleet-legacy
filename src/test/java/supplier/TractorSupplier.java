@@ -1,6 +1,8 @@
 package supplier;
 
+import com.markbudai.openfleet.dao.providers.TractorProvider;
 import com.markbudai.openfleet.model.Tractor;
+import org.mockito.Mockito;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
@@ -23,5 +25,11 @@ public class TractorSupplier {
         tractor.setDate_of_acquire(LocalDate.of(2017,01,01));
         tractor.setDate_of_supervision(LocalDate.now().plusDays(7));
         return tractor;
+    }
+
+    public static TractorProvider getMockProvider(){
+        TractorProvider tractorProvider = Mockito.mock(TractorProvider.class);
+        Mockito.when(tractorProvider.getTractorById(1)).thenReturn(getSampleTractor());
+        return tractorProvider;
     }
 }

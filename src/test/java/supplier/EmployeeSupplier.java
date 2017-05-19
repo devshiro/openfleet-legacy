@@ -1,6 +1,9 @@
 package supplier;
 
+import com.markbudai.openfleet.dao.providers.EmployeeProvider;
+import com.markbudai.openfleet.dao.repositories.EmployeeRepository;
 import com.markbudai.openfleet.model.Employee;
+import org.mockito.Mockito;
 
 import java.time.LocalDate;
 
@@ -22,5 +25,11 @@ public class EmployeeSupplier {
         employee.setPlaceOfBirth(LocationSupplier.getSampleLocation());
         employee.setEmploymentDate(LocalDate.of(2017,05,18));
         return employee;
+    }
+
+    public static EmployeeProvider getMockProvider(){
+        EmployeeProvider employeeProvider = Mockito.mock(EmployeeProvider.class);
+        Mockito.when(employeeProvider.getEmployeeById(1)).thenReturn(getSampleEmployee());
+        return employeeProvider;
     }
 }

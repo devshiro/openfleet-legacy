@@ -79,13 +79,6 @@ public class TransportBuilder {
             transport.setCargo_name(request.getParameter("cargo_name"));
         }
 
-        if(request.getParameter("cargo_name").isEmpty()){
-            logger.debug("No cargo name parameter is provided.");
-            return null;
-        } else {
-            transport.setCargo_name(request.getParameter("cargo_name"));
-        }
-
         if(request.getParameter("place_of_load").isEmpty()){
             logger.debug("No load place parameter is provided.");
             return null;

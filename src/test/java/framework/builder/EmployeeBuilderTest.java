@@ -23,8 +23,7 @@ public class EmployeeBuilderTest {
 
     @BeforeClass
     public static void setup(){
-        locationProvider = Mockito.mock(LocationProvider.class);
-        Mockito.when(locationProvider.getLocationById(1)).thenReturn(LocationSupplier.getSampleLocation());
+        locationProvider = LocationSupplier.getMockProvider();
         employeeBuilder = new EmployeeBuilder(locationProvider);
 
         mockedWebRequest = Mockito.mock(WebRequest.class);

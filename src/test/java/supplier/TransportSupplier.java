@@ -1,7 +1,10 @@
 package supplier;
 
+import com.markbudai.openfleet.dao.providers.TransportProvider;
 import com.markbudai.openfleet.model.Location;
 import com.markbudai.openfleet.model.Transport;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 
 import java.time.LocalDateTime;
 
@@ -29,5 +32,11 @@ public class TransportSupplier {
         transport.setTractor(TractorSupplier.getSampleTractor());
         transport.setTrailer(TrailerSupplier.getSampleTrailer());
         return transport;
+    }
+
+    public static TransportProvider getMockProvider(){
+        TransportProvider transportProvider = Mockito.mock(TransportProvider.class);
+        Mockito.when(transportProvider.getTransportById(1)).thenReturn(getSampleTransport());
+        return transportProvider;
     }
 }
