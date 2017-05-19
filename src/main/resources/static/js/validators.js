@@ -2,7 +2,7 @@
  * Created by Mark on 2017. 05. 04..
  */
 $('document').ready(function(){
-    //TODO: attach automatically by adding a framework-testable class to the input groups.
+    //TODO: attach automatically by adding a tests.framework-testable class to the input groups.
     /*$('#countryInput').change(function () {
         tester('country');
     })

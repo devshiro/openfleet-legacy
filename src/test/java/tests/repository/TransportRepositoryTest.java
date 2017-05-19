@@ -1,14 +1,11 @@
-package repository;
+package tests.repository;
 
 import com.markbudai.openfleet.dao.repositories.TransportRepository;
 import com.markbudai.openfleet.exception.NotFoundException;
 import com.markbudai.openfleet.model.Transport;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
-import org.mockito.internal.util.MockUtil;
-import org.omg.PortableInterceptor.TRANSPORT_RETRY;
 
 import javax.persistence.EntityManager;
 

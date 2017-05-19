@@ -1,4 +1,4 @@
-package repository;
+package tests.repository;
 
 import com.markbudai.openfleet.dao.repositories.TransferCostRepository;
 import com.markbudai.openfleet.exception.NotFoundException;

@@ -1,4 +1,4 @@
-package framework.builder;
+package tests;
 
 import com.markbudai.openfleet.framework.builder.TractorBuilder;
 import com.markbudai.openfleet.model.Tractor;
@@ -7,7 +7,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.springframework.web.context.request.WebRequest;
-import supplier.TractorSupplier;
+import tests.supplier.TractorSupplier;
 
 import java.time.LocalDate;
 
@@ -38,5 +38,12 @@ public class TractorBuilderTest {
         Tractor tractor = TractorSupplier.getSampleTractor();
         tractor.setDate_of_supervision(LocalDate.of(2017,05,05));
         Assert.assertEquals(tractor,TractorBuilder.buildFromWebRequest(mockedWebRequest));
+    }
+
+    @Test
+    public void assertSameTractorsHasSameHashCode(){
+        Tractor tractor = TractorSupplier.getSampleTractor();
+        tractor.setDate_of_supervision(LocalDate.of(2017,05,05));
+        Assert.assertEquals(tractor.hashCode(),TractorBuilder.buildFromWebRequest(mockedWebRequest).hashCode());
     }
 }

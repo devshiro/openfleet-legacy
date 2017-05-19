@@ -1,4 +1,4 @@
-package framework.builder;
+package tests;
 
 import com.markbudai.openfleet.framework.builder.TrailerBuilder;
 import com.markbudai.openfleet.model.Trailer;
@@ -7,7 +7,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.springframework.web.context.request.WebRequest;
-import supplier.TrailerSupplier;
+import tests.supplier.TrailerSupplier;
 
 import java.time.LocalDate;
 
@@ -37,5 +37,12 @@ public class TrailerBuilderTest {
         Trailer trailer = TrailerSupplier.getSampleTrailer();
         trailer.setDate_of_supervision(LocalDate.of(2017,05,05));
         Assert.assertEquals(trailer,TrailerBuilder.buildFromWebRequest(mockedWebRequest));
+    }
+
+    @Test
+    public void assertSameTrailersHasSameHashCode(){
+        Trailer trailer = TrailerSupplier.getSampleTrailer();
+        trailer.setDate_of_supervision(LocalDate.of(2017,05,05));
+        Assert.assertEquals(trailer.hashCode(),TrailerBuilder.buildFromWebRequest(mockedWebRequest).hashCode());
     }
 }

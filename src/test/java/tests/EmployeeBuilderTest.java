@@ -1,16 +1,14 @@
-package framework.builder;
+package tests;
 
 import com.markbudai.openfleet.dao.providers.LocationProvider;
 import com.markbudai.openfleet.framework.builder.EmployeeBuilder;
-import com.markbudai.openfleet.model.Location;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.web.context.request.WebRequest;
-import supplier.EmployeeSupplier;
-import supplier.LocationSupplier;
+import tests.supplier.EmployeeSupplier;
+import tests.supplier.LocationSupplier;
 
 /**
  * Created by Mark on 2017. 05. 19..
@@ -43,5 +41,10 @@ public class EmployeeBuilderTest {
     @Test
     public void assertWebRequestBuiltAndSampleEmployeesAreTheSame(){
         Assert.assertEquals(EmployeeSupplier.getSampleEmployee(),employeeBuilder.buildFromWebRequest(mockedWebRequest));
+    }
+
+    @Test
+    public void assertWebRequestBiltAndSampleEmployeesHasTheSameHashCode(){
+        Assert.assertEquals(EmployeeSupplier.getSampleEmployee().hashCode(),employeeBuilder.buildFromWebRequest(mockedWebRequest).hashCode());
     }
 }

@@ -352,6 +352,7 @@
                 <version>2.17</version>
                 <configuration>
                     <configLocation>src/main/resources/checkstyle.xml</configLocation>
+                    <suppressionsLocation>src/main/resources/suppressions.xml</suppressionsLocation>
                 </configuration>
             </plugin>
             <plugin>
@@ -361,7 +362,7 @@
                     <configuration>
                         <excludes>
                             <exclude>mnb/**/*</exclude>
-                            <exclude>com/markbudai/openfleet/controller/**/*</exclude>
+                            <exclude>com/markbudai/openfleet/tests.controller/**/*</exclude>
                             <exclude>com/markbudai/openfleet/configuration/**/*</exclude>
                         </excludes>
                     </configuration>

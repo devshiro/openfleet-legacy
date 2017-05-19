@@ -1,7 +1,6 @@
-package supplier;
+package tests.supplier;
 
 import com.markbudai.openfleet.dao.providers.EmployeeProvider;
-import com.markbudai.openfleet.dao.repositories.EmployeeRepository;
 import com.markbudai.openfleet.model.Employee;
 import org.mockito.Mockito;
 

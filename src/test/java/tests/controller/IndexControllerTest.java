@@ -1,4 +1,4 @@
-package controller;
+package tests.controller;
 
 import com.markbudai.openfleet.controller.IndexController;
 import org.junit.Assert;
@@ -8,8 +8,6 @@ import org.mockito.Mockito;
 import org.springframework.ui.Model;
 
 import java.security.Principal;
-import java.util.Collection;
-import java.util.Map;
 
 /**
  * Created by Mark on 2017. 05. 17..

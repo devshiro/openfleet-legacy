@@ -1,9 +1,8 @@
-package repository;
+package tests.repository;
 
 import com.markbudai.openfleet.dao.repositories.TractorRepository;
 import com.markbudai.openfleet.exception.NotFoundException;
 import com.markbudai.openfleet.model.Tractor;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;

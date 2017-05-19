@@ -1,10 +1,9 @@
-package supplier;
+package tests.supplier;
 
 import com.markbudai.openfleet.dao.providers.TractorProvider;
 import com.markbudai.openfleet.model.Tractor;
 import org.mockito.Mockito;
 
-import javax.transaction.Transactional;
 import java.time.LocalDate;
 
 /**

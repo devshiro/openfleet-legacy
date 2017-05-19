@@ -1,4 +1,4 @@
-package repository;
+package tests.repository;
 
 import com.markbudai.openfleet.dao.repositories.LocationRepository;
 import com.markbudai.openfleet.exception.NotFoundException;
@@ -6,15 +6,11 @@ import com.markbudai.openfleet.model.Location;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.stubbing.Answer;
-import supplier.LocationSupplier;
+import tests.supplier.LocationSupplier;
 
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.List;
 

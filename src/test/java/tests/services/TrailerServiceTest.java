@@ -1,4 +1,4 @@
-package services;
+package tests.services;
 
 import com.markbudai.openfleet.dao.repositories.TrailerRepository;
 import com.markbudai.openfleet.model.Trailer;
@@ -8,7 +8,7 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
-import supplier.TrailerSupplier;
+import tests.supplier.TrailerSupplier;
 
 import java.util.ArrayList;
 import java.util.List;

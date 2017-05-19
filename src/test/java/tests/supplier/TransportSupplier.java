@@ -1,9 +1,7 @@
-package supplier;
+package tests.supplier;
 
 import com.markbudai.openfleet.dao.providers.TransportProvider;
-import com.markbudai.openfleet.model.Location;
 import com.markbudai.openfleet.model.Transport;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.time.LocalDateTime;

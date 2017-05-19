@@ -1,4 +1,4 @@
-package supplier;
+package tests.supplier;
 
 import com.markbudai.openfleet.dao.providers.TrailerProvider;
 import com.markbudai.openfleet.model.Trailer;

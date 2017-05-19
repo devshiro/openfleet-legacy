@@ -1,4 +1,4 @@
-package repository;
+package tests.repository;
 
 import com.markbudai.openfleet.dao.repositories.EmployeeRepository;
 import com.markbudai.openfleet.exception.NoEmployeeFoundException;
@@ -8,7 +8,6 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import javax.persistence.EntityManager;
-import javax.swing.text.html.parser.Entity;
 
 /**
  * Created by Mark on 2017. 05. 19..

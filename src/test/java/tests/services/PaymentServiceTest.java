@@ -1,8 +1,7 @@
-package services;
+package tests.services;
 
 import com.markbudai.openfleet.dao.providers.EmployeeProvider;
 import com.markbudai.openfleet.dao.providers.TransportProvider;
-import com.markbudai.openfleet.model.Employee;
 import com.markbudai.openfleet.model.Transport;
 import com.markbudai.openfleet.pojo.PaymentDetail;
 import com.markbudai.openfleet.services.PaymentService;
@@ -10,7 +9,7 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
-import supplier.TransportSupplier;
+import tests.supplier.TransportSupplier;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +27,7 @@ public class PaymentServiceTest {
 
     private static EmployeeProvider setUpMockedEmployeeProvider(){
         EmployeeProvider mocked = Mockito.mock(EmployeeProvider.class);
-        Mockito.when(mocked.getEmployeeById(1)).thenReturn(supplier.EmployeeSupplier.getSampleEmployee());
+        Mockito.when(mocked.getEmployeeById(1)).thenReturn(tests.supplier.EmployeeSupplier.getSampleEmployee());
         return mocked;
     }
 

@@ -1,4 +1,4 @@
-package framework.builder;
+package tests;
 
 import com.markbudai.openfleet.dao.providers.EmployeeProvider;
 import com.markbudai.openfleet.dao.providers.LocationProvider;
@@ -11,7 +11,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.springframework.web.context.request.WebRequest;
-import supplier.*;
+import tests.supplier.*;
 
 /**
  * Created by Mark on 2017. 05. 19..
@@ -61,5 +61,13 @@ public class TransportBuilderTest {
         transport.setStart(null);
         transport.setFinish(null);
         Assert.assertEquals(transport,transportBuilder.buildFromWebRequest(mockWebRequest));
+    }
+
+    @Test
+    public void assertSameTransportHasSameHashCode(){
+        Transport transport = TransportSupplier.getSampleTransport();
+        transport.setStart(null);
+        transport.setFinish(null);
+        Assert.assertEquals(transport.hashCode(),transportBuilder.buildFromWebRequest(mockWebRequest).hashCode());
     }
 }

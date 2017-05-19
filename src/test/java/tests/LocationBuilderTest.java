@@ -1,11 +1,10 @@
-package framework.builder;
+package tests;
 
 import com.markbudai.openfleet.framework.builder.LocationBuilder;
 import com.markbudai.openfleet.model.Location;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.web.context.request.WebRequest;
 
@@ -33,6 +32,11 @@ public class LocationBuilderTest {
         Location expected = buildTestLocation();
 
         Assert.assertEquals(expected,actual);
+    }
+
+    @Test
+    public void testBuildFromRequestHasSameHashCode(){
+        Assert.assertEquals(buildTestLocation().hashCode(),LocationBuilder.buildFromWebRequest(request).hashCode());
     }
 
     private static Location buildTestLocation(){

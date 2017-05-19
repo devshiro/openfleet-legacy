@@ -1,6 +1,5 @@
-package services;
+package tests.services;
 
-import com.markbudai.openfleet.dao.providers.TractorProvider;
 import com.markbudai.openfleet.dao.repositories.TractorRepository;
 import com.markbudai.openfleet.model.Tractor;
 import com.markbudai.openfleet.pojo.SupervisionDetails;
@@ -9,7 +8,7 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
-import supplier.TractorSupplier;
+import tests.supplier.TractorSupplier;
 
 import java.util.ArrayList;
 import java.util.List;
