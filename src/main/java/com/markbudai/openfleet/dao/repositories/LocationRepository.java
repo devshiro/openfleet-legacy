@@ -3,6 +3,8 @@ package com.markbudai.openfleet.dao.repositories;
 import com.markbudai.openfleet.dao.providers.LocationProvider;
 import com.markbudai.openfleet.exception.NotFoundException;
 import com.markbudai.openfleet.model.Location;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -21,6 +23,8 @@ import java.util.stream.Collectors;
 @Repository
 public class LocationRepository {
 
+    private Logger logger = LoggerFactory.getLogger(LocationRepository.class);
+
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -37,7 +41,9 @@ public class LocationRepository {
     }
 
     public Location getLocationById(long id) {
+        logger.debug("Id: {}",id);
         Location location = entityManager.find(Location.class,id);
+        logger.debug("location: {}",location);
         if(location == null) throw new NotFoundException(Location.class);
         return location;
     }

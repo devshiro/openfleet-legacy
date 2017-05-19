@@ -221,11 +221,11 @@
                     </dependency>
                 </dependencies>
             </plugin>
-            <plugin>
+            <!--<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>3.0.0</version>
-            </plugin>
+            </plugin>-->
             <!-- WSQL Gen -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -271,6 +271,26 @@
                     <workingDirectory>${basedir}/src/main/resources/static</workingDirectory>
                 </configuration>
             </plugin>-->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.7.9</version>
+                <executions>
+                    <execution>
+                        <id>jacoco-initialize</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>jacoco-report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
     <reporting>
@@ -279,15 +299,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>2.10.4</version>
-                <!--<configuration>
-                    <doclet>org.beigesoft.uml.service.swing.CreatorDoclet</doclet>
-                    <docletArtifact>
-                        <groupId>org.beigesoft</groupId>
-                        <artifactId>beige-uml-swing</artifactId>
-                        <version>2.1.10</version>
-                    </docletArtifact>
-                    <useStandardDocletOptions>true</useStandardDocletOptions>
-                </configuration>-->
                 <configuration>
                     <excludePackageNames>mnb</excludePackageNames>
                 </configuration>
@@ -314,12 +325,29 @@
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
                     <version>0.7.9</version>
+                    <configuration>
+                        <excludes>
+                            <exclude>mnb/**/*</exclude>
+                            <exclude>com/markbudai/openfleet/controller/**/*</exclude>
+                            <exclude>com/markbudai/openfleet/configuration/**/*</exclude>
+                        </excludes>
+                    </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>3.0.0</version>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.9</version>
+
+                <configuration>
+                    <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+                </configuration>
+            </plugin>
+
         </plugins>
     </reporting>
 </project>
