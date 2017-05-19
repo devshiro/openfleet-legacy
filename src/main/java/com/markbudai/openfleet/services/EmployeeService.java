@@ -2,8 +2,13 @@ package com.markbudai.openfleet.services;
 
 import com.markbudai.openfleet.dao.providers.EmployeeProvider;
 import com.markbudai.openfleet.dao.repositories.EmployeeRepository;
+import com.markbudai.openfleet.exception.EmptyParameterException;
 import com.markbudai.openfleet.exception.IdException;
+import com.markbudai.openfleet.exception.IncorrectMethodParameterException;
+import com.markbudai.openfleet.exception.NullException;
 import com.markbudai.openfleet.model.Employee;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +22,8 @@ import java.util.stream.Collectors;
  */
 @Service
 public class EmployeeService  implements EmployeeProvider{
+
+    private static Logger logger = LoggerFactory.getLogger(EmployeeService.class);
 
     private EmployeeRepository employeeRepository;
 
@@ -34,6 +41,7 @@ public class EmployeeService  implements EmployeeProvider{
 
     @Override
     public Employee getEmployeeById(long id) {
+        Employee e = employeeRepository.getEmployeeById(id);
         return employeeRepository.getEmployeeById(id);
     }
 
@@ -49,13 +57,8 @@ public class EmployeeService  implements EmployeeProvider{
 
     @Override
     public void fireEmployee(long id) {
-        //set endOfEmploymentDate
         Employee e = employeeRepository.getEmployeeById(id);
-        if(e != null){
-            e.setEndOfEmploymentDate(LocalDate.now());
-            employeeRepository.updateEmployee(e);
-        } else {
-            throw new IdException();
-        }
+        e.setEndOfEmploymentDate(LocalDate.now());
+        employeeRepository.updateEmployee(e);
     }
 }

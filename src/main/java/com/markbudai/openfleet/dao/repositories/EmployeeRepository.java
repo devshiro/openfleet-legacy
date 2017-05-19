@@ -23,6 +23,10 @@ public class EmployeeRepository {
     public EmployeeRepository(){
     }
 
+    public EmployeeRepository(EntityManager entityManager){
+        this.entityManager = entityManager;
+    }
+
     public List<Employee> getAllEmployees() {
         Query query = entityManager.createQuery("select e from Employee e");
         return query.getResultList();
@@ -30,9 +34,7 @@ public class EmployeeRepository {
 
     public Employee getEmployeeById(long id) {
         Employee e = entityManager.find(Employee.class,id);
-        if(e==null){
-            throw new NoEmployeeFoundException(id);
-        }
+        if(e==null) throw new NoEmployeeFoundException(id);
         return e;
     }
 

@@ -31,29 +31,26 @@ public class ApiController {
 
     private static Logger logger = LoggerFactory.getLogger(ApiController.class);
 
-    @Autowired
-    private DocumentService service;
-
-    @Autowired
     private TransferCostProvider provider;
-
-    @Autowired
     private TractorProvider tractorProvider;
-
-    @Autowired
     private TrailerProvider trailerProvider;
-
-    @Autowired
     private EmployeeProvider employeeProvider;
-
-    @Autowired
     private LocationProvider locationProvider;
-
-    @Autowired
     private TransportProvider transportProvider;
+    private PaymentService paymentService;
 
     @Autowired
-    private PaymentService paymentService;
+    public ApiController(TractorProvider tractorProvider, TrailerProvider trailerProvider,
+                         EmployeeProvider employeeProvider, LocationProvider locationProvider,
+                         TransportProvider transportProvider, PaymentService paymentService){
+        this.employeeProvider = employeeProvider;
+        this.trailerProvider = trailerProvider;
+        this.tractorProvider = tractorProvider;
+        this.locationProvider = locationProvider;
+        this.transportProvider = transportProvider;
+        this.paymentService = paymentService;
+
+    }
 
     @RequestMapping(value = "/drivers", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody List<SamplePieData> pieData() {
@@ -97,26 +94,6 @@ public class ApiController {
         List<Location> locations = locationProvider.getAllLocations();
         return locations;
     }
-
-    @RequestMapping(value = "/file", method = RequestMethod.GET)
-    public void getFile(HttpServletResponse response){
-        try{
-            //response.setContentType("");
-            //TODO: Figure out why this isn't working!!!
-            service.writeDocument(response.getOutputStream());
-            response.flushBuffer();
-        }catch (Exception e){
-            //error
-        }
-    }
-
-    @RequestMapping("/test")
-    public String test(){
-        List<Transport> list = transportProvider.getAllTransports();
-        logger.debug("{}",list.get(0));
-        return "index";
-    }
-
 
     @RequestMapping(value = "/paymentDetails",method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody List<PaymentDetail> getPaymentsForEmployee(@RequestParam("id") long id){

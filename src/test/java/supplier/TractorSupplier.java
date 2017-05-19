@@ -21,7 +21,7 @@ public class TractorSupplier {
         tractor.setPlate_number("SAM-PLE");
         tractor.setDate_of_manufacture(LocalDate.of(1999,01,01));
         tractor.setDate_of_acquire(LocalDate.of(2017,01,01));
-        tractor.setDate_of_supervision(LocalDate.now());
+        tractor.setDate_of_supervision(LocalDate.now().plusDays(7));
         return tractor;
     }
 }

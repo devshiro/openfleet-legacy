@@ -1,8 +1,11 @@
 package com.markbudai.openfleet.controller;
 
 import com.markbudai.openfleet.dao.providers.EmployeeProvider;
+import com.markbudai.openfleet.exception.IdException;
+import com.markbudai.openfleet.exception.NullException;
 import com.markbudai.openfleet.framework.builder.EmployeeBuilder;
 import com.markbudai.openfleet.model.Employee;
+import com.markbudai.openfleet.pojo.Payout;
 import com.markbudai.openfleet.services.PaymentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -89,9 +92,17 @@ public class EmployeeController {
 
     @RequestMapping("/employee/payment")
     public String employeePaymentsList(@RequestParam("id") long id, Model model){
+        if(id == 0) throw new IdException(id);
         model.addAttribute("title","Payments");
-        model.addAttribute("employee",employeeProvider.getEmployeeById(id));
-        model.addAttribute(paymentService.getPayoutForEmployee(employeeProvider.getEmployeeById(id)));
+        Employee employee = employeeProvider.getEmployeeById(id);
+        if(employee == null) throw new NullException(Employee.class);
+        logger.debug("/employee/payment Employee: {}",employee);
+        model.addAttribute("employee",employee);
+        logger.debug("/employee/payment Going for Payout object...");
+        Payout payout = paymentService.getPayoutForEmployee(employee);
+        if(payout == null) throw new NullException(Payout.class);
+        logger.debug("/employee/payment Payout: {}",payout);
+        model.addAttribute("payout",payout);
         return viewPrefix+"employeePayments";
     }
 }

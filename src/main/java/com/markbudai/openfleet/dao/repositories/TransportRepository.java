@@ -1,5 +1,6 @@
 package com.markbudai.openfleet.dao.repositories;
 
+import com.markbudai.openfleet.exception.NotFoundException;
 import com.markbudai.openfleet.model.Transport;
 import org.springframework.stereotype.Repository;
 
@@ -21,6 +22,10 @@ public class TransportRepository {
 
     public TransportRepository(){}
 
+    public TransportRepository(EntityManager entityManager){
+        this.entityManager = entityManager;
+    }
+
     public List<Transport> getAllTransports(){
         Query query = entityManager.createQuery("select t from Transport t");
         return query.getResultList();
@@ -35,6 +40,8 @@ public class TransportRepository {
     }
 
     public Transport getTransportById(long id){
-        return entityManager.find(Transport.class, id);
+        Transport t = entityManager.find(Transport.class, id);
+        if(t == null) throw new NotFoundException(Transport.class);
+        return t;
     }
 }

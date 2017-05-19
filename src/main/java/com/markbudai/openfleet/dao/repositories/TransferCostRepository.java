@@ -1,5 +1,6 @@
 package com.markbudai.openfleet.dao.repositories;
 
+import com.markbudai.openfleet.exception.NotFoundException;
 import com.markbudai.openfleet.model.TransferCost;
 import org.springframework.stereotype.Repository;
 
@@ -22,13 +23,19 @@ public class TransferCostRepository {
 
     public TransferCostRepository(){}
 
+    public TransferCostRepository(EntityManager entityManager){
+        this.entityManager = entityManager;
+    }
+
     public List<TransferCost> getAllCosts(){
         Query query = entityManager.createQuery("select c from transfercost c");
         return query.getResultList();
     }
 
     public TransferCost getCostById(long id){
-        return entityManager.find(TransferCost.class,id);
+        TransferCost cost = entityManager.find(TransferCost.class,id);
+        if(cost == null) throw new NotFoundException(TransferCost.class);
+        return cost;
     }
 
     public void addCost(TransferCost cost){

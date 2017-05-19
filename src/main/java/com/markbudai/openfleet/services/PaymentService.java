@@ -2,6 +2,7 @@ package com.markbudai.openfleet.services;
 
 import com.markbudai.openfleet.dao.providers.EmployeeProvider;
 import com.markbudai.openfleet.dao.providers.TransportProvider;
+import com.markbudai.openfleet.exception.IdException;
 import com.markbudai.openfleet.framework.DateUtils;
 import com.markbudai.openfleet.model.Employee;
 import com.markbudai.openfleet.model.Transport;
@@ -44,7 +45,6 @@ public class PaymentService {
 
     public long getWorkDaysForEmployeeById(long id){
         Employee e = employeeProvider.getEmployeeById(id);
-        if(e == null){ return -1L; }
         List<Transport> transports = transportProvider.getTransportByEmployee(e);
         return transports.stream().mapToLong(f-> DateUtils.getWorkDaysBetween(f.getTime_of_load(),f.getTime_of_unload())).sum();
     }

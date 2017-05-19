@@ -1,6 +1,7 @@
 package com.markbudai.openfleet.dao.repositories;
 
 import com.markbudai.openfleet.dao.providers.LocationProvider;
+import com.markbudai.openfleet.exception.NotFoundException;
 import com.markbudai.openfleet.model.Location;
 import org.springframework.stereotype.Repository;
 
@@ -26,13 +27,19 @@ public class LocationRepository {
     public LocationRepository(){
     }
 
+    public LocationRepository(EntityManager entityManager){
+        this.entityManager = entityManager;
+    }
+
     public List<Location> getAllLocations() {
         Query query = entityManager.createQuery("select e from Location e");
         return query.getResultList();
     }
 
     public Location getLocationById(long id) {
-        return entityManager.find(Location.class,id);
+        Location location = entityManager.find(Location.class,id);
+        if(location == null) throw new NotFoundException(Location.class);
+        return location;
     }
 
     public void saveLocation(Location location){
@@ -47,6 +54,8 @@ public class LocationRepository {
         Location loc = entityManager.find(Location.class, id);
         if(loc != null){
             entityManager.remove(loc);
+        } else {
+            throw new NotFoundException(Location.class);
         }
     }
 }

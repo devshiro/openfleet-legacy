@@ -67,13 +67,8 @@ public class TrailerService implements TrailerProvider {
         logger.trace("Selling trailer with id.. {}",id);
         Trailer t = getTrailerById(id);
         logger.debug("Trailer found for selling: {}",t);
-        if(t!=null){
-            t.setDate_of_sell(LocalDate.now());
-            trailerRepository.updateTrailer(t);
-        } else {
-            logger.warn("Incorrect id {}. No sellable trailer found!",id);
-        }
-
+        t.setDate_of_sell(LocalDate.now());
+        trailerRepository.updateTrailer(t);
     }
 
     @Override

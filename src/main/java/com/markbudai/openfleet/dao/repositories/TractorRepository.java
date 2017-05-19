@@ -1,7 +1,9 @@
 package com.markbudai.openfleet.dao.repositories;
 
 import com.markbudai.openfleet.dao.providers.TractorProvider;
+import com.markbudai.openfleet.exception.NotFoundException;
 import com.markbudai.openfleet.model.Tractor;
+import com.markbudai.openfleet.model.Trailer;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Entity;
@@ -27,13 +29,19 @@ public class TractorRepository {
     public TractorRepository(){
     }
 
+    public TractorRepository(EntityManager entityManager){
+        this.entityManager = entityManager;
+    }
+
     public List<Tractor> getAllTractors() {
         Query query = entityManager.createQuery("select e from Tractor e");
         return query.getResultList();
     }
 
     public Tractor getTractorById(long id) {
-        return entityManager.find(Tractor.class, id);
+        Tractor t = entityManager.find(Tractor.class,id);
+        if(t == null) throw new NotFoundException(Tractor.class);
+        return t;
     }
 
     public void addTractor(Tractor t){

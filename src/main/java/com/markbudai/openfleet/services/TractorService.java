@@ -65,12 +65,8 @@ public class TractorService implements TractorProvider {
         logger.debug("Selling tractor with id {}",id);
         Tractor t = tractorRepository.getTractorById(id);
         logger.debug("Found tractor {}",t);
-        if(t!=null){
-            t.setDate_of_sell(LocalDate.now());
-            tractorRepository.updateTractor(t);
-        } else {
-            logger.warn("Incorrect id {} no sellable tractor found.",id);
-        }
+        t.setDate_of_sell(LocalDate.now());
+        tractorRepository.updateTractor(t);
     }
 
     @Override
