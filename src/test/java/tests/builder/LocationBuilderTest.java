@@ -1,4 +1,4 @@
-package tests;
+package tests.builder;
 
 import com.markbudai.openfleet.framework.builder.LocationBuilder;
 import com.markbudai.openfleet.model.Location;

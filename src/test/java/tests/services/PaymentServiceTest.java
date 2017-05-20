@@ -2,13 +2,16 @@ package tests.services;
 
 import com.markbudai.openfleet.dao.providers.EmployeeProvider;
 import com.markbudai.openfleet.dao.providers.TransportProvider;
+import com.markbudai.openfleet.model.Employee;
 import com.markbudai.openfleet.model.Transport;
 import com.markbudai.openfleet.pojo.PaymentDetail;
 import com.markbudai.openfleet.services.PaymentService;
+import nz.net.ultraq.thymeleaf.fragments.mergers.ElementMerger;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
+import tests.supplier.EmployeeSupplier;
 import tests.supplier.TransportSupplier;
 
 import java.util.ArrayList;
@@ -24,39 +27,52 @@ public class PaymentServiceTest {
 
     private static PaymentService service;
 
-
-    private static EmployeeProvider setUpMockedEmployeeProvider(){
-        EmployeeProvider mocked = Mockito.mock(EmployeeProvider.class);
-        Mockito.when(mocked.getEmployeeById(1)).thenReturn(tests.supplier.EmployeeSupplier.getSampleEmployee());
-        return mocked;
-    }
-
-    private static TransportProvider setUpMockedTransportProvider(){
-        TransportProvider mocked = Mockito.mock(TransportProvider.class);
-        Transport transport = TransportSupplier.getSampleTransport();
-        List<Transport> list = new ArrayList<>();
-        list.add(transport);
-        Mockito.when(mocked.getTransportByEmployee(mockedEmployeeProvider.getEmployeeById(1))).thenReturn(list);
-        return mocked;
-    }
-
     @BeforeClass
     public static void setup(){
-        mockedEmployeeProvider = setUpMockedEmployeeProvider();
-        mockedTransportProvider = setUpMockedTransportProvider();
+        mockedEmployeeProvider = EmployeeSupplier.getMockProvider();
+        mockedTransportProvider = TransportSupplier.getMockProvider();
         service = new PaymentService(mockedEmployeeProvider,mockedTransportProvider);
     }
 
     @Test
-    public void TestWorkDays(){
-        Assert.assertEquals(10,service.getWorkDaysForEmployeeById(1));
+    public void testGetThisMonthsTransportsForEmployee(){
+        Employee employee = EmployeeSupplier.getSampleEmployee();
+        Assert.assertEquals(1,service.getThisMonthsTransportsForEmployee(employee).size());
     }
 
+    @Test
+    public void testGetWorkDaysIThisMonthForEmployee(){
+        Employee employee = EmployeeSupplier.getSampleEmployee();
+        Assert.assertEquals(10,service.getWorkDaysInThisMonthForEmployee(employee));
+    }
 
     @Test
-    public void TestPayment(){
-        List<PaymentDetail> list = service.getPaymentsForEmployee(1);
-        long total = list.stream().mapToLong(c->c.getTotalPayout()).sum();
-        Assert.assertEquals(300,total);
+    public void testGetPayoutForSingleTransport(){
+        Transport transport = TransportSupplier.getSampleTransport();
+        Assert.assertEquals(500,service.getPayoutForSingleTransport(transport));
+    }
+
+    @Test
+    public void testGetPaymentsInThisMonthForEmployee(){
+        Employee employee = EmployeeSupplier.getSampleEmployee();
+        Assert.assertEquals(500,service.getPaymentsInThisMonthForEmployee(employee).get(0).getTotalPayout());
+    }
+
+    @Test
+    public void testTotalWorkDaysForEmployee(){
+        Employee employee = EmployeeSupplier.getSampleEmployee();
+        Assert.assertEquals(20,service.getTotalWorkDaysForEmployee(employee));
+    }
+
+    @Test
+    public void testAllPaymentsForEmployee(){
+        Employee employee = EmployeeSupplier.getSampleEmployee();
+        Assert.assertEquals(2,service.getAllPaymentsForEmployee(employee).size());
+    }
+
+    @Test
+    public void testPayoutInThisMonthForEmployee(){
+        Employee employee = EmployeeSupplier.getSampleEmployee();
+        Assert.assertEquals(10,service.getPayoutInThisMonthForEmployee(employee).getWork_days());
     }
 }

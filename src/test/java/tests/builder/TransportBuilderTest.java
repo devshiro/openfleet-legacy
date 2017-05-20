@@ -1,4 +1,4 @@
-package tests;
+package tests.builder;
 
 import com.markbudai.openfleet.dao.providers.EmployeeProvider;
 import com.markbudai.openfleet.dao.providers.LocationProvider;
@@ -35,6 +35,7 @@ public class TransportBuilderTest {
 
     private static WebRequest setupWebRequest(){
         WebRequest request = Mockito.mock(WebRequest.class);
+        Mockito.when(request.getParameter("id")).thenReturn("1");
         Mockito.when(request.getParameter("tractor")).thenReturn("1");
         Mockito.when(request.getParameter("trailer")).thenReturn("1");
         Mockito.when(request.getParameter("employee")).thenReturn("1");
@@ -45,6 +46,8 @@ public class TransportBuilderTest {
         Mockito.when(request.getParameter("place_of_unload")).thenReturn("1");
         Mockito.when(request.getParameter("time_of_load")).thenReturn("2017-05-01T08:00");
         Mockito.when(request.getParameter("time_of_unload")).thenReturn("2017-05-10T08:00");
+        Mockito.when(request.getParameter("start")).thenReturn("2017-05-01T08:00");
+        Mockito.when(request.getParameter("finish")).thenReturn("2017-05-10T08:00");
         return request;
     }
 
@@ -58,16 +61,12 @@ public class TransportBuilderTest {
     @Test
     public void sameAsSample(){
         Transport transport = TransportSupplier.getSampleTransport();
-        transport.setStart(null);
-        transport.setFinish(null);
         Assert.assertEquals(transport,transportBuilder.buildFromWebRequest(mockWebRequest));
     }
 
     @Test
     public void assertSameTransportHasSameHashCode(){
         Transport transport = TransportSupplier.getSampleTransport();
-        transport.setStart(null);
-        transport.setFinish(null);
         Assert.assertEquals(transport.hashCode(),transportBuilder.buildFromWebRequest(mockWebRequest).hashCode());
     }
 }

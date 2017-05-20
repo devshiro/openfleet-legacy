@@ -37,6 +37,12 @@ public class TransportBuilder {
 
     public Transport buildFromWebRequest(WebRequest request){
         Transport transport = new Transport();
+        logger.debug("Trying to build Transport object from WebRequest");
+        if(request.getParameter("id").isEmpty()){
+            logger.debug("New transport will be built.");
+        } else {
+            transport.setId(Long.parseLong(request.getParameter("id")));
+        }
         if(request.getParameter("tractor").isEmpty()){
             logger.debug("No tractor parameter is provided.");
             return null;
@@ -104,6 +110,18 @@ public class TransportBuilder {
             return null;
         } else {
             transport.setTime_of_unload(LocalDateTime.parse(request.getParameter("time_of_unload")));
+        }
+        if(request.getParameter("start").isEmpty()){
+            logger.debug("No start timedate parameter is provided.");
+            return null;
+        } else {
+            transport.setStart(LocalDateTime.parse(request.getParameter("start")));
+        }
+        if(request.getParameter("finish").isEmpty()){
+            logger.debug("No finish timedate parameter is provided.");
+            return null;
+        } else {
+            transport.setFinish(LocalDateTime.parse(request.getParameter("finish")));
         }
         return transport;
     }

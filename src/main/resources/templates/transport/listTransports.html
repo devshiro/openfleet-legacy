@@ -62,14 +62,13 @@
                         <td th:text="${job.place_of_load}"></td>
                         <td th:text="${job.time_of_unload}"></td>
                         <td th:text="${job.place_of_unload}"></td>
-                        <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eur"></span></button></td>
+                        <td><a th:href="|/transport/job?id=${job.id}|" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eur"></span></a></td>
                         <td>
                             <div class="dropdown">
                                 <a data-toggle="dropdown" href="#"><span class="caret"></span></a>
                                 <!--<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><span class="caret"></span></button>-->
                                 <ul class="dropdown-menu dropdown-menu-right">
-                                    <li><a><i class="fa fa-trash"></i> Delete</a></li>
-                                    <li><a><i class="fa fa-pencil"></i> Edit</a></li>
+                                    <li><a th:href="|/transport/edit?id=${job.id}|"><i class="fa fa-pencil"></i> Edit</a></li>
                                 </ul>
                             </div>
                         </td>

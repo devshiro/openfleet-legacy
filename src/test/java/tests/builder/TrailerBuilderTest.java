@@ -1,4 +1,4 @@
-package tests;
+package tests.builder;
 
 import com.markbudai.openfleet.framework.builder.TrailerBuilder;
 import com.markbudai.openfleet.model.Trailer;

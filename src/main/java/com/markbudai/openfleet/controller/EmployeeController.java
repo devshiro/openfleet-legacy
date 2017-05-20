@@ -99,7 +99,7 @@ public class EmployeeController {
         logger.debug("/employee/payment Employee: {}",employee);
         model.addAttribute("employee",employee);
         logger.debug("/employee/payment Going for Payout object...");
-        Payout payout = paymentService.getPayoutForEmployee(employee);
+        Payout payout = paymentService.getPayoutInThisMonthForEmployee(employee);
         if(payout == null) throw new NullException(Payout.class);
         logger.debug("/employee/payment Payout: {}",payout);
         model.addAttribute("payout",payout);

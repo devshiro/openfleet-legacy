@@ -1,4 +1,4 @@
-package tests;
+package tests.framework;
 
 import com.markbudai.openfleet.framework.DateUtils;
 import org.junit.Assert;

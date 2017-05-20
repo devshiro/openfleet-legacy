@@ -97,7 +97,8 @@ public class ApiController {
 
     @RequestMapping(value = "/paymentDetails",method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody List<PaymentDetail> getPaymentsForEmployee(@RequestParam("id") long id){
-        List<PaymentDetail> paymentDetails = paymentService.getPaymentsForEmployee(id);
+        Employee employee = employeeProvider.getEmployeeById(id);
+        List<PaymentDetail> paymentDetails = paymentService.getAllPaymentsForEmployee(employee);
         if(paymentDetails.isEmpty()){
             logger.debug("No payment details created for employee with id: {}",id);
             return null;

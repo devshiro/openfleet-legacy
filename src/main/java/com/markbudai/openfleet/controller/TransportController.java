@@ -2,6 +2,7 @@ package com.markbudai.openfleet.controller;
 
 import com.markbudai.openfleet.dao.providers.TransferCostProvider;
 import com.markbudai.openfleet.dao.providers.TransportProvider;
+import com.markbudai.openfleet.exception.NotFoundException;
 import com.markbudai.openfleet.framework.builder.TransferCostBuilder;
 import com.markbudai.openfleet.framework.builder.TransportBuilder;
 import com.markbudai.openfleet.model.TransferCost;
@@ -58,11 +59,24 @@ public class TransportController {
         return viewPrefix+"newTransport";
     }
 
+    @RequestMapping("/transport/edit")
+    public String editTransport(Model model, @RequestParam("id") long id){
+        logger.trace("Providing form to edit transport with id: {}",id);
+        Transport transport = transportProvider.getTransportById(id);
+        if(transport == null) throw new NotFoundException(Transport.class);
+        model.addAttribute("transport",transport);
+        return newTransport(model);
+    }
+
     @PostMapping("/transport/job/add")
     public String addTransport(Model model, WebRequest request){
         Transport t = builder.buildFromWebRequest(request);
         logger.debug("Build transport: {}",t);
-        transportProvider.addTransport(t);
+        if(t.getId() != 0){
+            transportProvider.updateTransport(t);
+        } else {
+            transportProvider.addTransport(t);
+        }
         return transportIndex(model);
     }
 

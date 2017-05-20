@@ -1,4 +1,4 @@
-package tests;
+package tests.builder;
 
 import com.markbudai.openfleet.dao.providers.LocationProvider;
 import com.markbudai.openfleet.framework.builder.EmployeeBuilder;

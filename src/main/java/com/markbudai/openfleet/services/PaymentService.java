@@ -3,11 +3,15 @@ package com.markbudai.openfleet.services;
 import com.markbudai.openfleet.dao.providers.EmployeeProvider;
 import com.markbudai.openfleet.dao.providers.TransportProvider;
 import com.markbudai.openfleet.exception.IdException;
+import com.markbudai.openfleet.exception.NotFoundException;
+import com.markbudai.openfleet.exception.NullException;
 import com.markbudai.openfleet.framework.DateUtils;
 import com.markbudai.openfleet.model.Employee;
 import com.markbudai.openfleet.model.Transport;
 import com.markbudai.openfleet.pojo.PaymentDetail;
 import com.markbudai.openfleet.pojo.Payout;
+import nz.net.ultraq.thymeleaf.fragments.mergers.ElementMerger;
+import org.apache.poi.ss.usermodel.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,34 +75,81 @@ public class PaymentService {
         return new BigDecimal(money);
     }
 
-    public List<PaymentDetail> getPaymentsForEmployee(long id)
-    {
+    /*========================================================*/
+    /*===========CORRECT STUFF BELOW HERE=====================*/
+    public List<Transport> getThisMonthsTransportsForEmployee(Employee e){
+        if(e==null) throw new NullException(Employee.class);
         LocalDate currentDate = LocalDate.now();
-
-        Employee employee = employeeProvider.getEmployeeById(id);
-        if(employee == null){
-            return null;
-        }
-        List<Transport> transports = transportProvider.getTransportByEmployee(employee);
-        transports = transports.stream().filter(p->p.getStart().toLocalDate().getYear() == currentDate.getYear())
-                .filter(p->p.getStart().getMonth().equals(currentDate.getMonth()))
+        logger.debug("Get transports for employee {}",e);
+        logger.debug("In month: {}",currentDate.getMonth());
+        List<Transport> allTransports = transportProvider.getTransportByEmployee(e);
+        logger.debug("Found {} transports total",allTransports.size());
+        List<Transport> thisMonthTransports = allTransports.stream()
+                .filter(t->t.getStart().getYear() == currentDate.getYear())
+                .filter(t->t.getStart().getMonth().getValue() == currentDate.getMonth().getValue())
                 .collect(Collectors.toList());
+        logger.debug("In this month, found {} transports",thisMonthTransports.size());
+        return thisMonthTransports;
+    }
+
+
+    public long getWorkDaysInThisMonthForEmployee(Employee e){
+        if(e==null) throw new NullException(Employee.class);
+        logger.debug("Collecting this month's transports for employee: {}",e);
+        List<Transport> transports = getThisMonthsTransportsForEmployee(e);
+        logger.debug("Found {} transports.",transports.size());
+        long days = transports.stream().mapToLong(m->DateUtils.getWorkDaysBetween(m.getStart(),m.getFinish())).sum();
+        logger.debug("Employee has {} work days in this month.",days);
+        return days;
+    }
+
+    public long getTotalWorkDaysForEmployee(Employee e){
+        if(e==null) throw new NullException(Employee.class);
+        logger.debug("Collecting transports for employee: {}",e);
+        List<Transport> transports = transportProvider.getTransportByEmployee(e);
+        logger.debug("Found {} transports for employee",transports.size());
+        long days = transports.stream().mapToLong(m->DateUtils.getWorkDaysBetween(m.getStart(),m.getFinish())).sum();
+        return days;
+    }
+
+    public long getPayoutForSingleTransport(Transport t){
+        long workedDays = DateUtils.getWorkDaysBetween(t.getStart(),t.getFinish());
+        return workedDays*this.dailyFee;
+    }
+
+    public List<PaymentDetail> getPaymentsInThisMonthForEmployee(Employee e){
+        if(e==null) throw new NullException(Employee.class);
+        List<Transport> transports = getThisMonthsTransportsForEmployee(e);
         List<PaymentDetail> paymentDetails = new ArrayList<>();
         transports.forEach(c->{
-            paymentDetails.add(new PaymentDetail(LocalDate.now(),DateUtils.getWorkDaysBetween(c.getStart(),c.getFinish()), DateUtils.getWorkDaysBetween(c.getStart(),c.getFinish())*30));
+            PaymentDetail detail = new PaymentDetail(LocalDate.now(),
+                    DateUtils.getWorkDaysBetween(c.getStart(),c.getFinish()),
+                    getPayoutForSingleTransport(c));
+            paymentDetails.add(detail);
         });
         return paymentDetails;
     }
 
+    public List<PaymentDetail> getAllPaymentsForEmployee(Employee e){
+        if(e==null) throw new NullException(Employee.class);
+        List<Transport> transports = transportProvider.getTransportByEmployee(e);
+        List<PaymentDetail> paymentDetails = new ArrayList<>();
+        transports.forEach(c->{
+            PaymentDetail detail = new PaymentDetail(c.getStart().toLocalDate(),
+                    DateUtils.getWorkDaysBetween(c.getStart(),c.getFinish()),
+                    getPayoutForSingleTransport(c));
+            paymentDetails.add(detail);
+        });
+        return paymentDetails;
+    }
 
-    public Payout getPayoutForEmployee(Employee e){
-        if(e == null){
-            return new Payout();
-        }
+    public Payout getPayoutInThisMonthForEmployee(Employee e){
+        if(e==null) throw new NullException(Employee.class);
+        logger.debug("Creating Payment object for employee {}",e);
         Payout payout = new Payout();
-        payout.setWork_days(getWorkDaysForEmployeeById(e.getId()));
-        payout.setRest_days(LocalDate.now().getDayOfMonth() - payout.getWork_days());
-        payout.setDetailList(getPaymentsForEmployee(e.getId()));
+        payout.setWork_days(getWorkDaysInThisMonthForEmployee(e));
+        payout.setRest_days(LocalDate.now().getDayOfMonth()-getWorkDaysInThisMonthForEmployee(e));
+        payout.setDetailList(getPaymentsInThisMonthForEmployee(e));
         return payout;
     }
 }
