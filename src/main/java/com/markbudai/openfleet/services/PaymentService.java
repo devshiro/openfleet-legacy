@@ -141,8 +141,8 @@ public class PaymentService {
         if(e==null) throw new NullException(Employee.class);
         logger.debug("Creating Payment object for employee {}",e);
         Payout payout = new Payout();
-        payout.setWork_days(getWorkDaysInThisMonthForEmployee(e));
-        payout.setRest_days(LocalDate.now().getDayOfMonth()-getWorkDaysInThisMonthForEmployee(e));
+        payout.setWorkDays(getWorkDaysInThisMonthForEmployee(e));
+        payout.setRestDays(LocalDate.now().getDayOfMonth()-getWorkDaysInThisMonthForEmployee(e));
         payout.setDetailList(getPaymentsInThisMonthForEmployee(e));
         return payout;
     }

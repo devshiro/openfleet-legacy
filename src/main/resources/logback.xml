@@ -6,6 +6,11 @@
             </pattern>
         </encoder>
     </appender>
+    <appender name="SYSLOG" class="ch.qos.logback.classic.net.SyslogAppender">
+        <syslogHost>localhost</syslogHost>
+        <facility>AUTH</facility>
+        <suffixPattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</suffixPattern>
+    </appender>
     <!--<root level="TRACE">
         <appender-ref ref="STDOUT"/>
     </root>-->

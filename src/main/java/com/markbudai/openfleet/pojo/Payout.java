@@ -13,27 +13,27 @@ public class Payout {
 
     public Payout(){}
 
-    public long getWork_days() {
+    public long getWorkDays() {
         return work_days;
     }
 
-    public void setWork_days(long work_days) {
+    public void setWorkDays(long work_days) {
         this.work_days = work_days;
     }
 
-    public long getRest_days() {
+    public long getRestDays() {
         return rest_days;
     }
 
-    public void setRest_days(long rest_days) {
+    public void setRestDays(long rest_days) {
         this.rest_days = rest_days;
     }
 
-    public long getTotal_payment() {
-        return total_payment;
+    public long getTotalPayment() {
+        return detailList.stream().mapToLong(p->p.getTotalPayout()).sum();
     }
 
-    public void setTotal_payment(long total_payment) {
+    public void setTotalPayment(long total_payment) {
         this.total_payment = total_payment;
     }
 

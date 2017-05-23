@@ -5,6 +5,7 @@ import com.markbudai.openfleet.services.TransportService;
 import com.markbudai.openfleet.model.Employee;
 import com.markbudai.openfleet.model.Transport;
 import com.markbudai.openfleet.services.PaymentService;
+import nz.net.ultraq.thymeleaf.fragments.mergers.ElementMerger;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -67,6 +68,12 @@ public class PaymentServiceTest {
     @Test
     public void testPayoutInThisMonthForEmployee(){
         Employee employee = EmployeeSupplier.getSampleEmployee();
-        Assert.assertEquals(10,service.getPayoutInThisMonthForEmployee(employee).getWork_days());
+        Assert.assertEquals(10,service.getPayoutInThisMonthForEmployee(employee).getWorkDays());
+    }
+
+    @Test
+    public void testTotalPaymentInPayout(){
+        Employee employee = EmployeeSupplier.getSampleEmployee();
+        Assert.assertEquals(500,service.getPayoutInThisMonthForEmployee(employee).getTotalPayment());
     }
 }
