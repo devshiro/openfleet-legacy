@@ -15,7 +15,7 @@ public class LocationBuilderTest {
     private static WebRequest request;
 
     @BeforeClass
-    public static void setup(){
+    public static void init(){
         request = Mockito.mock(WebRequest.class);
         Mockito.when(request.getParameter("id")).thenReturn("1");
         Mockito.when(request.getParameter("country")).thenReturn("A");

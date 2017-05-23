@@ -34,7 +34,7 @@ public class LocationRepositoryTest {
     }
 
     @BeforeClass
-    public static void setup(){
+    public static void init(){
         mockedEntityManager = setUpMockedEntityManager();
         locationRepository = new LocationRepositoryJPA(mockedEntityManager);
     }

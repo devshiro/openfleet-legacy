@@ -18,7 +18,7 @@ public class TractorBuilderTest {
     private static WebRequest mockedWebRequest;
 
     @BeforeClass
-    public static void setup(){
+    public static void init(){
         mockedWebRequest = Mockito.mock(WebRequest.class);
         Mockito.when(mockedWebRequest.getParameter("id")).thenReturn("1");
         Mockito.when(mockedWebRequest.getParameter("type")).thenReturn("SampleV8");

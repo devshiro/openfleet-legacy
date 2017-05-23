@@ -22,7 +22,7 @@ public class TrailerServiceTest {
     private static TrailerServiceImpl service;
 
     @BeforeClass
-    public static void setup(){
+    public static void init(){
         trailerRepository = Mockito.mock(TrailerRepositoryJPA.class);
         List<Trailer> trailerList = new ArrayList<>();
         trailerList.add(TrailerSupplier.getSampleTrailer());

@@ -18,7 +18,7 @@ public class EmployeeRepositoryTest {
     private static EmployeeRepository employeeRepository;
 
     @BeforeClass
-    public static void setup(){
+    public static void init(){
         mockedEntityManager = Mockito.mock(EntityManager.class);
         Mockito.when(mockedEntityManager.find(Employee.class,99)).thenReturn(null);
         employeeRepository = new EmployeeRepositoryJPA(mockedEntityManager);

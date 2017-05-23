@@ -20,7 +20,7 @@ public class EmployeeBuilderTest {
 
 
     @BeforeClass
-    public static void setup(){
+    public static void init(){
         locationService = LocationSupplier.getMockProvider();
         employeeBuilder = new EmployeeBuilder(locationService);
 

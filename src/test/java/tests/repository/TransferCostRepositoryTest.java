@@ -19,7 +19,7 @@ public class TransferCostRepositoryTest {
     private static TransferCostRepository transferCostRepository;
 
     @BeforeClass
-    public static void setup(){
+    public static void init(){
         entityManager = Mockito.mock(EntityManager.class);
         Mockito.when(entityManager.find(TransferCost.class,99)).thenReturn(null);
         transferCostRepository = new TransferCostRepositoryJPA(entityManager);

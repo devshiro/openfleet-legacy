@@ -18,7 +18,7 @@ public class TractorRepositoryTest {
     private static EntityManager entityManager;
 
     @BeforeClass
-    public static void setup(){
+    public static void init(){
         entityManager = Mockito.mock(EntityManager.class);
         Mockito.when(entityManager.find(Tractor.class,99)).thenReturn(null);
         tractorRepository = new TractorRepositoryJPA(entityManager);

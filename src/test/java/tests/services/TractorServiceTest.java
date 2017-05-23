@@ -23,7 +23,7 @@ public class TractorServiceTest {
     private static TractorServiceImpl service;
 
     @BeforeClass
-    public static void setup(){
+    public static void init(){
         tractorRepository = Mockito.mock(TractorRepositoryJPA.class);
         List<Tractor> tractorList = new ArrayList<>();
         tractorList.add(TractorSupplier.getSampleTractor());

@@ -19,7 +19,7 @@ public class TransportRepositoryTest {
     private static TransportRepository transportRepository;
 
     @BeforeClass
-    public static void setup(){
+    public static void init(){
         entityManager = Mockito.mock(EntityManager.class);
         Mockito.when(entityManager.find(Transport.class,99)).thenReturn(null);
         transportRepository = new TransportRepositoryJPA(entityManager);

@@ -18,7 +18,7 @@ public class IndexControllerTest {
     private static Principal mockedPrincipal;
 
     @BeforeClass
-    public static void setup() {
+    public static void init() {
         controller = new IndexController();
         mockedModel = Mockito.mock(Model.class);
         mockedPrincipal = Mockito.mock(Principal.class);

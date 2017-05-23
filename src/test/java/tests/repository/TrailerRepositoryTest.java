@@ -19,7 +19,7 @@ public class TrailerRepositoryTest {
     private static EntityManager entityManager;
 
     @BeforeClass
-    public static void setup(){
+    public static void init(){
         entityManager = Mockito.mock(EntityManager.class);
         Mockito.when(entityManager.find(Trailer.class,99)).thenReturn(null);
         trailerRepository = new TrailerRepositoryJPA(entityManager);

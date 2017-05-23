@@ -18,14 +18,14 @@ public class EmployeeTest {
     private static Employee two;
 
     @BeforeClass
-    public static void setup(){
+    public static void init(){
         one = EmployeeSupplier.getSampleEmployee();
         two = EmployeeSupplier.getSampleEmployee();
     }
 
     @Before
     public void reset(){
-        setup();
+        init();
     }
 
     @Test

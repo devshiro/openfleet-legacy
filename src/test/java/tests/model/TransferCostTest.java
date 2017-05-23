@@ -19,14 +19,14 @@ public class TransferCostTest {
 
 
     @BeforeClass
-    public static void setup(){
+    public static void init(){
         one = TransferCostSupplier.getSampleTransferCost();
         two = TransferCostSupplier.getSampleTransferCost();
     }
 
     @Before
     public void reset(){
-        setup();
+        init();
     }
 
     @Test

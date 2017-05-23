@@ -23,7 +23,7 @@ public class PaymentServiceTest {
     private static PaymentService service;
 
     @BeforeClass
-    public static void setup(){
+    public static void init(){
         mockedEmployeeService = EmployeeSupplier.getMockProvider();
         mockedTransportService = TransportSupplier.getMockProvider();
         service = new PaymentService(mockedEmployeeService, mockedTransportService);

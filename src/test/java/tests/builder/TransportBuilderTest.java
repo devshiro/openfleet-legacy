@@ -53,7 +53,7 @@ public class TransportBuilderTest {
 
 
     @BeforeClass
-    public static void setUp(){
+    public static void init(){
         transportBuilder = setupTransportBuilder();
         mockWebRequest = setupWebRequest();
     }
