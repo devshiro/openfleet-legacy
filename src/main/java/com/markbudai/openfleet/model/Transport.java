@@ -1,12 +1,8 @@
 package com.markbudai.openfleet.model;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
-import javax.transaction.TransactionalException;
 import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Mark on 2017. 04. 14..
@@ -89,59 +85,59 @@ public class Transport {
         this.finish = finish;
     }
 
-    public Location getPlace_of_load() {
+    public Location getPlaceOfLoad() {
         return place_of_load;
     }
 
-    public void setPlace_of_load(Location place_of_load) {
+    public void setPlaceOfLoad(Location place_of_load) {
         this.place_of_load = place_of_load;
     }
 
-    public LocalDateTime getTime_of_load() {
+    public LocalDateTime getTimeOfLoad() {
         return time_of_load;
     }
 
-    public void setTime_of_load(LocalDateTime time_of_load) {
+    public void setTimeOfLoad(LocalDateTime time_of_load) {
         this.time_of_load = time_of_load;
     }
 
-    public String getCargo_name() {
+    public String getCargoName() {
         return cargo_name;
     }
 
-    public void setCargo_name(String cargo_name) {
+    public void setCargoName(String cargo_name) {
         this.cargo_name = cargo_name;
     }
 
-    public long getCargo_weight() {
+    public long getCargoWeight() {
         return cargo_weight;
     }
 
-    public void setCargo_weight(long cargo_weight) {
+    public void setCargoWeight(long cargo_weight) {
         this.cargo_weight = cargo_weight;
     }
 
-    public long getCargo_count() {
+    public long getCargoCount() {
         return cargo_count;
     }
 
-    public void setCargo_count(long cargo_count) {
+    public void setCargoCount(long cargo_count) {
         this.cargo_count = cargo_count;
     }
 
-    public Location getPlace_of_unload() {
+    public Location getPlaceOfUnload() {
         return place_of_unload;
     }
 
-    public void setPlace_of_unload(Location place_of_unload) {
+    public void setPlaceOfUnload(Location place_of_unload) {
         this.place_of_unload = place_of_unload;
     }
 
-    public LocalDateTime getTime_of_unload() {
+    public LocalDateTime getTimeOfUnload() {
         return time_of_unload;
     }
 
-    public void setTime_of_unload(LocalDateTime time_of_unload) {
+    public void setTimeOfUnload(LocalDateTime time_of_unload) {
         this.time_of_unload = time_of_unload;
     }
 
@@ -165,8 +161,8 @@ public class Transport {
 
         Transport transport = (Transport) o;
 
-        if (getCargo_weight() != transport.getCargo_weight()) return false;
-        if (getCargo_count() != transport.getCargo_count()) return false;
+        if (getCargoWeight() != transport.getCargoWeight()) return false;
+        if (getCargoCount() != transport.getCargoCount()) return false;
         if (getTractor() != null ? !getTractor().equals(transport.getTractor()) : transport.getTractor() != null)
             return false;
         if (getTrailer() != null ? !getTrailer().equals(transport.getTrailer()) : transport.getTrailer() != null)
@@ -176,15 +172,15 @@ public class Transport {
         if (getStart() != null ? !getStart().equals(transport.getStart()) : transport.getStart() != null) return false;
         if (getFinish() != null ? !getFinish().equals(transport.getFinish()) : transport.getFinish() != null)
             return false;
-        if (getPlace_of_load() != null ? !getPlace_of_load().equals(transport.getPlace_of_load()) : transport.getPlace_of_load() != null)
+        if (getPlaceOfLoad() != null ? !getPlaceOfLoad().equals(transport.getPlaceOfLoad()) : transport.getPlaceOfLoad() != null)
             return false;
-        if (getTime_of_load() != null ? !getTime_of_load().equals(transport.getTime_of_load()) : transport.getTime_of_load() != null)
+        if (getTimeOfLoad() != null ? !getTimeOfLoad().equals(transport.getTimeOfLoad()) : transport.getTimeOfLoad() != null)
             return false;
-        if (getCargo_name() != null ? !getCargo_name().equals(transport.getCargo_name()) : transport.getCargo_name() != null)
+        if (getCargoName() != null ? !getCargoName().equals(transport.getCargoName()) : transport.getCargoName() != null)
             return false;
-        if (getPlace_of_unload() != null ? !getPlace_of_unload().equals(transport.getPlace_of_unload()) : transport.getPlace_of_unload() != null)
+        if (getPlaceOfUnload() != null ? !getPlaceOfUnload().equals(transport.getPlaceOfUnload()) : transport.getPlaceOfUnload() != null)
             return false;
-        return getTime_of_unload() != null ? getTime_of_unload().equals(transport.getTime_of_unload()) : transport.getTime_of_unload() == null;
+        return getTimeOfUnload() != null ? getTimeOfUnload().equals(transport.getTimeOfUnload()) : transport.getTimeOfUnload() == null;
     }
 
     @Override
@@ -194,13 +190,13 @@ public class Transport {
         result = 31 * result + (getEmployee() != null ? getEmployee().hashCode() : 0);
         result = 31 * result + (getStart() != null ? getStart().hashCode() : 0);
         result = 31 * result + (getFinish() != null ? getFinish().hashCode() : 0);
-        result = 31 * result + (getPlace_of_load() != null ? getPlace_of_load().hashCode() : 0);
-        result = 31 * result + (getTime_of_load() != null ? getTime_of_load().hashCode() : 0);
-        result = 31 * result + (getCargo_name() != null ? getCargo_name().hashCode() : 0);
-        result = 31 * result + (int) (getCargo_weight() ^ (getCargo_weight() >>> 32));
-        result = 31 * result + (int) (getCargo_count() ^ (getCargo_count() >>> 32));
-        result = 31 * result + (getPlace_of_unload() != null ? getPlace_of_unload().hashCode() : 0);
-        result = 31 * result + (getTime_of_unload() != null ? getTime_of_unload().hashCode() : 0);
+        result = 31 * result + (getPlaceOfLoad() != null ? getPlaceOfLoad().hashCode() : 0);
+        result = 31 * result + (getTimeOfLoad() != null ? getTimeOfLoad().hashCode() : 0);
+        result = 31 * result + (getCargoName() != null ? getCargoName().hashCode() : 0);
+        result = 31 * result + (int) (getCargoWeight() ^ (getCargoWeight() >>> 32));
+        result = 31 * result + (int) (getCargoCount() ^ (getCargoCount() >>> 32));
+        result = 31 * result + (getPlaceOfUnload() != null ? getPlaceOfUnload().hashCode() : 0);
+        result = 31 * result + (getTimeOfUnload() != null ? getTimeOfUnload().hashCode() : 0);
         return result;
     }
 

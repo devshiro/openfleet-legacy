@@ -68,48 +68,48 @@ public class TransportBuilder {
             logger.debug("No cargo count parameter is provided.");
             return null;
         } else {
-            transport.setCargo_count(Long.parseLong(request.getParameter("cargo_count")));
+            transport.setCargoCount(Long.parseLong(request.getParameter("cargo_count")));
         }
 
         if(request.getParameter("cargo_weight").isEmpty()){
             logger.debug("No cargo weight parameter is provided.");
             return null;
         } else {
-            transport.setCargo_weight(Long.parseLong(request.getParameter("cargo_weight")));
+            transport.setCargoWeight(Long.parseLong(request.getParameter("cargo_weight")));
         }
 
         if(request.getParameter("cargo_name").isEmpty()){
             logger.debug("No cargo name parameter is provided.");
             return null;
         } else {
-            transport.setCargo_name(request.getParameter("cargo_name"));
+            transport.setCargoName(request.getParameter("cargo_name"));
         }
 
         if(request.getParameter("place_of_load").isEmpty()){
             logger.debug("No load place parameter is provided.");
             return null;
         } else {
-            transport.setPlace_of_load(locationProvider.getLocationById(Long.parseLong(request.getParameter("place_of_load"))));
+            transport.setPlaceOfLoad(locationProvider.getLocationById(Long.parseLong(request.getParameter("place_of_load"))));
         }
 
         if(request.getParameter("place_of_unload").isEmpty()){
             logger.debug("No unload place parameter is provided.");
             return null;
         } else {
-            transport.setPlace_of_unload(locationProvider.getLocationById(Long.parseLong(request.getParameter("place_of_unload"))));
+            transport.setPlaceOfUnload(locationProvider.getLocationById(Long.parseLong(request.getParameter("place_of_unload"))));
         }
 
         if(request.getParameter("time_of_load").isEmpty()){
             logger.debug("No load timedate parameter is provided.");
             return null;
         } else {
-            transport.setTime_of_load(LocalDateTime.parse(request.getParameter("time_of_load")));
+            transport.setTimeOfLoad(LocalDateTime.parse(request.getParameter("time_of_load")));
         }
         if(request.getParameter("time_of_unload").isEmpty()){
             logger.debug("No unload timedate parameter is provided.");
             return null;
         } else {
-            transport.setTime_of_unload(LocalDateTime.parse(request.getParameter("time_of_unload")));
+            transport.setTimeOfUnload(LocalDateTime.parse(request.getParameter("time_of_unload")));
         }
         if(request.getParameter("start").isEmpty()){
             logger.debug("No start timedate parameter is provided.");

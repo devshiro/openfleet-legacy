@@ -2,16 +2,12 @@ package com.markbudai.openfleet.services;
 
 import com.markbudai.openfleet.dao.providers.EmployeeProvider;
 import com.markbudai.openfleet.dao.providers.TransportProvider;
-import com.markbudai.openfleet.exception.IdException;
-import com.markbudai.openfleet.exception.NotFoundException;
 import com.markbudai.openfleet.exception.NullException;
 import com.markbudai.openfleet.framework.DateUtils;
 import com.markbudai.openfleet.model.Employee;
 import com.markbudai.openfleet.model.Transport;
 import com.markbudai.openfleet.pojo.PaymentDetail;
 import com.markbudai.openfleet.pojo.Payout;
-import nz.net.ultraq.thymeleaf.fragments.mergers.ElementMerger;
-import org.apache.poi.ss.usermodel.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +46,7 @@ public class PaymentService {
     public long getWorkDaysForEmployeeById(long id){
         Employee e = employeeProvider.getEmployeeById(id);
         List<Transport> transports = transportProvider.getTransportByEmployee(e);
-        return transports.stream().mapToLong(f-> DateUtils.getWorkDaysBetween(f.getTime_of_load(),f.getTime_of_unload())).sum();
+        return transports.stream().mapToLong(f-> DateUtils.getWorkDaysBetween(f.getTimeOfLoad(),f.getTimeOfUnload())).sum();
     }
 
     private long getWorkedDaysForTransports(List<Transport> transports){

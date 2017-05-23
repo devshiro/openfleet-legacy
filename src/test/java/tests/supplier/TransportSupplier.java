@@ -21,18 +21,18 @@ public class TransportSupplier {
     public static Transport getSampleTransport(){
         Transport transport = new Transport();
         Month month = LocalDate.now().getMonth();
-        transport.setCargo_weight(1);
-        transport.setCargo_name("Sample Cargo");
+        transport.setCargoWeight(1);
+        transport.setCargoName("Sample Cargo");
         transport.setId(1);
-        transport.setCargo_count(1);
+        transport.setCargoCount(1);
         transport.setStart(LocalDateTime.of(2017,month.getValue(),1,1,0));
         transport.setFinish(LocalDateTime.of(2017,month.getValue(),10,10,10));
-        transport.setTime_of_load(LocalDateTime.of(2017,month.getValue(),1,8,0));
-        transport.setTime_of_unload(LocalDateTime.of(2017,month.getValue(),10,8,0));
+        transport.setTimeOfLoad(LocalDateTime.of(2017,month.getValue(),1,8,0));
+        transport.setTimeOfUnload(LocalDateTime.of(2017,month.getValue(),10,8,0));
         transport.setStart(LocalDateTime.of(2017,month.getValue(),1,8,0));
         transport.setFinish(LocalDateTime.of(2017,month.getValue(),10,8,0));
-        transport.setPlace_of_load(LocationSupplier.getSampleLocation());
-        transport.setPlace_of_unload(LocationSupplier.getSampleLocation());
+        transport.setPlaceOfLoad(LocationSupplier.getSampleLocation());
+        transport.setPlaceOfUnload(LocationSupplier.getSampleLocation());
         transport.setEmployee(EmployeeSupplier.getSampleEmployee());
         transport.setTractor(TractorSupplier.getSampleTractor());
         transport.setTrailer(TrailerSupplier.getSampleTrailer());
@@ -41,18 +41,18 @@ public class TransportSupplier {
 
     public static Transport getAnotherMonthsSampleTransport(){
         Transport transport = new Transport();
-        transport.setCargo_weight(10);
-        transport.setCargo_name("Sample Cargo II");
+        transport.setCargoWeight(10);
+        transport.setCargoName("Sample Cargo II");
         transport.setId(2);
-        transport.setCargo_count(2);
+        transport.setCargoCount(2);
         transport.setStart(LocalDateTime.of(2017,4,1,1,0));
         transport.setFinish(LocalDateTime.of(2017,4,10,10,10));
-        transport.setTime_of_load(LocalDateTime.of(2017,4,1,8,0));
-        transport.setTime_of_unload(LocalDateTime.of(2017,4,10,8,0));
+        transport.setTimeOfLoad(LocalDateTime.of(2017,4,1,8,0));
+        transport.setTimeOfUnload(LocalDateTime.of(2017,4,10,8,0));
         transport.setStart(LocalDateTime.of(2017,4,1,8,0));
         transport.setFinish(LocalDateTime.of(2017,4,10,8,0));
-        transport.setPlace_of_load(LocationSupplier.getSampleLocation());
-        transport.setPlace_of_unload(LocationSupplier.getSampleLocation());
+        transport.setPlaceOfLoad(LocationSupplier.getSampleLocation());
+        transport.setPlaceOfUnload(LocationSupplier.getSampleLocation());
         transport.setEmployee(EmployeeSupplier.getSampleEmployee());
         transport.setTractor(TractorSupplier.getSampleTractor());
         transport.setTrailer(TrailerSupplier.getSampleTrailer());
