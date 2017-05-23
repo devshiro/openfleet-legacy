@@ -1,9 +1,9 @@
 package tests.builder;
 
-import com.markbudai.openfleet.dao.providers.EmployeeProvider;
-import com.markbudai.openfleet.dao.providers.LocationProvider;
-import com.markbudai.openfleet.dao.providers.TractorProvider;
-import com.markbudai.openfleet.dao.providers.TrailerProvider;
+import com.markbudai.openfleet.services.EmployeeService;
+import com.markbudai.openfleet.services.LocationService;
+import com.markbudai.openfleet.services.TractorService;
+import com.markbudai.openfleet.services.TrailerService;
 import com.markbudai.openfleet.framework.builder.TransportBuilder;
 import com.markbudai.openfleet.model.Transport;
 import org.junit.Assert;
@@ -18,18 +18,18 @@ import tests.supplier.*;
  */
 public class TransportBuilderTest {
     private static TransportBuilder transportBuilder;
-    private static EmployeeProvider mockEmployeeProvider;
-    private static LocationProvider mockLocationProvider;
-    private static TractorProvider mockTractorProvider;
-    private static TrailerProvider mockTrailerProvider;
+    private static EmployeeService mockEmployeeService;
+    private static LocationService mockLocationService;
+    private static TractorService mockTractorService;
+    private static TrailerService mockTrailerService;
     private static WebRequest mockWebRequest;
 
     private static TransportBuilder setupTransportBuilder(){
-        mockLocationProvider = LocationSupplier.getMockProvider();
-        mockEmployeeProvider = EmployeeSupplier.getMockProvider();
-        mockTractorProvider = TractorSupplier.getMockProvider();
-        mockTrailerProvider = TrailerSupplier.getMockProvider();
-        TransportBuilder transportBuilder = new TransportBuilder(mockEmployeeProvider,mockTractorProvider,mockTrailerProvider,mockLocationProvider);
+        mockLocationService = LocationSupplier.getMockProvider();
+        mockEmployeeService = EmployeeSupplier.getMockProvider();
+        mockTractorService = TractorSupplier.getMockProvider();
+        mockTrailerService = TrailerSupplier.getMockProvider();
+        TransportBuilder transportBuilder = new TransportBuilder(mockEmployeeService, mockTractorService, mockTrailerService, mockLocationService);
         return transportBuilder;
     }
 

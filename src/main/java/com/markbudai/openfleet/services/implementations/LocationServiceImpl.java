@@ -1,20 +1,18 @@
-package com.markbudai.openfleet.services;
+package com.markbudai.openfleet.services.implementations;
 
-import com.markbudai.openfleet.dao.providers.LocationProvider;
 import com.markbudai.openfleet.dao.repositories.LocationRepository;
 import com.markbudai.openfleet.model.Location;
+import com.markbudai.openfleet.services.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 /**
  * Created by Mark on 2017. 05. 03..
  */
 @Service
-public class LocationServiceImpl implements LocationProvider{
+public class LocationServiceImpl implements LocationService {
 
     private LocationRepository locationRepository;
 

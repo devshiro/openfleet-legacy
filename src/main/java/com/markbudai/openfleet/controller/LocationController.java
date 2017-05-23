@@ -1,6 +1,6 @@
 package com.markbudai.openfleet.controller;
 
-import com.markbudai.openfleet.dao.providers.LocationProvider;
+import com.markbudai.openfleet.services.LocationService;
 import com.markbudai.openfleet.framework.builder.LocationBuilder;
 import com.markbudai.openfleet.model.Location;
 import org.slf4j.Logger;
@@ -17,22 +17,22 @@ import org.springframework.web.context.request.WebRequest;
 @Controller
 public class LocationController {
 
-    private LocationProvider locationProvider;
+    private LocationService locationService;
 
     private static Logger logger = LoggerFactory.getLogger(LocationController.class);
 
     private static String viewPrefix = "location/";
 
     @Autowired
-    public LocationController(LocationProvider provider){
-        this.locationProvider = provider;
+    public LocationController(LocationService provider){
+        this.locationService = provider;
     }
 
     @RequestMapping("/locations/list")
     public String listLocations(Model model) {
         model.addAttribute("path","/locations/list");
         model.addAttribute("title","Locations");
-        model.addAttribute("locationList",locationProvider.getAllLocations());
+        model.addAttribute("locationList", locationService.getAllLocations());
         return viewPrefix+"listLocations";
     }
 
@@ -48,9 +48,9 @@ public class LocationController {
         logger.trace("Adding new Location");
         Location loc = LocationBuilder.buildFromWebRequest(request);
         if(loc.getId() != 0){
-            locationProvider.updateLocation(loc);
+            locationService.updateLocation(loc);
         } else {
-            locationProvider.addLocation(loc);
+            locationService.addLocation(loc);
         }
         return listLocations(model);
     }
@@ -58,14 +58,14 @@ public class LocationController {
     @RequestMapping("location/edit")
     public String editLocation(Model model, @RequestParam("id") long id){
         model.addAttribute("title","Locations");
-        Location loc = locationProvider.getLocationById(id);
+        Location loc = locationService.getLocationById(id);
         model.addAttribute("location",loc);
         return viewPrefix+"locationDetails";
     }
 
     @RequestMapping("location/delete")
     public String deleteLocation(Model model, @RequestParam("id") long id){
-        locationProvider.deleteLocation(id);
+        locationService.deleteLocation(id);
         return listLocations(model);
     }
 }

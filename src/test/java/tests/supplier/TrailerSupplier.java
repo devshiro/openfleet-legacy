@@ -1,6 +1,6 @@
 package tests.supplier;
 
-import com.markbudai.openfleet.dao.providers.TrailerProvider;
+import com.markbudai.openfleet.services.TrailerService;
 import com.markbudai.openfleet.model.Trailer;
 import org.mockito.Mockito;
 
@@ -25,9 +25,9 @@ public class TrailerSupplier {
         return trailer;
     }
 
-    public static TrailerProvider getMockProvider(){
-        TrailerProvider trailerProvider = Mockito.mock(TrailerProvider.class);
-        Mockito.when(trailerProvider.getTrailerById(1)).thenReturn(getSampleTrailer());
-        return trailerProvider;
+    public static TrailerService getMockProvider(){
+        TrailerService trailerService = Mockito.mock(TrailerService.class);
+        Mockito.when(trailerService.getTrailerById(1)).thenReturn(getSampleTrailer());
+        return trailerService;
     }
 }

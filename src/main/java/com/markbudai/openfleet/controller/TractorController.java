@@ -1,7 +1,7 @@
 package com.markbudai.openfleet.controller;
 
 
-import com.markbudai.openfleet.dao.providers.TractorProvider;
+import com.markbudai.openfleet.services.TractorService;
 import com.markbudai.openfleet.framework.builder.TractorBuilder;
 import com.markbudai.openfleet.model.Tractor;
 import org.slf4j.Logger;
@@ -20,23 +20,23 @@ import org.springframework.web.context.request.WebRequest;
 @Controller
 public class TractorController {
 
-    private TractorProvider tractorProvider;
+    private TractorService tractorService;
 
     private static String viewPrefix = "tractor/";
 
     private static Logger logger = LoggerFactory.getLogger(TractorController.class);
 
     @Autowired
-    public TractorController(TractorProvider provider){
-        this.tractorProvider = provider;
+    public TractorController(TractorService provider){
+        this.tractorService = provider;
     }
 
     @RequestMapping("/tractors/list")
     public String listTractors(Model model){
         model.addAttribute("path","/tractors/list");
         model.addAttribute("title","Tractors");
-        model.addAttribute("tractorList",tractorProvider.getAllTractors());
-        model.addAttribute("supervisionList",tractorProvider.getSupervisionList());
+        model.addAttribute("tractorList", tractorService.getAllTractors());
+        model.addAttribute("supervisionList", tractorService.getSupervisionList());
         return viewPrefix+"listTractors";
     }
 
@@ -44,13 +44,13 @@ public class TractorController {
     public String getDetails(@RequestParam("id") long id, Model model){
         model.addAttribute("path","/tractor");
         model.addAttribute("title","Tractor Details");
-        model.addAttribute("tractor",tractorProvider.getTractorById(id));
+        model.addAttribute("tractor", tractorService.getTractorById(id));
         return viewPrefix+"tractorDetails";
     }
 
     @RequestMapping("/tractor/delete")
     public String sellTractor(@RequestParam("id") long id, Model model){
-        tractorProvider.sellTractor(id);
+        tractorService.sellTractor(id);
         return listTractors(model);
     }
 
@@ -60,10 +60,10 @@ public class TractorController {
         logger.debug("Id is: {}",request.getParameter("id"));
         if(request.getParameter("id").isEmpty()){
             Tractor t = TractorBuilder.buildFromWebRequest(request);
-            tractorProvider.addTractor(t);
+            tractorService.addTractor(t);
         } else {
             Tractor t = TractorBuilder.buildFromWebRequest(request);
-            tractorProvider.updateTractor(t);
+            tractorService.updateTractor(t);
         }
         return listTractors(model);
     }

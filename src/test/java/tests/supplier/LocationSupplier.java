@@ -1,6 +1,6 @@
 package tests.supplier;
 
-import com.markbudai.openfleet.dao.providers.LocationProvider;
+import com.markbudai.openfleet.services.LocationService;
 import com.markbudai.openfleet.model.Location;
 import org.mockito.Mockito;
 
@@ -29,9 +29,9 @@ public class LocationSupplier {
         return list;
     }
 
-    public static LocationProvider getMockProvider(){
-        LocationProvider locationProvider = Mockito.mock(LocationProvider.class);
-        Mockito.when(locationProvider.getLocationById(1)).thenReturn(getSampleLocation());
-        return locationProvider;
+    public static LocationService getMockProvider(){
+        LocationService locationService = Mockito.mock(LocationService.class);
+        Mockito.when(locationService.getLocationById(1)).thenReturn(getSampleLocation());
+        return locationService;
     }
 }

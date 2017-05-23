@@ -1,11 +1,10 @@
 package com.markbudai.openfleet.controller;
 
-import com.markbudai.openfleet.dao.providers.*;
 import com.markbudai.openfleet.model.*;
 import com.markbudai.openfleet.pojo.Badge;
 import com.markbudai.openfleet.pojo.PaymentDetail;
 import com.markbudai.openfleet.pojo.SamplePieData;
-import com.markbudai.openfleet.services.PaymentService;
+import com.markbudai.openfleet.services.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,23 +24,23 @@ public class ApiController {
 
     private static Logger logger = LoggerFactory.getLogger(ApiController.class);
 
-    private TransferCostProvider provider;
-    private TractorProvider tractorProvider;
-    private TrailerProvider trailerProvider;
-    private EmployeeProvider employeeProvider;
-    private LocationProvider locationProvider;
-    private TransportProvider transportProvider;
+    private TransferCostService provider;
+    private TractorService tractorService;
+    private TrailerService trailerService;
+    private EmployeeService employeeService;
+    private LocationService locationService;
+    private TransportService transportService;
     private PaymentService paymentService;
 
     @Autowired
-    public ApiController(TractorProvider tractorProvider, TrailerProvider trailerProvider,
-                         EmployeeProvider employeeProvider, LocationProvider locationProvider,
-                         TransportProvider transportProvider, PaymentService paymentService){
-        this.employeeProvider = employeeProvider;
-        this.trailerProvider = trailerProvider;
-        this.tractorProvider = tractorProvider;
-        this.locationProvider = locationProvider;
-        this.transportProvider = transportProvider;
+    public ApiController(TractorService tractorService, TrailerService trailerService,
+                         EmployeeService employeeService, LocationService locationService,
+                         TransportService transportService, PaymentService paymentService){
+        this.employeeService = employeeService;
+        this.trailerService = trailerService;
+        this.tractorService = tractorService;
+        this.locationService = locationService;
+        this.transportService = transportService;
         this.paymentService = paymentService;
 
     }
@@ -58,7 +57,7 @@ public class ApiController {
 
     @RequestMapping(value = "/tractors", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody List<Tractor> tractors(){
-        return tractorProvider.getAllTractors();
+        return tractorService.getAllTractors();
     }
 
     @RequestMapping(value = "/badges", method = RequestMethod.GET, produces = "application/json")
@@ -68,30 +67,30 @@ public class ApiController {
         badges.setEmployee_count(this.employees().size());
         badges.setTrailer_count(this.trailers().size());
         badges.setTractor_count(this.tractors().size());
-        badges.setJob_count(this.transportProvider.getAllTransports().size());
+        badges.setJob_count(this.transportService.getAllTransports().size());
         return badges;
     }
 
     @RequestMapping(value = "/trailers", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody List<Trailer> trailers(){
-        return trailerProvider.getAllTrailers();
+        return trailerService.getAllTrailers();
     }
 
     @RequestMapping(value = "/employees", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody List<Employee> employees(){
-        return employeeProvider.getAllEmployees();
+        return employeeService.getAllEmployees();
     }
 
 
     @RequestMapping(value = "/locations", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody List<Location> allLocations(){
-        List<Location> locations = locationProvider.getAllLocations();
+        List<Location> locations = locationService.getAllLocations();
         return locations;
     }
 
     @RequestMapping(value = "/paymentDetails",method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody List<PaymentDetail> getPaymentsForEmployee(@RequestParam("id") long id){
-        Employee employee = employeeProvider.getEmployeeById(id);
+        Employee employee = employeeService.getEmployeeById(id);
         List<PaymentDetail> paymentDetails = paymentService.getAllPaymentsForEmployee(employee);
         if(paymentDetails.isEmpty()){
             logger.debug("No payment details created for employee with id: {}",id);

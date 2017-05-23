@@ -1,6 +1,6 @@
 package tests.supplier;
 
-import com.markbudai.openfleet.dao.providers.TransportProvider;
+import com.markbudai.openfleet.services.TransportService;
 import com.markbudai.openfleet.model.Transport;
 import org.mockito.Mockito;
 
@@ -59,11 +59,11 @@ public class TransportSupplier {
         return transport;
     }
 
-    public static TransportProvider getMockProvider(){
-        TransportProvider transportProvider = Mockito.mock(TransportProvider.class);
-        Mockito.when(transportProvider.getTransportById(1)).thenReturn(getSampleTransport());
-        Mockito.when(transportProvider.getTransportByEmployee(EmployeeSupplier.getSampleEmployee())).thenReturn(getSampleTransportList());
-        return transportProvider;
+    public static TransportService getMockProvider(){
+        TransportService transportService = Mockito.mock(TransportService.class);
+        Mockito.when(transportService.getTransportById(1)).thenReturn(getSampleTransport());
+        Mockito.when(transportService.getTransportByEmployee(EmployeeSupplier.getSampleEmployee())).thenReturn(getSampleTransportList());
+        return transportService;
     }
 
     public static List<Transport> getSampleTransportList(){

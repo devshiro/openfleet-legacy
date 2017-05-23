@@ -1,9 +1,9 @@
 package com.markbudai.openfleet.framework.builder;
 
-import com.markbudai.openfleet.dao.providers.EmployeeProvider;
-import com.markbudai.openfleet.dao.providers.LocationProvider;
-import com.markbudai.openfleet.dao.providers.TractorProvider;
-import com.markbudai.openfleet.dao.providers.TrailerProvider;
+import com.markbudai.openfleet.services.EmployeeService;
+import com.markbudai.openfleet.services.LocationService;
+import com.markbudai.openfleet.services.TractorService;
+import com.markbudai.openfleet.services.TrailerService;
 import com.markbudai.openfleet.model.Transport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,20 +19,20 @@ import java.time.LocalDateTime;
 @Component
 public class TransportBuilder {
 
-    private EmployeeProvider employeeProvider;
-    private TractorProvider tractorProvider;
-    private TrailerProvider trailerProvider;
-    private LocationProvider locationProvider;
+    private EmployeeService employeeService;
+    private TractorService tractorService;
+    private TrailerService trailerService;
+    private LocationService locationService;
 
     private static Logger logger = LoggerFactory.getLogger(TransportBuilder.class);
 
     @Autowired
-    public TransportBuilder(EmployeeProvider employeeProvider, TractorProvider tractorProvider, TrailerProvider trailerProvider,
-                            LocationProvider locationProvider){
-        this.employeeProvider = employeeProvider;
-        this.tractorProvider = tractorProvider;
-        this.trailerProvider = trailerProvider;
-        this.locationProvider = locationProvider;
+    public TransportBuilder(EmployeeService employeeService, TractorService tractorService, TrailerService trailerService,
+                            LocationService locationService){
+        this.employeeService = employeeService;
+        this.tractorService = tractorService;
+        this.trailerService = trailerService;
+        this.locationService = locationService;
     }
 
     public Transport buildFromWebRequest(WebRequest request){
@@ -47,21 +47,21 @@ public class TransportBuilder {
             logger.debug("No tractor parameter is provided.");
             return null;
         } else {
-            transport.setTractor(tractorProvider.getTractorById(Long.parseLong(request.getParameter("tractor"))));
+            transport.setTractor(tractorService.getTractorById(Long.parseLong(request.getParameter("tractor"))));
         }
 
         if(request.getParameter("trailer").isEmpty()){
             logger.debug("No trailer parameter is provided.");
             return null;
         } else {
-            transport.setTrailer(trailerProvider.getTrailerById(Long.parseLong(request.getParameter("trailer"))));
+            transport.setTrailer(trailerService.getTrailerById(Long.parseLong(request.getParameter("trailer"))));
         }
 
         if(request.getParameter("employee").isEmpty()){
             logger.debug("No employee parameter is provided.");
             return null;
         } else {
-            transport.setEmployee(employeeProvider.getEmployeeById(Long.parseLong(request.getParameter("employee"))));
+            transport.setEmployee(employeeService.getEmployeeById(Long.parseLong(request.getParameter("employee"))));
         }
 
         if(request.getParameter("cargo_count").isEmpty()){
@@ -89,14 +89,14 @@ public class TransportBuilder {
             logger.debug("No load place parameter is provided.");
             return null;
         } else {
-            transport.setPlaceOfLoad(locationProvider.getLocationById(Long.parseLong(request.getParameter("place_of_load"))));
+            transport.setPlaceOfLoad(locationService.getLocationById(Long.parseLong(request.getParameter("place_of_load"))));
         }
 
         if(request.getParameter("place_of_unload").isEmpty()){
             logger.debug("No unload place parameter is provided.");
             return null;
         } else {
-            transport.setPlaceOfUnload(locationProvider.getLocationById(Long.parseLong(request.getParameter("place_of_unload"))));
+            transport.setPlaceOfUnload(locationService.getLocationById(Long.parseLong(request.getParameter("place_of_unload"))));
         }
 
         if(request.getParameter("time_of_load").isEmpty()){

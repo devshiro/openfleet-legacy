@@ -1,7 +1,7 @@
 package com.markbudai.openfleet.controller;
 
-import com.markbudai.openfleet.dao.providers.TransferCostProvider;
-import com.markbudai.openfleet.dao.providers.TransportProvider;
+import com.markbudai.openfleet.services.TransferCostService;
+import com.markbudai.openfleet.services.TransportService;
 import com.markbudai.openfleet.exception.NotFoundException;
 import com.markbudai.openfleet.framework.builder.TransferCostBuilder;
 import com.markbudai.openfleet.framework.builder.TransportBuilder;
@@ -28,24 +28,24 @@ public class TransportController {
 
     private static String viewPrefix = "transport/";
 
-    private TransportProvider transportProvider;
+    private TransportService transportService;
 
     @Autowired
-    private TransferCostProvider costProvider;
+    private TransferCostService costProvider;
 
     @Autowired
     private TransportBuilder builder;
 
     @Autowired
-    public TransportController(TransportProvider provider){
-        this.transportProvider = provider;
+    public TransportController(TransportService provider){
+        this.transportService = provider;
     }
 
 
     @RequestMapping("/transport/jobs/list")
     public String transportIndex(Model model){
         model.addAttribute("title","Transports");
-        model.addAttribute("transports",transportProvider.getAllTransports());
+        model.addAttribute("transports", transportService.getAllTransports());
         return viewPrefix+"listTransports";
     }
 
@@ -58,7 +58,7 @@ public class TransportController {
     @RequestMapping("/transport/edit")
     public String editTransport(Model model, @RequestParam("id") long id){
         logger.trace("Providing form to edit transport with id: {}",id);
-        Transport transport = transportProvider.getTransportById(id);
+        Transport transport = transportService.getTransportById(id);
         if(transport == null) throw new NotFoundException(Transport.class);
         model.addAttribute("transport",transport);
         return newTransport(model);
@@ -69,9 +69,9 @@ public class TransportController {
         Transport t = builder.buildFromWebRequest(request);
         logger.debug("Build transport: {}",t);
         if(t.getId() != 0){
-            transportProvider.updateTransport(t);
+            transportService.updateTransport(t);
         } else {
-            transportProvider.addTransport(t);
+            transportService.addTransport(t);
         }
         return transportIndex(model);
     }
@@ -80,7 +80,7 @@ public class TransportController {
     public String transportDetails(@RequestParam("id") long id, Model model){
         logger.trace("Serving details about transport job with id: {}",id);
         model.addAttribute("title","Transports");
-        model.addAttribute("transport",transportProvider.getTransportById(id));
+        model.addAttribute("transport", transportService.getTransportById(id));
         return viewPrefix+"transportDetails";
     }
 
@@ -91,24 +91,24 @@ public class TransportController {
         logger.debug("id: {}",id);
         TransferCost cost = TransferCostBuilder.buildFromWebRequest(request);
         logger.debug("cost: {}",cost);
-        Transport transport = transportProvider.getTransportById(id);
+        Transport transport = transportService.getTransportById(id);
         transport.addCost(cost);
         logger.debug("count: {}",transport.getCosts().size());
-        transportProvider.updateTransport(transport);
+        transportService.updateTransport(transport);
         return transportDetails(id,model);
     }
 
     @RequestMapping("/transport/job/deleteCost")
     public String removeCost(Model model, WebRequest request, @RequestParam("id") long id, @RequestParam("transportId") long transportId){
         logger.trace("Remove cost with id {}",id);
-        Transport transport = transportProvider.getTransportById(transportId);
+        Transport transport = transportService.getTransportById(transportId);
         logger.debug("Found transport: {}",transport);
         List<TransferCost> costs = transport.getCosts();
         TransferCost cost = costs.stream().filter(c->c.getId() == id).collect(Collectors.toList()).get(0);
         logger.debug("Found cost: {}",cost);
         costs.remove(cost);
         transport.setCosts(costs);
-        transportProvider.updateTransport(transport);
+        transportService.updateTransport(transport);
         costProvider.deleteCost(id);
         return transportDetails(transportId,model);
     }
@@ -117,7 +117,7 @@ public class TransportController {
 
     @RequestMapping(value = "/transports/api", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody List<Transport> allTransports(){
-        List<Transport> transports = transportProvider.getAllTransports();
+        List<Transport> transports = transportService.getAllTransports();
         return transports;
     }
 }

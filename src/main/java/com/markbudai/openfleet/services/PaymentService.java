@@ -1,7 +1,5 @@
 package com.markbudai.openfleet.services;
 
-import com.markbudai.openfleet.dao.providers.EmployeeProvider;
-import com.markbudai.openfleet.dao.providers.TransportProvider;
 import com.markbudai.openfleet.exception.NullException;
 import com.markbudai.openfleet.framework.DateUtils;
 import com.markbudai.openfleet.model.Employee;
@@ -32,20 +30,20 @@ public class PaymentService {
     private long dailyFee = 50;
     private Currency feeCurrency = Currency.getInstance("EUR");
 
-    private EmployeeProvider employeeProvider;
-    private TransportProvider transportProvider;
+    private EmployeeService employeeService;
+    private TransportService transportService;
     private MNBExchangeService exchangeService;
 
     @Autowired
-    public PaymentService(EmployeeProvider employeeProvider, TransportProvider transportProvider){
-        this.employeeProvider = employeeProvider;
-        this.transportProvider = transportProvider;
+    public PaymentService(EmployeeService employeeService, TransportService transportService){
+        this.employeeService = employeeService;
+        this.transportService = transportService;
     }
 
 
     public long getWorkDaysForEmployeeById(long id){
-        Employee e = employeeProvider.getEmployeeById(id);
-        List<Transport> transports = transportProvider.getTransportByEmployee(e);
+        Employee e = employeeService.getEmployeeById(id);
+        List<Transport> transports = transportService.getTransportByEmployee(e);
         return transports.stream().mapToLong(f-> DateUtils.getWorkDaysBetween(f.getTimeOfLoad(),f.getTimeOfUnload())).sum();
     }
 
@@ -55,7 +53,7 @@ public class PaymentService {
 
     //TODO: test totalCostOfTransport
     public double totalCostOfTransport(long id, Currency currency){
-        Transport transport = transportProvider.getTransportById(id);
+        Transport transport = transportService.getTransportById(id);
         double sum = transport.getCosts().stream().mapToDouble((f)->{
             //convert currency to given function argument {currency}
             BigDecimal costInCurrency = exchangeService.exchange(f.getCurrency(),new BigDecimal(f.getAmount()),currency);
@@ -78,7 +76,7 @@ public class PaymentService {
         LocalDate currentDate = LocalDate.now();
         logger.debug("Get transports for employee {}",e);
         logger.debug("In month: {}",currentDate.getMonth());
-        List<Transport> allTransports = transportProvider.getTransportByEmployee(e);
+        List<Transport> allTransports = transportService.getTransportByEmployee(e);
         logger.debug("Found {} transports total",allTransports.size());
         List<Transport> thisMonthTransports = allTransports.stream()
                 .filter(t->t.getStart().getYear() == currentDate.getYear())
@@ -102,7 +100,7 @@ public class PaymentService {
     public long getTotalWorkDaysForEmployee(Employee e){
         if(e==null) throw new NullException(Employee.class);
         logger.debug("Collecting transports for employee: {}",e);
-        List<Transport> transports = transportProvider.getTransportByEmployee(e);
+        List<Transport> transports = transportService.getTransportByEmployee(e);
         logger.debug("Found {} transports for employee",transports.size());
         long days = transports.stream().mapToLong(m->DateUtils.getWorkDaysBetween(m.getStart(),m.getFinish())).sum();
         return days;
@@ -128,7 +126,7 @@ public class PaymentService {
 
     public List<PaymentDetail> getAllPaymentsForEmployee(Employee e){
         if(e==null) throw new NullException(Employee.class);
-        List<Transport> transports = transportProvider.getTransportByEmployee(e);
+        List<Transport> transports = transportService.getTransportByEmployee(e);
         List<PaymentDetail> paymentDetails = new ArrayList<>();
         transports.forEach(c->{
             PaymentDetail detail = new PaymentDetail(c.getStart().toLocalDate(),

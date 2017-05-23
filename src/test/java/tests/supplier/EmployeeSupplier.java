@@ -1,6 +1,6 @@
 package tests.supplier;
 
-import com.markbudai.openfleet.dao.providers.EmployeeProvider;
+import com.markbudai.openfleet.services.EmployeeService;
 import com.markbudai.openfleet.model.Employee;
 import org.mockito.Mockito;
 
@@ -26,9 +26,9 @@ public class EmployeeSupplier {
         return employee;
     }
 
-    public static EmployeeProvider getMockProvider(){
-        EmployeeProvider employeeProvider = Mockito.mock(EmployeeProvider.class);
-        Mockito.when(employeeProvider.getEmployeeById(1)).thenReturn(getSampleEmployee());
-        return employeeProvider;
+    public static EmployeeService getMockProvider(){
+        EmployeeService employeeService = Mockito.mock(EmployeeService.class);
+        Mockito.when(employeeService.getEmployeeById(1)).thenReturn(getSampleEmployee());
+        return employeeService;
     }
 }

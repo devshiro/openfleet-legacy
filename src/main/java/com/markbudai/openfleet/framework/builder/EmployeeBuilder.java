@@ -1,12 +1,11 @@
 package com.markbudai.openfleet.framework.builder;
 
-import com.markbudai.openfleet.dao.providers.LocationProvider;
+import com.markbudai.openfleet.services.LocationService;
 import com.markbudai.openfleet.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.WebRequest;
 
-import java.lang.reflect.Field;
 import java.time.LocalDate;
 
 /**
@@ -15,11 +14,11 @@ import java.time.LocalDate;
 @Component
 public class EmployeeBuilder {
 
-    private LocationProvider locationProvider;
+    private LocationService locationService;
 
     @Autowired
-    public EmployeeBuilder(LocationProvider locationProvider){
-        this.locationProvider = locationProvider;
+    public EmployeeBuilder(LocationService locationService){
+        this.locationService = locationService;
     }
 
 
@@ -32,12 +31,12 @@ public class EmployeeBuilder {
         e.setLastName(request.getParameter("lastName"));
         e.setDateOfBirth(LocalDate.parse(request.getParameter("dateOfBirth")));
         //get Location
-        e.setPlaceOfBirth(locationProvider.getLocationById(Long.parseLong(request.getParameter("placeOfBirth"))));
+        e.setPlaceOfBirth(locationService.getLocationById(Long.parseLong(request.getParameter("placeOfBirth"))));
         e.setSocialInsuranceNo(request.getParameter("socialInsuranceNo"));
         e.setTaxNo(request.getParameter("taxNo"));
         e.setMothersName(request.getParameter("mothersName"));
         e.setDriversCardNo(request.getParameter("driversCardNo"));
-        e.setPlaceOfLiving(locationProvider.getLocationById(Long.parseLong(request.getParameter("placeOfLiving"))));
+        e.setPlaceOfLiving(locationService.getLocationById(Long.parseLong(request.getParameter("placeOfLiving"))));
         e.setEmploymentDate(LocalDate.parse(request.getParameter("employmentDate")));
         return e;
     }

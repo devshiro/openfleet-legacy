@@ -1,6 +1,6 @@
 package tests.builder;
 
-import com.markbudai.openfleet.dao.providers.LocationProvider;
+import com.markbudai.openfleet.services.LocationService;
 import com.markbudai.openfleet.framework.builder.EmployeeBuilder;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -15,14 +15,14 @@ import tests.supplier.LocationSupplier;
  */
 public class EmployeeBuilderTest {
     private static EmployeeBuilder employeeBuilder;
-    private static LocationProvider locationProvider;   /* getLocationById(long id)*/
+    private static LocationService locationService;   /* getLocationById(long id)*/
     private static WebRequest mockedWebRequest;
 
 
     @BeforeClass
     public static void setup(){
-        locationProvider = LocationSupplier.getMockProvider();
-        employeeBuilder = new EmployeeBuilder(locationProvider);
+        locationService = LocationSupplier.getMockProvider();
+        employeeBuilder = new EmployeeBuilder(locationService);
 
         mockedWebRequest = Mockito.mock(WebRequest.class);
         Mockito.when(mockedWebRequest.getParameter("id")).thenReturn("1");

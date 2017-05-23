@@ -1,12 +1,10 @@
-package com.markbudai.openfleet.services;
+package com.markbudai.openfleet.services.implementations;
 
-import com.markbudai.openfleet.dao.providers.TransportProvider;
 import com.markbudai.openfleet.dao.repositories.TransportRepository;
 import com.markbudai.openfleet.model.Employee;
 import com.markbudai.openfleet.model.Transport;
-import org.omg.PortableInterceptor.TRANSPORT_RETRY;
+import com.markbudai.openfleet.services.TransportService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,7 +14,7 @@ import java.util.stream.Collectors;
  * Created by Mark on 2017. 05. 10..
  */
 @Service
-public class TransportServiceImpl implements TransportProvider{
+public class TransportServiceImpl implements TransportService {
 
     private TransportRepository transportRepository;
 

@@ -1,6 +1,6 @@
 package com.markbudai.openfleet.controller;
 
-import com.markbudai.openfleet.dao.providers.EmployeeProvider;
+import com.markbudai.openfleet.services.EmployeeService;
 import com.markbudai.openfleet.exception.IdException;
 import com.markbudai.openfleet.exception.NullException;
 import com.markbudai.openfleet.framework.builder.EmployeeBuilder;
@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 
-import java.security.Principal;
-
 /**
  * Created by Mark on 2017. 04. 15..
  */
@@ -27,15 +25,15 @@ public class EmployeeController {
 
     private static Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 
-    private EmployeeProvider employeeProvider;
+    private EmployeeService employeeService;
     private EmployeeBuilder builder;
     private PaymentService paymentService;
 
     private static String viewPrefix = "employee/";
 
     @Autowired
-    public EmployeeController(EmployeeProvider provider, EmployeeBuilder builder,PaymentService paymentService){
-        this.employeeProvider = provider;
+    public EmployeeController(EmployeeService provider, EmployeeBuilder builder, PaymentService paymentService){
+        this.employeeService = provider;
         this.builder = builder;
         this.paymentService = paymentService;
         logger.debug("{} created.",this.getClass());
@@ -44,7 +42,7 @@ public class EmployeeController {
     @RequestMapping("/employee/list")
     public String listEmployees(Model model){
         logger.debug("Serving /employee/list");
-        model.addAttribute("employeeList",employeeProvider.getAllEmployees());
+        model.addAttribute("employeeList", employeeService.getAllEmployees());
         model.addAttribute("path","/employee/list");
         model.addAttribute("title","Employees");
         return viewPrefix+"listEmployees";
@@ -62,16 +60,16 @@ public class EmployeeController {
         Employee e = builder.buildFromWebRequest(request);
         logger.debug("Adding Employee {} to the database.",e);
         if(e.getId() != 0){
-            employeeProvider.updateEmployee(e);
+            employeeService.updateEmployee(e);
         } else{
-            employeeProvider.addEmployee(e);
+            employeeService.addEmployee(e);
         }
         return listEmployees(model);
     }
 
     @RequestMapping("/employee/edit")
     public String editEmployee(@RequestParam("id") long id, Model model){
-        Employee e = employeeProvider.getEmployeeById(id);
+        Employee e = employeeService.getEmployeeById(id);
         logger.debug("Giving Employee {} for edit.",e);
         model.addAttribute("employee",e);
         model.addAttribute("title","Employee");
@@ -81,7 +79,7 @@ public class EmployeeController {
     @RequestMapping("/employee/delete")
     public String deleteEmployee(@RequestParam("id") long id, Model model){
         logger.debug("Removing Employee with id {}",id);
-        employeeProvider.fireEmployee(id);
+        employeeService.fireEmployee(id);
         return listEmployees(model);
     }
 
@@ -94,7 +92,7 @@ public class EmployeeController {
     public String employeePaymentsList(@RequestParam("id") long id, Model model){
         if(id == 0) throw new IdException(id);
         model.addAttribute("title","Payments");
-        Employee employee = employeeProvider.getEmployeeById(id);
+        Employee employee = employeeService.getEmployeeById(id);
         if(employee == null) throw new NullException(Employee.class);
         logger.debug("/employee/payment Employee: {}",employee);
         model.addAttribute("employee",employee);

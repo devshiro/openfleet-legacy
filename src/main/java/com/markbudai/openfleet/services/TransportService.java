@@ -1,4 +1,4 @@
-package com.markbudai.openfleet.dao.providers;
+package com.markbudai.openfleet.services;
 
 import com.markbudai.openfleet.model.Employee;
 import com.markbudai.openfleet.model.Transport;
@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by Mark on 2017. 04. 29..
  */
-public interface TransportProvider {
+public interface TransportService {
     List<Transport> getAllTransports();
     void addTransport(Transport t);
     List<Transport> getTransportByEmployee(Employee e);

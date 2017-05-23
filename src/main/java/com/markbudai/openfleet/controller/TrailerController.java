@@ -1,6 +1,6 @@
 package com.markbudai.openfleet.controller;
 
-import com.markbudai.openfleet.dao.providers.TrailerProvider;
+import com.markbudai.openfleet.services.TrailerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,23 +17,23 @@ import org.springframework.web.context.request.WebRequest;
 @Controller
 public class TrailerController {
 
-    private TrailerProvider trailerProvider;
+    private TrailerService trailerService;
 
     private static Logger logger = LoggerFactory.getLogger(TrailerController.class);
 
     private static String viewPrefix = "trailer/";
 
     @Autowired
-    public TrailerController(TrailerProvider provider){
-        this.trailerProvider = provider;
+    public TrailerController(TrailerService provider){
+        this.trailerService = provider;
     }
 
     @RequestMapping("/trailers/list")
     public String listTrailers(Model model){
-        model.addAttribute("trailerList",trailerProvider.getAllTrailers());
+        model.addAttribute("trailerList", trailerService.getAllTrailers());
         model.addAttribute("path","/trailers/list");
         model.addAttribute("title","Trailers");
-        model.addAttribute("supervisionList",trailerProvider.getSupervisionList());
+        model.addAttribute("supervisionList", trailerService.getSupervisionList());
         return viewPrefix+"listTrailers";
     }
 
@@ -41,13 +41,13 @@ public class TrailerController {
     public String getDetails(@RequestParam("id") long id, Model model){
         model.addAttribute("path","/trailer");
         model.addAttribute("title","Trailer Details");
-        model.addAttribute("trailer",trailerProvider.getTrailerById(id));
+        model.addAttribute("trailer", trailerService.getTrailerById(id));
         return viewPrefix+"trailerDetails";
     }
 
     @RequestMapping("/trailer/delete")
     public String sellTrailer(@RequestParam("id") long id, Model model){
-        trailerProvider.sellTrailer(id);
+        trailerService.sellTrailer(id);
         return listTrailers(model);
     }
 
@@ -55,7 +55,7 @@ public class TrailerController {
     public String addTrailer(Model model, WebRequest request){
         logger.info("Starting trailer adding / updating method.");
         logger.debug("Id is: {}",request.getParameter("id"));
-        trailerProvider.addOrUpdate(request);
+        trailerService.addOrUpdate(request);
         return listTrailers(model);
     }
 

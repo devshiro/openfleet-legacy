@@ -1,6 +1,6 @@
 package tests.supplier;
 
-import com.markbudai.openfleet.dao.providers.TractorProvider;
+import com.markbudai.openfleet.services.TractorService;
 import com.markbudai.openfleet.model.Tractor;
 import org.mockito.Mockito;
 
@@ -26,9 +26,9 @@ public class TractorSupplier {
         return tractor;
     }
 
-    public static TractorProvider getMockProvider(){
-        TractorProvider tractorProvider = Mockito.mock(TractorProvider.class);
-        Mockito.when(tractorProvider.getTractorById(1)).thenReturn(getSampleTractor());
-        return tractorProvider;
+    public static TractorService getMockProvider(){
+        TractorService tractorService = Mockito.mock(TractorService.class);
+        Mockito.when(tractorService.getTractorById(1)).thenReturn(getSampleTractor());
+        return tractorService;
     }
 }

@@ -1,4 +1,4 @@
-package com.markbudai.openfleet.dao.providers;
+package com.markbudai.openfleet.services;
 
 import com.markbudai.openfleet.model.Trailer;
 import com.markbudai.openfleet.pojo.SupervisionDetails;
@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by Mark on 2017. 04. 28..
  */
-public interface TrailerProvider {
+public interface TrailerService {
     List<Trailer> getAllTrailers();
     Trailer getTrailerById(long id);
     void addTrailer(Trailer trailer);

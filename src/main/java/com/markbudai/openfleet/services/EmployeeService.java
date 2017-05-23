@@ -1,4 +1,4 @@
-package com.markbudai.openfleet.dao.providers;
+package com.markbudai.openfleet.services;
 
 import com.markbudai.openfleet.model.Employee;
 
@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Interface describing operations required to manage Employee objects.
  */
-public interface EmployeeProvider {
+public interface EmployeeService {
     /**
      * Lists all employee objects from the database.
      * @return list of Employee objects stored in the database.

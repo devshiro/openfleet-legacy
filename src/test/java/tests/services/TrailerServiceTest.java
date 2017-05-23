@@ -4,7 +4,7 @@ import com.markbudai.openfleet.dao.repositories.TrailerRepository;
 import com.markbudai.openfleet.dao.repositoryImplementations.TrailerRepositoryJPA;
 import com.markbudai.openfleet.model.Trailer;
 import com.markbudai.openfleet.pojo.SupervisionDetails;
-import com.markbudai.openfleet.services.TrailerServiceImpl;
+import com.markbudai.openfleet.services.implementations.TrailerServiceImpl;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Created by Mark on 2017. 05. 19..
  */
-public class TrailerServiceImplTest {
+public class TrailerServiceTest {
     private static TrailerRepository trailerRepository;
     private static TrailerServiceImpl service;
 

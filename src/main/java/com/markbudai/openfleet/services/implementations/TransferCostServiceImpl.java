@@ -1,10 +1,9 @@
-package com.markbudai.openfleet.services;
+package com.markbudai.openfleet.services.implementations;
 
-import com.markbudai.openfleet.dao.providers.TransferCostProvider;
 import com.markbudai.openfleet.dao.repositories.TransferCostRepository;
 import com.markbudai.openfleet.model.TransferCost;
+import com.markbudai.openfleet.services.TransferCostService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -15,7 +14,7 @@ import java.util.stream.Collectors;
  * Created by Mark on 2017. 05. 09..
  */
 @Service
-public class TransferCostServiceImpl implements TransferCostProvider {
+public class TransferCostServiceImpl implements TransferCostService {
 
     private TransferCostRepository costRepository;
 

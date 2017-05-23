@@ -1,8 +1,8 @@
-package com.markbudai.openfleet.services;
+package com.markbudai.openfleet.services.implementations;
 
-import com.markbudai.openfleet.dao.providers.EmployeeProvider;
 import com.markbudai.openfleet.dao.repositories.EmployeeRepository;
 import com.markbudai.openfleet.model.Employee;
+import com.markbudai.openfleet.services.EmployeeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  * Created by Mark on 2017. 05. 03..
  */
 @Service
-public class EmployeeServiceImpl implements EmployeeProvider{
+public class EmployeeServiceImpl implements EmployeeService {
 
     private static Logger logger = LoggerFactory.getLogger(EmployeeServiceImpl.class);
 

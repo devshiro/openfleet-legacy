@@ -4,7 +4,7 @@ import com.markbudai.openfleet.dao.repositories.TractorRepository;
 import com.markbudai.openfleet.dao.repositoryImplementations.TractorRepositoryJPA;
 import com.markbudai.openfleet.model.Tractor;
 import com.markbudai.openfleet.pojo.SupervisionDetails;
-import com.markbudai.openfleet.services.TractorServiceImpl;
+import com.markbudai.openfleet.services.implementations.TractorServiceImpl;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Created by Mark on 2017. 05. 19..
  */
-public class TractorServiceImplTest {
+public class TractorServiceTest {
 
     private static TractorRepository tractorRepository;
     private static TractorServiceImpl service;

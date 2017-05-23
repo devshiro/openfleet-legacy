@@ -1,10 +1,10 @@
-package com.markbudai.openfleet.services;
+package com.markbudai.openfleet.services.implementations;
 
-import com.markbudai.openfleet.dao.providers.TractorProvider;
 import com.markbudai.openfleet.dao.repositories.TractorRepository;
 import com.markbudai.openfleet.framework.DateUtils;
 import com.markbudai.openfleet.model.Tractor;
 import com.markbudai.openfleet.pojo.SupervisionDetails;
+import com.markbudai.openfleet.services.TractorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
  * Created by Mark on 2017. 05. 07..
  */
 @Service
-public class TractorServiceImpl implements TractorProvider {
+public class TractorServiceImpl implements TractorService {
 
     private static Logger logger = LoggerFactory.getLogger(TractorServiceImpl.class);
 
