@@ -1,20 +1,13 @@
 package com.markbudai.openfleet.dao.repositories;
 
-import com.markbudai.openfleet.dao.providers.TractorProvider;
 import com.markbudai.openfleet.exception.NotFoundException;
 import com.markbudai.openfleet.model.Tractor;
-import com.markbudai.openfleet.model.Trailer;
 import org.springframework.stereotype.Repository;
-
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by Mark on 2017. 04. 28..

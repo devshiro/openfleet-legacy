@@ -1,7 +1,7 @@
 package tests.repository;
 
 import com.markbudai.openfleet.dao.repositories.EmployeeRepository;
-import com.markbudai.openfleet.exception.NoEmployeeFoundException;
+import com.markbudai.openfleet.exception.NotFoundException;
 import com.markbudai.openfleet.model.Employee;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -23,7 +23,7 @@ public class EmployeeRepositoryTest {
         employeeRepository = new EmployeeRepository(mockedEntityManager);
     }
 
-    @Test(expected = NoEmployeeFoundException.class)
+    @Test(expected = NotFoundException.class)
     public void exceptionThrownWhenNonExistingIdSupplied(){
         employeeRepository.getEmployeeById(99);
     }

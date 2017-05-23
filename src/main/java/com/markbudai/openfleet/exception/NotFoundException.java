@@ -1,12 +1,16 @@
 package com.markbudai.openfleet.exception;
 
 /**
- * Created by Mark on 2017. 05. 19..
+ * Exception which is thrown whenever a requested class is null.
  */
 public class NotFoundException extends RuntimeException {
-    public NotFoundException(Class c){
+    /**
+     * Constructs a NotFoundException.
+     * @param klass the Class which is null or missing.
+     */
+    public NotFoundException(Class klass){
         super(new StringBuilder().append("No ")
-        .append(c.toString())
+        .append(klass.toString())
         .append(" object found!").toString());
     }
 }

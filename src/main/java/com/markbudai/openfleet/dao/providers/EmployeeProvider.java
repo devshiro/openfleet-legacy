@@ -5,13 +5,37 @@ import com.markbudai.openfleet.model.Employee;
 import java.util.List;
 
 /**
- * Created by Mark on 2017. 04. 28..
+ * Interface describing operations required to manage Employee objects.
  */
 public interface EmployeeProvider {
+    /**
+     * Lists all employee objects from the database.
+     * @return list of Employee objects stored in the database.
+     */
     List<Employee> getAllEmployees();
+
+    /**
+     * Gets the Employee object identified by the id.
+     * @param id the id of the Employee object.
+     * @return the Employee object identified by the id.
+     */
     Employee getEmployeeById(long id);
+
+    /**
+     * Stores an Employee object in the database.
+     * @param e the Employee object.
+     */
     void addEmployee(Employee e);
+
+    /**
+     * Updates an Employee object in the database.
+     * @param e the Employee object.
+     */
     void updateEmployee(Employee e);
 
+    /**
+     * Logical delete of an Employee object.
+     * @param id the id of the Employee object which needs to be logically deleted.
+     */
     void fireEmployee(long id);
 }

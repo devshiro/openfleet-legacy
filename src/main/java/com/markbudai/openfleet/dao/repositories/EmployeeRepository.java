@@ -1,6 +1,6 @@
 package com.markbudai.openfleet.dao.repositories;
 
-import com.markbudai.openfleet.exception.NoEmployeeFoundException;
+import com.markbudai.openfleet.exception.NotFoundException;
 import com.markbudai.openfleet.model.Employee;
 import org.springframework.stereotype.Repository;
 
@@ -34,7 +34,7 @@ public class EmployeeRepository {
 
     public Employee getEmployeeById(long id) {
         Employee e = entityManager.find(Employee.class,id);
-        if(e==null) throw new NoEmployeeFoundException(id);
+        if(e==null) throw new NotFoundException(Employee.class);
         return e;
     }
 

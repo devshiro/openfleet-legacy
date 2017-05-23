@@ -1,6 +1,5 @@
 package com.markbudai.openfleet.framework;
 
-import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
 

@@ -1,16 +1,11 @@
 package com.markbudai.openfleet.model;
 
-import org.hibernate.annotations.*;
-
 import javax.persistence.*;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Optional;
-
-import org.hibernate.annotations.Parameter;
 
 /**
  * A class representing the employees of the company.

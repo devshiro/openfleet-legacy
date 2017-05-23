@@ -1,20 +1,15 @@
 package com.markbudai.openfleet.dao.repositories;
 
-import com.markbudai.openfleet.dao.providers.LocationProvider;
 import com.markbudai.openfleet.exception.NotFoundException;
 import com.markbudai.openfleet.model.Location;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by Mark on 2017. 04. 28..

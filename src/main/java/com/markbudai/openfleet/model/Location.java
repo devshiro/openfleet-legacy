@@ -68,61 +68,113 @@ public class Location implements Serializable{
     }
 
     /**
-     * Gets the id   of the Location object.
-     * @return the id of the object.
+     * Gets the id of the Location object.
+     * @return the id of the location object.
      */
     public long getId() {
         return id;
     }
 
+    /**
+     * Sets the id of the Location object.
+     * @param id the id of the location object.
+     */
     public void setId(long id) {
         this.id = id;
     }
 
+    /**
+     * Gets the Country of the address.
+     * @return the Country of the address.
+     */
     public String getCountry() {
         return country;
     }
 
+    /**
+     * Sets the Country of the address.
+     * @param country the country of the address.
+     */
     public void setCountry(String country) {
         this.country = country;
     }
 
+    /**
+     * Gets the region of the address.
+     * @return the region of the address.
+     */
     public String getRegion() {
         return region;
     }
 
+    /**
+     * Sets the region of the address.
+     * @param region the region of the address
+     */
     public void setRegion(String region) {
         this.region = region;
     }
 
+    /**
+     * Gets the city of the address.
+     * @return the city of the address.
+     */
     public String getCity() {
         return city;
     }
 
+    /**
+     * Sets the city of the address.
+     * @param city the city of the address.
+     */
     public void setCity(String city) {
         this.city = city;
     }
 
+    /**
+     * Gets the street name of the address.
+     * @return the street name of the address.
+     */
     public String getStreet() {
         return street;
     }
 
+    /**
+     * Sets the street name of the address.
+     * @param street the street name of the address.
+     */
     public void setStreet(String street) {
         this.street = street;
     }
 
+    /**
+     * Gets the house number of the address.
+     * @return the house number of the address.
+     */
     public String getHouseNo() {
         return houseNo;
     }
 
+    /**
+     * Sets the house number of the address.
+     * @param houseNo the house number of the address.
+     */
     public void setHouseNo(String houseNo) {
         this.houseNo = houseNo;
     }
 
+    /**
+     * Gets the zipcode of the address.
+     * @return the zipcode of the address.
+     */
     public String getZipcode() {
         return zipcode;
     }
 
+    /**
+     * Sets the zipcode of the address.
+     * @param zipcode the zipcode of the address.
+     */
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
     }
@@ -164,6 +216,10 @@ public class Location implements Serializable{
         return new StringBuilder().append(this.country).append(", ").append(this.city).toString();
     }
 
+    /**
+     * Gets a complete text representation of the address.
+     * @return the complete text representation of the address.
+     */
     public String fullString(){
         return new StringBuilder().append(this.country).append(", ").append(this.region).append(" ")
                 .append(this.city).append(" ").append(this.street).append(" ")

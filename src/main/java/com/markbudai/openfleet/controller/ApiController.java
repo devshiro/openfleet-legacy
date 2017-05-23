@@ -5,9 +5,7 @@ import com.markbudai.openfleet.model.*;
 import com.markbudai.openfleet.pojo.Badge;
 import com.markbudai.openfleet.pojo.PaymentDetail;
 import com.markbudai.openfleet.pojo.SamplePieData;
-import com.markbudai.openfleet.services.DocumentService;
 import com.markbudai.openfleet.services.PaymentService;
-import org.apache.tomcat.jni.Local;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.servlet.http.HttpServletResponse;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.*;
 
 /**
