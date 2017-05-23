@@ -63,43 +63,43 @@ public class Trailer {
         this.type = type;
     }
 
-    public LocalDate getDate_of_manufacture() {
+    public LocalDate getDateOfManufacture() {
         return date_of_manufacture;
     }
 
-    public void setDate_of_manufacture(LocalDate date_of_manufacture) {
+    public void setDateOfManufacture(LocalDate date_of_manufacture) {
         this.date_of_manufacture = date_of_manufacture;
     }
 
-    public LocalDate getDate_of_acquire() {
+    public LocalDate getDateOfAcquire() {
         return date_of_acquire;
     }
 
-    public void setDate_of_acquire(LocalDate date_of_acquire) {
+    public void setDateOfAcquire(LocalDate date_of_acquire) {
         this.date_of_acquire = date_of_acquire;
     }
 
-    public LocalDate getDate_of_supervision() {
+    public LocalDate getDateOfSupervision() {
         return date_of_supervision;
     }
 
-    public void setDate_of_supervision(LocalDate date_of_supervision) {
+    public void setDateOfSupervision(LocalDate date_of_supervision) {
         this.date_of_supervision = date_of_supervision;
     }
 
-    public String getPlate_number() {
+    public String getPlateNumber() {
         return plate_number;
     }
 
-    public void setPlate_number(String plate_number) {
+    public void setPlateNumber(String plate_number) {
         this.plate_number = plate_number;
     }
 
-    public String getChassis_number() {
+    public String getChassisNumber() {
         return chassis_number;
     }
 
-    public void setChassis_number(String chassis_number) {
+    public void setChassisNumber(String chassis_number) {
         this.chassis_number = chassis_number;
     }
 
@@ -111,19 +111,19 @@ public class Trailer {
         this.weight = weight;
     }
 
-    public long getMax_load_weight() {
+    public long getMaxLoadWeight() {
         return max_load_weight;
     }
 
-    public void setMax_load_weight(long max_load_weight) {
+    public void setMaxLoadWeight(long max_load_weight) {
         this.max_load_weight = max_load_weight;
     }
 
-    public LocalDate getDate_of_sell() {
+    public LocalDate getDateOfSell() {
         return date_of_sell;
     }
 
-    public void setDate_of_sell(LocalDate date_of_sell) {
+    public void setDateOfSell(LocalDate date_of_sell) {
         this.date_of_sell = date_of_sell;
     }
 
@@ -140,35 +140,35 @@ public class Trailer {
         Trailer trailer = (Trailer) o;
 
         if (getWeight() != trailer.getWeight()) return false;
-        if (getMax_load_weight() != trailer.getMax_load_weight()) return false;
+        if (getMaxLoadWeight() != trailer.getMaxLoadWeight()) return false;
         if (getManufacturer() != null ? !getManufacturer().equals(trailer.getManufacturer()) : trailer.getManufacturer() != null)
             return false;
         if (getType() != null ? !getType().equals(trailer.getType()) : trailer.getType() != null) return false;
-        if (getDate_of_manufacture() != null ? !getDate_of_manufacture().equals(trailer.getDate_of_manufacture()) : trailer.getDate_of_manufacture() != null)
+        if (getDateOfManufacture() != null ? !getDateOfManufacture().equals(trailer.getDateOfManufacture()) : trailer.getDateOfManufacture() != null)
             return false;
-        if (getDate_of_acquire() != null ? !getDate_of_acquire().equals(trailer.getDate_of_acquire()) : trailer.getDate_of_acquire() != null)
+        if (getDateOfAcquire() != null ? !getDateOfAcquire().equals(trailer.getDateOfAcquire()) : trailer.getDateOfAcquire() != null)
             return false;
-        if (getDate_of_supervision() != null ? !getDate_of_supervision().equals(trailer.getDate_of_supervision()) : trailer.getDate_of_supervision() != null)
+        if (getDateOfSupervision() != null ? !getDateOfSupervision().equals(trailer.getDateOfSupervision()) : trailer.getDateOfSupervision() != null)
             return false;
-        if (getPlate_number() != null ? !getPlate_number().equals(trailer.getPlate_number()) : trailer.getPlate_number() != null)
+        if (getPlateNumber() != null ? !getPlateNumber().equals(trailer.getPlateNumber()) : trailer.getPlateNumber() != null)
             return false;
-        if (getChassis_number() != null ? !getChassis_number().equals(trailer.getChassis_number()) : trailer.getChassis_number() != null)
+        if (getChassisNumber() != null ? !getChassisNumber().equals(trailer.getChassisNumber()) : trailer.getChassisNumber() != null)
             return false;
-        return getDate_of_sell() != null ? getDate_of_sell().equals(trailer.getDate_of_sell()) : trailer.getDate_of_sell() == null;
+        return getDateOfSell() != null ? getDateOfSell().equals(trailer.getDateOfSell()) : trailer.getDateOfSell() == null;
     }
 
     @Override
     public int hashCode() {
         int result = getManufacturer() != null ? getManufacturer().hashCode() : 0;
         result = 31 * result + (getType() != null ? getType().hashCode() : 0);
-        result = 31 * result + (getDate_of_manufacture() != null ? getDate_of_manufacture().hashCode() : 0);
-        result = 31 * result + (getDate_of_acquire() != null ? getDate_of_acquire().hashCode() : 0);
-        result = 31 * result + (getDate_of_supervision() != null ? getDate_of_supervision().hashCode() : 0);
-        result = 31 * result + (getPlate_number() != null ? getPlate_number().hashCode() : 0);
-        result = 31 * result + (getChassis_number() != null ? getChassis_number().hashCode() : 0);
+        result = 31 * result + (getDateOfManufacture() != null ? getDateOfManufacture().hashCode() : 0);
+        result = 31 * result + (getDateOfAcquire() != null ? getDateOfAcquire().hashCode() : 0);
+        result = 31 * result + (getDateOfSupervision() != null ? getDateOfSupervision().hashCode() : 0);
+        result = 31 * result + (getPlateNumber() != null ? getPlateNumber().hashCode() : 0);
+        result = 31 * result + (getChassisNumber() != null ? getChassisNumber().hashCode() : 0);
         result = 31 * result + (int) (getWeight() ^ (getWeight() >>> 32));
-        result = 31 * result + (int) (getMax_load_weight() ^ (getMax_load_weight() >>> 32));
-        result = 31 * result + (getDate_of_sell() != null ? getDate_of_sell().hashCode() : 0);
+        result = 31 * result + (int) (getMaxLoadWeight() ^ (getMaxLoadWeight() >>> 32));
+        result = 31 * result + (getDateOfSell() != null ? getDateOfSell().hashCode() : 0);
         return result;
     }
 }

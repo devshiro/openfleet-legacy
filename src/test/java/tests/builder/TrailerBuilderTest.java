@@ -35,14 +35,14 @@ public class TrailerBuilderTest {
     @Test
     public void assertSameTrailers(){
         Trailer trailer = TrailerSupplier.getSampleTrailer();
-        trailer.setDate_of_supervision(LocalDate.of(2017,05,05));
+        trailer.setDateOfSupervision(LocalDate.of(2017,05,05));
         Assert.assertEquals(trailer,TrailerBuilder.buildFromWebRequest(mockedWebRequest));
     }
 
     @Test
     public void assertSameTrailersHasSameHashCode(){
         Trailer trailer = TrailerSupplier.getSampleTrailer();
-        trailer.setDate_of_supervision(LocalDate.of(2017,05,05));
+        trailer.setDateOfSupervision(LocalDate.of(2017,05,05));
         Assert.assertEquals(trailer.hashCode(),TrailerBuilder.buildFromWebRequest(mockedWebRequest).hashCode());
     }
 }

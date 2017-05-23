@@ -33,27 +33,27 @@ public class TrailerBuilder {
         if(request.getParameter("date_of_manufacture").isEmpty()){
             return null;
         }
-        trailer.setDate_of_manufacture(LocalDate.parse(request.getParameter("date_of_manufacture")));
+        trailer.setDateOfManufacture(LocalDate.parse(request.getParameter("date_of_manufacture")));
         logger.trace("date of manufacture..done");
         if(request.getParameter("date_of_acquire").isEmpty()){
             return null;
         }
-        trailer.setDate_of_acquire(LocalDate.parse(request.getParameter("date_of_acquire")));
+        trailer.setDateOfAcquire(LocalDate.parse(request.getParameter("date_of_acquire")));
         logger.trace("date of acquire..done");
         if(request.getParameter("date_of_supervision").isEmpty()){
             return null;
         }
-        trailer.setDate_of_supervision(LocalDate.parse(request.getParameter("date_of_supervision")));
+        trailer.setDateOfSupervision(LocalDate.parse(request.getParameter("date_of_supervision")));
         logger.trace("date of supervision..done");
         if(request.getParameter("plate_number").isEmpty()){
             return null;
         }
-        trailer.setPlate_number(request.getParameter("plate_number"));
+        trailer.setPlateNumber(request.getParameter("plate_number"));
         logger.trace("plate number..done");
         if(request.getParameter("chassis_number").isEmpty()){
             return null;
         }
-        trailer.setChassis_number(request.getParameter("chassis_number"));
+        trailer.setChassisNumber(request.getParameter("chassis_number"));
         logger.trace("chassis number..done");
         if(request.getParameter("weight").isEmpty()){
             return null;
@@ -63,7 +63,7 @@ public class TrailerBuilder {
         if(request.getParameter("max_load_weight").isEmpty()){
             return null;
         }
-        trailer.setMax_load_weight(Long.parseLong(request.getParameter("max_load_weight")));
+        trailer.setMaxLoadWeight(Long.parseLong(request.getParameter("max_load_weight")));
         logger.trace("Done building!");
         return trailer;
     }
