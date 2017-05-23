@@ -5,7 +5,6 @@ import com.markbudai.openfleet.dao.repositories.TractorRepository;
 import com.markbudai.openfleet.framework.DateUtils;
 import com.markbudai.openfleet.model.Tractor;
 import com.markbudai.openfleet.pojo.SupervisionDetails;
-import org.apache.tomcat.jni.Local;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,7 +34,7 @@ public class TractorService implements TractorProvider {
     @Override
     public List<Tractor> getAllTractors() {
         List<Tractor> tractorList = tractorRepository.getAllTractors();
-        tractorList = tractorList.stream().filter(p->p.getDate_of_sell() == null).collect(Collectors.toList());
+        tractorList = tractorList.stream().filter(p->p.getDateOfSell() == null).collect(Collectors.toList());
         logger.debug("Serving {} tractors",tractorList.size());
         return tractorList;
     }
@@ -65,7 +63,7 @@ public class TractorService implements TractorProvider {
         logger.debug("Selling tractor with id {}",id);
         Tractor t = tractorRepository.getTractorById(id);
         logger.debug("Found tractor {}",t);
-        t.setDate_of_sell(LocalDate.now());
+        t.setDateOfSell(LocalDate.now());
         tractorRepository.updateTractor(t);
     }
 
@@ -74,13 +72,13 @@ public class TractorService implements TractorProvider {
         List<SupervisionDetails> supervisionDetails = new ArrayList<>();
         List<Tractor> tractorList = this.getAllTractors();
         for(Tractor tractor : tractorList){
-            if(DateUtils.getDaysDifference(tractor.getDate_of_supervision(), LocalDate.now()) <= 30){
+            if(DateUtils.getDaysDifference(tractor.getDateOfSupervision(), LocalDate.now()) <= 30){
                 SupervisionDetails details = new SupervisionDetails();
-                details.setDate_of_supervision(tractor.getDate_of_supervision());
-                details.setDays_remaining(DateUtils.getDaysDifference(tractor.getDate_of_supervision(),LocalDate.now()));
+                details.setDate_of_supervision(tractor.getDateOfSupervision());
+                details.setDays_remaining(DateUtils.getDaysDifference(tractor.getDateOfSupervision(),LocalDate.now()));
                 details.setManufacturer(tractor.getManufacturer());
                 details.setType(tractor.getType());
-                details.setPlate_no(tractor.getPlate_number());
+                details.setPlate_no(tractor.getPlateNumber());
                 supervisionDetails.add(details);
             }
         }

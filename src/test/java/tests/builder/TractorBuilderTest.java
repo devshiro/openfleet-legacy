@@ -36,14 +36,14 @@ public class TractorBuilderTest {
     @Test
     public void assertSameTractors(){
         Tractor tractor = TractorSupplier.getSampleTractor();
-        tractor.setDate_of_supervision(LocalDate.of(2017,05,05));
+        tractor.setDateOfSupervision(LocalDate.of(2017,05,05));
         Assert.assertEquals(tractor,TractorBuilder.buildFromWebRequest(mockedWebRequest));
     }
 
     @Test
     public void assertSameTractorsHasSameHashCode(){
         Tractor tractor = TractorSupplier.getSampleTractor();
-        tractor.setDate_of_supervision(LocalDate.of(2017,05,05));
+        tractor.setDateOfSupervision(LocalDate.of(2017,05,05));
         Assert.assertEquals(tractor.hashCode(),TractorBuilder.buildFromWebRequest(mockedWebRequest).hashCode());
     }
 }

@@ -117,7 +117,7 @@ public class Tractor {
      * Sets the date when the truck was manufactured.
      * @param date_of_manufacture the date when the truck was manufactured.
      */
-    public void setDate_of_manufacture(LocalDate date_of_manufacture) {
+    public void setDateOfManufacture(LocalDate date_of_manufacture) {
         this.date_of_manufacture = date_of_manufacture;
     }
 
@@ -125,7 +125,7 @@ public class Tractor {
      * Gets the date when the company acquired the truck.
      * @return the date when the company acquired the truck.
      */
-    public LocalDate getDate_of_acquire() {
+    public LocalDate getDateOfAcquire() {
         return date_of_acquire;
     }
 
@@ -133,7 +133,7 @@ public class Tractor {
      * Sets the date when the company acquired the truck.
      * @param date_of_acquire the date when the company acquired the truck.
      */
-    public void setDate_of_acquire(LocalDate date_of_acquire) {
+    public void setDateOfAcquire(LocalDate date_of_acquire) {
         this.date_of_acquire = date_of_acquire;
     }
 
@@ -141,7 +141,7 @@ public class Tractor {
      * Gets the date when the truck needs to be inspected again.
      * @return the date when the truck needs to be inspected again.
      */
-    public LocalDate getDate_of_supervision() {
+    public LocalDate getDateOfSupervision() {
         return date_of_supervision;
     }
 
@@ -149,7 +149,7 @@ public class Tractor {
      * Sets the date when the truck needs to be inspected again.
      * @param date_of_supervision the date when the truck needs to be inspected again.
      */
-    public void setDate_of_supervision(LocalDate date_of_supervision) {
+    public void setDateOfSupervision(LocalDate date_of_supervision) {
         this.date_of_supervision = date_of_supervision;
     }
 
@@ -157,7 +157,7 @@ public class Tractor {
      * Gets the license plate number of the truck.
      * @return the license plate number of the truck.
      */
-    public String getPlate_number() {
+    public String getPlateNumber() {
         return plate_number;
     }
 
@@ -165,7 +165,7 @@ public class Tractor {
      * Sets the license plate number of the truck.
      * @param plate_number the license plate number of the truck.
      */
-    public void setPlate_number(String plate_number) {
+    public void setPlateNumber(String plate_number) {
         this.plate_number = plate_number;
     }
 
@@ -173,7 +173,7 @@ public class Tractor {
      * Gets the chassis number or VIN of the truck.
      * @return the chassis number or VIN of the truck.
      */
-    public String getChassis_number() {
+    public String getChassisNumber() {
         return chassis_number;
     }
 
@@ -181,7 +181,7 @@ public class Tractor {
      * Sets the chassis number or VIN of the truck.
      * @param chassis_number the chassis number or VIN of the truck.
      */
-    public void setChassis_number(String chassis_number) {
+    public void setChassisNumber(String chassis_number) {
         this.chassis_number = chassis_number;
     }
 
@@ -189,7 +189,7 @@ public class Tractor {
      * Gets the fuel normative of the truck.
      * @return the fuel normative of the truck.
      */
-    public double getFuel_norm() {
+    public double getFuelNorm() {
         return fuel_norm;
     }
 
@@ -197,7 +197,7 @@ public class Tractor {
      * Sets the fuel normative of the truck.
      * @param fuel_norm the fuel normative of the truck.
      */
-    public void setFuel_norm(double fuel_norm) {
+    public void setFuelNorm(double fuel_norm) {
         this.fuel_norm = fuel_norm;
     }
 
@@ -209,19 +209,19 @@ public class Tractor {
         this.weight = weight;
     }
 
-    public long getMax_weight() {
+    public long getMaxWeight() {
         return max_weight;
     }
 
-    public void setMax_weight(long max_weight) {
+    public void setMaxWeight(long max_weight) {
         this.max_weight = max_weight;
     }
 
-    public LocalDate getDate_of_sell() {
+    public LocalDate getDateOfSell() {
         return date_of_sell;
     }
 
-    public void setDate_of_sell(LocalDate date_of_sell) {
+    public void setDateOfSell(LocalDate date_of_sell) {
         this.date_of_sell = date_of_sell;
     }
 
@@ -237,23 +237,23 @@ public class Tractor {
 
         Tractor tractor = (Tractor) o;
 
-        if (Double.compare(tractor.getFuel_norm(), getFuel_norm()) != 0) return false;
+        if (Double.compare(tractor.getFuelNorm(), getFuelNorm()) != 0) return false;
         if (getWeight() != tractor.getWeight()) return false;
-        if (getMax_weight() != tractor.getMax_weight()) return false;
+        if (getMaxWeight() != tractor.getMaxWeight()) return false;
         if (getManufacturer() != null ? !getManufacturer().equals(tractor.getManufacturer()) : tractor.getManufacturer() != null)
             return false;
         if (getType() != null ? !getType().equals(tractor.getType()) : tractor.getType() != null) return false;
         if (getDateOfManufacture() != null ? !getDateOfManufacture().equals(tractor.getDateOfManufacture()) : tractor.getDateOfManufacture() != null)
             return false;
-        if (getDate_of_acquire() != null ? !getDate_of_acquire().equals(tractor.getDate_of_acquire()) : tractor.getDate_of_acquire() != null)
+        if (getDateOfAcquire() != null ? !getDateOfAcquire().equals(tractor.getDateOfAcquire()) : tractor.getDateOfAcquire() != null)
             return false;
-        if (getDate_of_supervision() != null ? !getDate_of_supervision().equals(tractor.getDate_of_supervision()) : tractor.getDate_of_supervision() != null)
+        if (getDateOfSupervision() != null ? !getDateOfSupervision().equals(tractor.getDateOfSupervision()) : tractor.getDateOfSupervision() != null)
             return false;
-        if (getPlate_number() != null ? !getPlate_number().equals(tractor.getPlate_number()) : tractor.getPlate_number() != null)
+        if (getPlateNumber() != null ? !getPlateNumber().equals(tractor.getPlateNumber()) : tractor.getPlateNumber() != null)
             return false;
-        if (getChassis_number() != null ? !getChassis_number().equals(tractor.getChassis_number()) : tractor.getChassis_number() != null)
+        if (getChassisNumber() != null ? !getChassisNumber().equals(tractor.getChassisNumber()) : tractor.getChassisNumber() != null)
             return false;
-        return getDate_of_sell() != null ? getDate_of_sell().equals(tractor.getDate_of_sell()) : tractor.getDate_of_sell() == null;
+        return getDateOfSell() != null ? getDateOfSell().equals(tractor.getDateOfSell()) : tractor.getDateOfSell() == null;
     }
 
     @Override
@@ -263,15 +263,15 @@ public class Tractor {
         result = getManufacturer() != null ? getManufacturer().hashCode() : 0;
         result = 31 * result + (getType() != null ? getType().hashCode() : 0);
         result = 31 * result + (getDateOfManufacture() != null ? getDateOfManufacture().hashCode() : 0);
-        result = 31 * result + (getDate_of_acquire() != null ? getDate_of_acquire().hashCode() : 0);
-        result = 31 * result + (getDate_of_supervision() != null ? getDate_of_supervision().hashCode() : 0);
-        result = 31 * result + (getPlate_number() != null ? getPlate_number().hashCode() : 0);
-        result = 31 * result + (getChassis_number() != null ? getChassis_number().hashCode() : 0);
-        temp = Double.doubleToLongBits(getFuel_norm());
+        result = 31 * result + (getDateOfAcquire() != null ? getDateOfAcquire().hashCode() : 0);
+        result = 31 * result + (getDateOfSupervision() != null ? getDateOfSupervision().hashCode() : 0);
+        result = 31 * result + (getPlateNumber() != null ? getPlateNumber().hashCode() : 0);
+        result = 31 * result + (getChassisNumber() != null ? getChassisNumber().hashCode() : 0);
+        temp = Double.doubleToLongBits(getFuelNorm());
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (int) (getWeight() ^ (getWeight() >>> 32));
-        result = 31 * result + (int) (getMax_weight() ^ (getMax_weight() >>> 32));
-        result = 31 * result + (getDate_of_sell() != null ? getDate_of_sell().hashCode() : 0);
+        result = 31 * result + (int) (getMaxWeight() ^ (getMaxWeight() >>> 32));
+        result = 31 * result + (getDateOfSell() != null ? getDateOfSell().hashCode() : 0);
         return result;
     }
 }
