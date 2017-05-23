@@ -59,7 +59,7 @@
                     <div class="form-group" id="cargoNameGroup">
                         <label class="control-label col-sm-2" for="cargoNameInput">Cargo Name</label>
                         <div class="col-sm-8">
-                            <input type="text" id="cargoNameInput" name="cargo_name" class="form-control col-sm-8" th:value="${transport} ? ${transport.cargo_name} : ''"/>
+                            <input type="text" id="cargoNameInput" name="cargo_name" class="form-control col-sm-8" th:value="${transport} ? ${transport.CargoName} : ''"/>
                         </div>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                     <div class="form-group" id="cargoCountGroup">
                         <label class="control-label col-sm-2" for="cargoCountInput">Cargo Count</label>
                         <div class="col-sm-8">
-                            <input type="text" id="cargoCountInput" name="cargo_count" class="form-control col-sm-8" th:value="${transport} ? ${transport.cargo_count} : ''"/>
+                            <input type="text" id="cargoCountInput" name="cargo_count" class="form-control col-sm-8" th:value="${transport} ? ${transport.CargoCount} : ''"/>
                         </div>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
                     <div class="form-group" id="cargoWeightGroup">
                         <label class="control-label col-sm-2" for="cargoWeightInput">Cargo Weight</label>
                         <div class="col-sm-8">
-                            <input type="text" id="cargoWeightInput" name="cargo_weight" class="form-control col-sm-8" th:value="${transport} ? ${transport.cargo_weight} : ''"/>
+                            <input type="text" id="cargoWeightInput" name="cargo_weight" class="form-control col-sm-8" th:value="${transport} ? ${transport.CargoWeight} : ''"/>
                         </div>
                     </div>
                 </div>
@@ -87,7 +87,7 @@
                     <div class="form-group" id="placeOfLoadGroup">
                         <label class="control-label col-sm-2" for="placeOfLoadInput">Place of Load</label>
                         <div class="col-sm-8">
-                            <input th:if="${transport}" type="hidden" id="hiddenPlaceOfLoad" th:value="${transport.place_of_load} ? ${transport.place_of_load.id} : ''"/>
+                            <input th:if="${transport}" type="hidden" id="hiddenPlaceOfLoad" th:value="${transport.PlaceOfLoad} ? ${transport.PlaceOfLoad.id} : ''"/>
                             <select id="placeOfLoadInput" name="place_of_load" class="form-control"></select>
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                     <div class="form-group" id="timeOfLoadGroup">
                         <label class="control-label col-sm-2" for="timeOfLoadInput">Time of Load</label>
                         <div class="col-sm-8">
-                            <input type="datetime-local" id="timeOfLoadInput" name="time_of_load" class="form-control col-sm-8" th:value="${transport} ? ${transport.time_of_load} : ''"/>
+                            <input type="datetime-local" id="timeOfLoadInput" name="time_of_load" class="form-control col-sm-8" th:value="${transport} ? ${transport.TimeOfLoad} : ''"/>
                         </div>
                     </div>
                 </div>
@@ -106,7 +106,7 @@
                     <div class="form-group" id="placeOfUnloadGroup">
                         <label class="control-label col-sm-2" for="placeOfUnloadInput">Place of Unload</label>
                         <div class="col-sm-8">
-                            <input th:if="${transport}" type="hidden" id="hiddenPlaceOfUnload" th:value="${transport.place_of_unload} ? ${transport.place_of_unload.id} : ''"/>
+                            <input th:if="${transport}" type="hidden" id="hiddenPlaceOfUnload" th:value="${transport.PlaceOfLoad} ? ${transport.PlaceOfLoad.id} : ''"/>
                             <select id="placeOfUnloadInput" name="place_of_unload" class="form-control"></select>
                         </div>
                     </div>
@@ -115,7 +115,7 @@
                     <div class="form-group" id="timeOfUnloadGroup">
                         <label class="control-label col-sm-2" for="timeOfUnloadInput">Time of Unload</label>
                         <div class="col-sm-8">
-                            <input type="datetime-local" id="timeOfUnloadInput" name="time_of_unload" class="form-control col-sm-8" th:value="${transport} ? ${transport.time_of_unload} : ''"/>
+                            <input type="datetime-local" id="timeOfUnloadInput" name="time_of_unload" class="form-control col-sm-8" th:value="${transport} ? ${transport.TimeOfUnload} : ''"/>
                         </div>
                     </div>
                 </div>
