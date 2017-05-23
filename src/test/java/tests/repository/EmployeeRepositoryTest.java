@@ -1,6 +1,7 @@
 package tests.repository;
 
 import com.markbudai.openfleet.dao.repositories.EmployeeRepository;
+import com.markbudai.openfleet.dao.repositoryImplementations.EmployeeRepositoryJPA;
 import com.markbudai.openfleet.exception.NotFoundException;
 import com.markbudai.openfleet.model.Employee;
 import org.junit.BeforeClass;
@@ -20,7 +21,7 @@ public class EmployeeRepositoryTest {
     public static void setup(){
         mockedEntityManager = Mockito.mock(EntityManager.class);
         Mockito.when(mockedEntityManager.find(Employee.class,99)).thenReturn(null);
-        employeeRepository = new EmployeeRepository(mockedEntityManager);
+        employeeRepository = new EmployeeRepositoryJPA(mockedEntityManager);
     }
 
     @Test(expected = NotFoundException.class)

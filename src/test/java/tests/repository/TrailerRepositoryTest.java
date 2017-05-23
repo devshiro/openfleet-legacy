@@ -1,6 +1,7 @@
 package tests.repository;
 
 import com.markbudai.openfleet.dao.repositories.TrailerRepository;
+import com.markbudai.openfleet.dao.repositoryImplementations.TrailerRepositoryJPA;
 import com.markbudai.openfleet.exception.NotFoundException;
 import com.markbudai.openfleet.model.Trailer;
 import org.junit.BeforeClass;
@@ -21,7 +22,7 @@ public class TrailerRepositoryTest {
     public static void setup(){
         entityManager = Mockito.mock(EntityManager.class);
         Mockito.when(entityManager.find(Trailer.class,99)).thenReturn(null);
-        trailerRepository = new TrailerRepository(entityManager);
+        trailerRepository = new TrailerRepositoryJPA(entityManager);
     }
 
     @Test(expected = NotFoundException.class)

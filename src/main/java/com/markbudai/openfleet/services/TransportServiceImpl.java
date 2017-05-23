@@ -16,12 +16,12 @@ import java.util.stream.Collectors;
  * Created by Mark on 2017. 05. 10..
  */
 @Service
-public class TransportService implements TransportProvider{
+public class TransportServiceImpl implements TransportProvider{
 
     private TransportRepository transportRepository;
 
     @Autowired
-    public TransportService(TransportRepository repository){
+    public TransportServiceImpl(TransportRepository repository){
         this.transportRepository = repository;
     }
 

@@ -16,14 +16,14 @@ import java.util.stream.Collectors;
  * Created by Mark on 2017. 05. 03..
  */
 @Service
-public class EmployeeService  implements EmployeeProvider{
+public class EmployeeServiceImpl implements EmployeeProvider{
 
-    private static Logger logger = LoggerFactory.getLogger(EmployeeService.class);
+    private static Logger logger = LoggerFactory.getLogger(EmployeeServiceImpl.class);
 
     private EmployeeRepository employeeRepository;
 
     @Autowired
-    public EmployeeService(EmployeeRepository repository){
+    public EmployeeServiceImpl(EmployeeRepository repository){
         this.employeeRepository = repository;
     }
 

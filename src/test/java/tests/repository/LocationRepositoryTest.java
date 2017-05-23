@@ -1,6 +1,7 @@
 package tests.repository;
 
 import com.markbudai.openfleet.dao.repositories.LocationRepository;
+import com.markbudai.openfleet.dao.repositoryImplementations.LocationRepositoryJPA;
 import com.markbudai.openfleet.exception.NotFoundException;
 import com.markbudai.openfleet.model.Location;
 import org.junit.Assert;
@@ -35,7 +36,7 @@ public class LocationRepositoryTest {
     @BeforeClass
     public static void setup(){
         mockedEntityManager = setUpMockedEntityManager();
-        locationRepository = new LocationRepository(mockedEntityManager);
+        locationRepository = new LocationRepositoryJPA(mockedEntityManager);
     }
 
     @Test

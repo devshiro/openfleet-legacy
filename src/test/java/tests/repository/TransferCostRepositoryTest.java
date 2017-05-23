@@ -1,6 +1,7 @@
 package tests.repository;
 
 import com.markbudai.openfleet.dao.repositories.TransferCostRepository;
+import com.markbudai.openfleet.dao.repositoryImplementations.TransferCostRepositoryJPA;
 import com.markbudai.openfleet.exception.NotFoundException;
 import com.markbudai.openfleet.model.TransferCost;
 import org.junit.BeforeClass;
@@ -21,7 +22,7 @@ public class TransferCostRepositoryTest {
     public static void setup(){
         entityManager = Mockito.mock(EntityManager.class);
         Mockito.when(entityManager.find(TransferCost.class,99)).thenReturn(null);
-        transferCostRepository = new TransferCostRepository(entityManager);
+        transferCostRepository = new TransferCostRepositoryJPA(entityManager);
     }
 
     @Test(expected = NotFoundException.class)

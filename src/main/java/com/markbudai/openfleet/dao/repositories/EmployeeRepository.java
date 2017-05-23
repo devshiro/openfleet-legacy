@@ -1,48 +1,18 @@
 package com.markbudai.openfleet.dao.repositories;
 
-import com.markbudai.openfleet.exception.NotFoundException;
 import com.markbudai.openfleet.model.Employee;
-import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.transaction.Transactional;
 import java.util.List;
 
 /**
- * Created by Mark on 2017. 04. 28..
+ * Created by Mark on 2017. 05. 23..
  */
-@Transactional
-@Repository
-public class EmployeeRepository {
+public interface EmployeeRepository {
+    List<Employee> getAllEmployees();
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    Employee getEmployeeById(long id);
 
-    public EmployeeRepository(){
-    }
+    void addEmployee(Employee e);
 
-    public EmployeeRepository(EntityManager entityManager){
-        this.entityManager = entityManager;
-    }
-
-    public List<Employee> getAllEmployees() {
-        Query query = entityManager.createQuery("select e from Employee e");
-        return query.getResultList();
-    }
-
-    public Employee getEmployeeById(long id) {
-        Employee e = entityManager.find(Employee.class,id);
-        if(e==null) throw new NotFoundException(Employee.class);
-        return e;
-    }
-
-    public void addEmployee(Employee e){
-        entityManager.persist(e);
-    }
-
-    public void updateEmployee(Employee e){
-        entityManager.merge(e);
-    }
+    void updateEmployee(Employee e);
 }

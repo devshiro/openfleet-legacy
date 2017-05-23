@@ -14,12 +14,12 @@ import java.util.List;
  * Created by Mark on 2017. 05. 03..
  */
 @Service
-public class LocationService  implements LocationProvider{
+public class LocationServiceImpl implements LocationProvider{
 
     private LocationRepository locationRepository;
 
     @Autowired
-    public LocationService(LocationRepository repository){
+    public LocationServiceImpl(LocationRepository repository){
         this.locationRepository = repository;
     }
 

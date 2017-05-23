@@ -21,16 +21,16 @@ import java.util.stream.Collectors;
  * Created by Mark on 2017. 05. 09..
  */
 @Service
-public class TrailerService implements TrailerProvider {
+public class TrailerServiceImpl implements TrailerProvider {
 
-    private static Logger logger = LoggerFactory.getLogger(TrailerService.class);
+    private static Logger logger = LoggerFactory.getLogger(TrailerServiceImpl.class);
 
     private TrailerRepository trailerRepository;
 
     @Autowired
-    public TrailerService(TrailerRepository repository){
+    public TrailerServiceImpl(TrailerRepository repository){
         this.trailerRepository = repository;
-        logger.info("{} Service created.",TrailerService.class);
+        logger.info("{} Service created.", TrailerServiceImpl.class);
     }
 
     @Override

@@ -1,9 +1,10 @@
 package tests.services;
 
 import com.markbudai.openfleet.dao.repositories.TrailerRepository;
+import com.markbudai.openfleet.dao.repositoryImplementations.TrailerRepositoryJPA;
 import com.markbudai.openfleet.model.Trailer;
 import com.markbudai.openfleet.pojo.SupervisionDetails;
-import com.markbudai.openfleet.services.TrailerService;
+import com.markbudai.openfleet.services.TrailerServiceImpl;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -16,17 +17,17 @@ import java.util.List;
 /**
  * Created by Mark on 2017. 05. 19..
  */
-public class TrailerServiceTest {
+public class TrailerServiceImplTest {
     private static TrailerRepository trailerRepository;
-    private static TrailerService service;
+    private static TrailerServiceImpl service;
 
     @BeforeClass
     public static void setup(){
-        trailerRepository = Mockito.mock(TrailerRepository.class);
+        trailerRepository = Mockito.mock(TrailerRepositoryJPA.class);
         List<Trailer> trailerList = new ArrayList<>();
         trailerList.add(TrailerSupplier.getSampleTrailer());
         Mockito.when(trailerRepository.getAllTrailers()).thenReturn(trailerList);
-        service = new TrailerService(trailerRepository);
+        service = new TrailerServiceImpl(trailerRepository);
     }
 
     @Test

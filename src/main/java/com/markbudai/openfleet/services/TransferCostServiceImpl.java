@@ -15,12 +15,12 @@ import java.util.stream.Collectors;
  * Created by Mark on 2017. 05. 09..
  */
 @Service
-public class TransferCostService implements TransferCostProvider {
+public class TransferCostServiceImpl implements TransferCostProvider {
 
     private TransferCostRepository costRepository;
 
     @Autowired
-    public TransferCostService(TransferCostRepository repository){
+    public TransferCostServiceImpl(TransferCostRepository repository){
         this.costRepository = repository;
     }
 

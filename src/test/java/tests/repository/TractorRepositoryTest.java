@@ -1,6 +1,7 @@
 package tests.repository;
 
 import com.markbudai.openfleet.dao.repositories.TractorRepository;
+import com.markbudai.openfleet.dao.repositoryImplementations.TractorRepositoryJPA;
 import com.markbudai.openfleet.exception.NotFoundException;
 import com.markbudai.openfleet.model.Tractor;
 import org.junit.BeforeClass;
@@ -20,7 +21,7 @@ public class TractorRepositoryTest {
     public static void setup(){
         entityManager = Mockito.mock(EntityManager.class);
         Mockito.when(entityManager.find(Tractor.class,99)).thenReturn(null);
-        tractorRepository = new TractorRepository(entityManager);
+        tractorRepository = new TractorRepositoryJPA(entityManager);
     }
 
     @Test(expected = NotFoundException.class)

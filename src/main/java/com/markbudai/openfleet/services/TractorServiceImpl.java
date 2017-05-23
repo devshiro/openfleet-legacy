@@ -19,16 +19,16 @@ import java.util.stream.Collectors;
  * Created by Mark on 2017. 05. 07..
  */
 @Service
-public class TractorService implements TractorProvider {
+public class TractorServiceImpl implements TractorProvider {
 
-    private static Logger logger = LoggerFactory.getLogger(TractorService.class);
+    private static Logger logger = LoggerFactory.getLogger(TractorServiceImpl.class);
 
     private TractorRepository tractorRepository;
 
     @Autowired
-    public TractorService(TractorRepository repository){
+    public TractorServiceImpl(TractorRepository repository){
         this.tractorRepository = repository;
-        logger.debug("{} Service created.",TractorService.class);
+        logger.debug("{} Service created.", TractorServiceImpl.class);
     }
 
     @Override
