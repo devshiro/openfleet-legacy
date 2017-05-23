@@ -45,14 +45,14 @@
                     <td th:text="${tractor.id}">id</td>
                     <td th:text="${tractor.manufacturer}">id</td>
                     <td th:text="${tractor.type}">id</td>
-                    <td th:text="${tractor.date_of_manufacture}">id</td>
-                    <td th:text="${tractor.date_of_acquire}">id</td>
-                    <td th:text="${tractor.date_of_supervision}">id</td>
-                    <td th:text="${tractor.plate_number}">id</td>
-                    <td th:text="${tractor.chassis_number}">id</td>
-                    <td th:text="${tractor.fuel_norm}">id</td>
+                    <td th:text="${tractor.DateOfManufacture}">id</td>
+                    <td th:text="${tractor.DateOfAcquire}">id</td>
+                    <td th:text="${tractor.DateOfSupervision}">id</td>
+                    <td th:text="${tractor.PlateNumber}">id</td>
+                    <td th:text="${tractor.ChassisNumber}">id</td>
+                    <td th:text="${tractor.FuelNorm}">id</td>
                     <td th:text="${tractor.weight}">id</td>
-                    <td th:text="${tractor.max_weight}">id</td>
+                    <td th:text="${tractor.MaxWeight}">id</td>
                     <td>
                         <div class="dropdown">
                             <a data-toggle="dropdown" href="#"><span class="caret"></span></a>
@@ -83,12 +83,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="tractor : ${supervisionList}"  th:class="${tractor.days_remaining &lt; 14}?'bg-danger text-white':''">
-                    <td th:text="${tractor.plate_no}"></td>
+                <tr th:each="tractor : ${supervisionList}"  th:class="${tractor.DaysRemaining &lt; 14}?'bg-danger text-white':''">
+                    <td th:text="${tractor.PlateNumber}"></td>
                     <td th:text="${tractor.manufacturer}"></td>
                     <td th:text="${tractor.type}"></td>
-                    <td th:text="${tractor.date_of_supervision}"></td>
-                    <td th:text="${tractor.days_remaining}"></td>
+                    <td th:text="${tractor.DateOfSupervision}"></td>
+                    <td th:text="${tractor.DaysRemaining}"></td>
                 </tr>
                 </tbody>
             </table>

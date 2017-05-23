@@ -38,6 +38,6 @@ public class TrailerServiceTest {
     @Test
     public void trailerNeedsToBeInspectedIn7Days(){
         List<SupervisionDetails> details = service.getSupervisionList();
-        Assert.assertEquals(7,details.get(0).getDays_remaining());
+        Assert.assertEquals(7,details.get(0).getDaysRemaining());
     }
 }

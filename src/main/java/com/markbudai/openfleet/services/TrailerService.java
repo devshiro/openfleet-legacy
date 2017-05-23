@@ -76,11 +76,11 @@ public class TrailerService implements TrailerProvider {
         for(Trailer trailer : trailerList){
             if(DateUtils.getDaysDifference(trailer.getDateOfSupervision(), LocalDate.now()) <= 30){
                 SupervisionDetails details = new SupervisionDetails();
-                details.setDate_of_supervision(trailer.getDateOfSupervision());
-                details.setDays_remaining(DateUtils.getDaysDifference(trailer.getDateOfSupervision(),LocalDate.now()));
+                details.setDateOfSupervision(trailer.getDateOfSupervision());
+                details.setDaysRemaining(DateUtils.getDaysDifference(trailer.getDateOfSupervision(),LocalDate.now()));
                 details.setManufacturer(trailer.getManufacturer());
                 details.setType(trailer.getType());
-                details.setPlate_no(trailer.getPlateNumber());
+                details.setPlateNo(trailer.getPlateNumber());
                 supervisionDetails.add(details);
             }
         }

@@ -74,11 +74,11 @@ public class TractorService implements TractorProvider {
         for(Tractor tractor : tractorList){
             if(DateUtils.getDaysDifference(tractor.getDateOfSupervision(), LocalDate.now()) <= 30){
                 SupervisionDetails details = new SupervisionDetails();
-                details.setDate_of_supervision(tractor.getDateOfSupervision());
-                details.setDays_remaining(DateUtils.getDaysDifference(tractor.getDateOfSupervision(),LocalDate.now()));
+                details.setDateOfSupervision(tractor.getDateOfSupervision());
+                details.setDaysRemaining(DateUtils.getDaysDifference(tractor.getDateOfSupervision(),LocalDate.now()));
                 details.setManufacturer(tractor.getManufacturer());
                 details.setType(tractor.getType());
-                details.setPlate_no(tractor.getPlateNumber());
+                details.setPlateNo(tractor.getPlateNumber());
                 supervisionDetails.add(details);
             }
         }
