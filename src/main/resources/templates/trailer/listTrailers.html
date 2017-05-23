@@ -44,13 +44,13 @@
                     <td th:text="${trailer.id}">id</td>
                     <td th:text="${trailer.manufacturer}">id</td>
                     <td th:text="${trailer.type}">id</td>
-                    <td th:text="${trailer.date_of_manufacture}">id</td>
-                    <td th:text="${trailer.date_of_acquire}">id</td>
-                    <td th:text="${trailer.date_of_supervision}">id</td>
-                    <td th:text="${trailer.plate_number}">id</td>
-                    <td th:text="${trailer.chassis_number}">id</td>
+                    <td th:text="${trailer.DateOfManufacture}">id</td>
+                    <td th:text="${trailer.DateOfAcquire}">id</td>
+                    <td th:text="${trailer.DateOfSupervision}">id</td>
+                    <td th:text="${trailer.PlateNumber}">id</td>
+                    <td th:text="${trailer.ChassisNumber}">id</td>
                     <td th:text="${trailer.weight}">id</td>
-                    <td th:text="${trailer.max_load_weight}">id</td>
+                    <td th:text="${trailer.MaxLoadWeight}">id</td>
                     <td>
                         <div class="dropdown">
                             <a data-toggle="dropdown" href="#"><span class="caret"></span></a>
@@ -81,12 +81,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="trailer : ${supervisionList}" th:class="${trailer.days_remaining &lt; 14}?'bg-danger text-white':''">
-                    <td th:text="${trailer.plate_no}"></td>
+                <tr th:each="trailer : ${supervisionList}" th:class="${trailer.DaysRemaining &lt; 14}?'bg-danger text-white':''">
+                    <td th:text="${trailer.PlateNumber}"></td>
                     <td th:text="${trailer.manufacturer}"></td>
                     <td th:text="${trailer.type}"></td>
-                    <td th:text="${trailer.date_of_supervision}"></td>
-                    <td th:text="${trailer.days_remaining}"></td>
+                    <td th:text="${trailer.DateOfSupervision}"></td>
+                    <td th:text="${trailer.DaysRemaining}"></td>
                 </tr>
                 </tbody>
             </table>
