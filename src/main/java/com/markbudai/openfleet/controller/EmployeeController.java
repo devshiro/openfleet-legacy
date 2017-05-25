@@ -79,7 +79,7 @@ public class EmployeeController {
         return viewPrefix+"employeeDetails";
     }
 
-    @RequestMapping("//delete")
+    @RequestMapping("/delete")
     public String deleteEmployee(@RequestParam("id") long id, Model model){
         logger.debug("Removing Employee with id {}",id);
         employeeService.fireEmployee(id);
