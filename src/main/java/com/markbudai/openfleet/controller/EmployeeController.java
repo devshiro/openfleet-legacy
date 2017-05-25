@@ -23,6 +23,7 @@ import java.time.LocalDate;
  * Created by Mark on 2017. 04. 15..
  */
 @Controller
+@RequestMapping("/employee")
 public class EmployeeController {
 
     private static Logger logger = LoggerFactory.getLogger(EmployeeController.class);
@@ -41,7 +42,7 @@ public class EmployeeController {
         logger.debug("{} created.",this.getClass());
     }
 
-    @RequestMapping("/employee/list")
+    @RequestMapping("/list")
     public String listEmployees(Model model){
         logger.debug("Serving /employee/list");
         model.addAttribute("employeeList", employeeService.getAllEmployees());
@@ -50,14 +51,14 @@ public class EmployeeController {
         return viewPrefix+"listEmployees";
     }
 
-    @RequestMapping("/employee/new")
+    @RequestMapping("/new")
     public String newEmployeeForm(Model model){
         logger.debug("Serving /employee/new");
         model.addAttribute("title","New Employee Form");
         return viewPrefix+"employeeDetails";
     }
 
-    @PostMapping("/employee/add")
+    @PostMapping("/add")
     public String employeeSubmit(Model model, WebRequest request){
         Employee e = builder.buildFromWebRequest(request);
         logger.debug("Adding Employee {} to the database.",e);
@@ -69,7 +70,7 @@ public class EmployeeController {
         return listEmployees(model);
     }
 
-    @RequestMapping("/employee/edit")
+    @RequestMapping("/edit")
     public String editEmployee(@RequestParam("id") long id, Model model){
         Employee e = employeeService.getEmployeeById(id);
         logger.debug("Giving Employee {} for edit.",e);
@@ -78,19 +79,19 @@ public class EmployeeController {
         return viewPrefix+"employeeDetails";
     }
 
-    @RequestMapping("/employee/delete")
+    @RequestMapping("//delete")
     public String deleteEmployee(@RequestParam("id") long id, Model model){
         logger.debug("Removing Employee with id {}",id);
         employeeService.fireEmployee(id);
         return listEmployees(model);
     }
 
-    @RequestMapping("/employee")
+    @RequestMapping("/")
     public String employeeDetail(@RequestParam("id") long id, Model model){
         return editEmployee(id,model);
     }
 
-    @RequestMapping("/employee/payment")
+    @RequestMapping("/payment")
     public String employeePaymentsList(@RequestParam("id") long id, Model model){
         if(id == 0) throw new IdException(id);
         LocalDate today = LocalDate.now();
