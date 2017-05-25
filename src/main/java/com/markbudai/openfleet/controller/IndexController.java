@@ -25,11 +25,4 @@ public class IndexController {
         logger.debug("Serving Index page.");
         return "index";
     }
-
-    @RequestMapping("/errorTest")
-    public String doSomething() throws Exception {
-        //doing something important when suddenly...
-        throw new RuntimeException("Something Happened! :c");
-        //return "index";
-    }
 }
