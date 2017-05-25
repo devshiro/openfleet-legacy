@@ -133,25 +133,25 @@
                     <strong>Total payment:</strong>
                 </div>
                 <div class="col-md-2">
-                    <p th:text="${payout.TotalPayment}"></p>
+                    <p><span th:text="${payout.Amount}"></span> <span th:text="${payout.CurrencySymbol}"></span></p>
                 </div>
             </div>
             <hr/>
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Year</th>
-                    <th>Month</th>
-                    <th>Worked Days</th>
-                    <th>Payout</th>
+                    <th>FROM</th>
+                    <th>TO</th>
+                    <th>VEHICLE</th>
+                    <th>CARGO</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="detail : ${payout.detailList}">
-                    <td th:text="${detail.year}"></td>
-                    <td th:text="${detail.month}"></td>
-                    <td th:text="${detail.workedDays}"></td>
-                    <td th:text="${detail.totalPayout}"></td>
+                <tr th:each="detail : ${payout.BilledTransports}">
+                    <td th:text="${detail.start}"></td>
+                    <td th:text="${detail.finish}"></td>
+                    <td th:text="${detail.tractor}"></td>
+                    <td th:text="${detail.CargoName}"></td>
                 </tr>
                 </tbody>
             </table>

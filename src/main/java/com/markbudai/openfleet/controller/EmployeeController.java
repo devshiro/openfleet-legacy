@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 
+import java.time.LocalDate;
+
 /**
  * Created by Mark on 2017. 04. 15..
  */
@@ -91,13 +93,14 @@ public class EmployeeController {
     @RequestMapping("/employee/payment")
     public String employeePaymentsList(@RequestParam("id") long id, Model model){
         if(id == 0) throw new IdException(id);
+        LocalDate today = LocalDate.now();
         model.addAttribute("title","Payments");
         Employee employee = employeeService.getEmployeeById(id);
         if(employee == null) throw new NullException(Employee.class);
         logger.debug("/employee/payment Employee: {}",employee);
         model.addAttribute("employee",employee);
         logger.debug("/employee/payment Going for Payout object...");
-        Payout payout = paymentService.getPayoutInThisMonthForEmployee(employee);
+        Payout payout = paymentService.getPayout(employee,today.getYear(),today.getMonthValue());
         if(payout == null) throw new NullException(Payout.class);
         logger.debug("/employee/payment Payout: {}",payout);
         model.addAttribute("payout",payout);

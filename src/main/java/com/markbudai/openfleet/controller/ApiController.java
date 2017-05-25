@@ -2,17 +2,19 @@ package com.markbudai.openfleet.controller;
 
 import com.markbudai.openfleet.model.*;
 import com.markbudai.openfleet.pojo.Badge;
-import com.markbudai.openfleet.pojo.PaymentDetail;
 import com.markbudai.openfleet.pojo.SamplePieData;
 import com.markbudai.openfleet.services.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.time.LocalDate;
 import java.util.*;
 
 /**
@@ -88,17 +90,11 @@ public class ApiController {
         return locations;
     }
 
-    @RequestMapping(value = "/paymentDetails",method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody List<PaymentDetail> getPaymentsForEmployee(@RequestParam("id") long id){
-        Employee employee = employeeService.getEmployeeById(id);
-        List<PaymentDetail> paymentDetails = paymentService.getAllPaymentsForEmployee(employee);
-        if(paymentDetails.isEmpty()){
-            logger.debug("No payment details created for employee with id: {}",id);
-            return null;
-        } else {
-            return paymentDetails;
-        }
+    @RequestMapping(value = "/employeePerformance", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody  List<Pair<String,Pair<Double,Double>>> getDriversPerformance(){
+        return paymentService.getDriversPerformance(LocalDate.now().getYear(), LocalDate.now().getMonth().getValue());
     }
+
 
 
 

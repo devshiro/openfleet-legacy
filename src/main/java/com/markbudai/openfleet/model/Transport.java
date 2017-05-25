@@ -1,8 +1,10 @@
 package com.markbudai.openfleet.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Mark on 2017. 04. 14..
@@ -219,4 +221,27 @@ public class Transport {
                 ", costs=" + costs +
                 '}';
     }
+
+    public static List<Transport> filter(int year, List<Transport> transports){
+        return transports.stream().filter(p->p.getFinish().getYear() == year).collect(Collectors.toList());
+    }
+
+    public static List<Transport> filter(int year, int month, List<Transport> transports){
+        return transports.stream().filter(p->p.getFinish().getYear() == year)
+                .filter(p->p.getFinish().getMonth().getValue() == month)
+                .collect(Collectors.toList());
+    }
+
+    public static List<Transport> filter(int year, int month, int dayOfMonth, List<Transport> transports){
+        return transports.stream().filter(p->p.getFinish().getYear() == year)
+                .filter(p->p.getFinish().getMonth().getValue() == month)
+                .filter(p->p.getFinish().getDayOfMonth() == dayOfMonth)
+                .collect(Collectors.toList());
+    }
+
+    public static List<Transport> filter(LocalDate date, List<Transport> transports){
+        return transports.stream().filter(p->p.getFinish().toLocalDate().equals(date))
+                .collect(Collectors.toList());
+    }
+
 }

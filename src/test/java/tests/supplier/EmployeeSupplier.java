@@ -5,6 +5,7 @@ import com.markbudai.openfleet.model.Employee;
 import org.mockito.Mockito;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 
 /**
  * Created by Mark on 2017. 05. 13..
@@ -29,6 +30,7 @@ public class EmployeeSupplier {
     public static EmployeeService getMockProvider(){
         EmployeeService employeeService = Mockito.mock(EmployeeService.class);
         Mockito.when(employeeService.getEmployeeById(1)).thenReturn(getSampleEmployee());
+        Mockito.when(employeeService.getAllEmployees()).thenReturn(Arrays.asList(getSampleEmployee()));
         return employeeService;
     }
 }

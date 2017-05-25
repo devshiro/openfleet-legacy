@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
  * Created by Mark on 2017. 05. 18..
  */
 
-//TODO: FIX to properly show errors!!!!
 @Controller
 public class ExceptionController implements HandlerExceptionResolver {
 

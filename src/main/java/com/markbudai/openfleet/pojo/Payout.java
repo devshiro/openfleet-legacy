@@ -1,5 +1,8 @@
 package com.markbudai.openfleet.pojo;
 
+import com.markbudai.openfleet.model.Transport;
+
+import java.util.Currency;
 import java.util.List;
 
 /**
@@ -8,8 +11,9 @@ import java.util.List;
 public class Payout {
     private long work_days;
     private long rest_days;
-    private long total_payment;
-    private List<PaymentDetail> detailList;
+    private long amount;
+    private Currency currency;
+    private List<Transport> billedTransport;
 
     public Payout(){}
 
@@ -29,23 +33,49 @@ public class Payout {
         this.rest_days = rest_days;
     }
 
-    public long getTotalPayment() {
-        return detailList.stream().mapToLong(p->p.getTotalPayout()).sum();
+    public long getAmount(){
+        return amount;
     }
 
-    public void setTotalPayment(long total_payment) {
-        this.total_payment = total_payment;
+    public void setAmount(long amount){
+        this.amount = amount;
     }
 
-    public List<PaymentDetail> getDetailList() {
-        return detailList;
+    public Currency getCurrency(){
+        return currency;
     }
 
-    public void setDetailList(List<PaymentDetail> detailList) {
-        this.detailList = detailList;
+    public String getCurrencySymbol(){
+        return currency.getSymbol();
     }
 
-    public void addDetail(PaymentDetail detail){
-        this.detailList.add(detail);
+    public void setCurrency(Currency currency){
+        this.currency = currency;
+    }
+
+    public void setCurrency(String currencyCode){
+        this.currency = Currency.getInstance(currencyCode);
+    }
+
+    public List<Transport> getBilledTransports(){
+        return billedTransport;
+    }
+
+    public void setBilledTransport(List<Transport> transport){
+        billedTransport = transport;
+    }
+
+    public void addTransport(Transport transport){
+        billedTransport.add(transport);
+    }
+
+    @Override
+    public String toString() {
+        String ret = new StringBuilder().append("Payout: ").append(amount).append(" ").append(currency.getSymbol())
+                .append(" for ")
+                .append(work_days).append(" worked days, ")
+                .append(rest_days).append(" rest days, ")
+                .append(" during ").append(billedTransport.size()).append(" transports.").toString();
+        return ret;
     }
 }

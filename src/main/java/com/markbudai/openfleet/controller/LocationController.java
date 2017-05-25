@@ -15,6 +15,7 @@ import org.springframework.web.context.request.WebRequest;
  * Created by Mark on 2017. 04. 28..
  */
 @Controller
+@RequestMapping("/locations")
 public class LocationController {
 
     private LocationService locationService;
@@ -28,7 +29,7 @@ public class LocationController {
         this.locationService = provider;
     }
 
-    @RequestMapping("/locations/list")
+    @RequestMapping("/list")
     public String listLocations(Model model) {
         model.addAttribute("path","/locations/list");
         model.addAttribute("title","Locations");
@@ -36,14 +37,14 @@ public class LocationController {
         return viewPrefix+"listLocations";
     }
 
-    @RequestMapping("locations/new")
+    @RequestMapping("/new")
     public String newLocation(Model model){
         model.addAttribute("path","/locations/list");
         model.addAttribute("title","Locations");
         return viewPrefix+"locationDetails";
     }
 
-    @PostMapping("location/add")
+    @PostMapping("/add")
     public String saveLocation(Model model, WebRequest request){
         logger.trace("Adding new Location");
         Location loc = LocationBuilder.buildFromWebRequest(request);
@@ -55,7 +56,7 @@ public class LocationController {
         return listLocations(model);
     }
 
-    @RequestMapping("location/edit")
+    @RequestMapping("/edit")
     public String editLocation(Model model, @RequestParam("id") long id){
         model.addAttribute("title","Locations");
         Location loc = locationService.getLocationById(id);
@@ -63,7 +64,7 @@ public class LocationController {
         return viewPrefix+"locationDetails";
     }
 
-    @RequestMapping("location/delete")
+    @RequestMapping("/delete")
     public String deleteLocation(Model model, @RequestParam("id") long id){
         locationService.deleteLocation(id);
         return listLocations(model);
