@@ -34,12 +34,23 @@ public class EmployeeController {
 
     private static String viewPrefix = "employee/";
 
+    public EmployeeController(){
+        logger.trace("{} created.",this.getClass());
+    }
+
     @Autowired
-    public EmployeeController(EmployeeService provider, EmployeeBuilder builder, PaymentService paymentService){
-        this.employeeService = provider;
-        this.builder = builder;
+    public void setEmployeeService(EmployeeService employeeService){
+        this.employeeService = employeeService;
+    }
+
+    @Autowired
+    public void setEmployeeBuilder(EmployeeBuilder employeeBuilder){
+        this.builder = employeeBuilder;
+    }
+
+    @Autowired
+    public void setPaymentService(PaymentService paymentService){
         this.paymentService = paymentService;
-        logger.debug("{} created.",this.getClass());
     }
 
     @RequestMapping("/list")
@@ -84,11 +95,6 @@ public class EmployeeController {
         logger.debug("Removing Employee with id {}",id);
         employeeService.fireEmployee(id);
         return listEmployees(model);
-    }
-
-    @RequestMapping("/")
-    public String employeeDetail(@RequestParam("id") long id, Model model){
-        return editEmployee(id,model);
     }
 
     @RequestMapping("/payment")
