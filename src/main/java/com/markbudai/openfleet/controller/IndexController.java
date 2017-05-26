@@ -22,7 +22,7 @@ public class IndexController {
         model.addAttribute("path","/");
         model.addAttribute("title","Dashboard");
         model.addAttribute("username",principal.getName());
-        logger.debug("Serving Index page.");
+        logger.trace("Serving Index page.");
         return "index";
     }
 }

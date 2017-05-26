@@ -2,7 +2,6 @@ package com.markbudai.openfleet.controller;
 
 import com.markbudai.openfleet.model.*;
 import com.markbudai.openfleet.pojo.Badge;
-import com.markbudai.openfleet.pojo.SamplePieData;
 import com.markbudai.openfleet.services.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +10,6 @@ import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.time.LocalDate;
@@ -45,16 +43,6 @@ public class ApiController {
         this.transportService = transportService;
         this.paymentService = paymentService;
 
-    }
-
-    @RequestMapping(value = "/drivers", method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody List<SamplePieData> pieData() {
-        List<SamplePieData> l = new ArrayList<>();
-        l.add(new SamplePieData("Driver 1",300));
-        l.add(new SamplePieData("Driver 2",200));
-        l.add(new SamplePieData("Driver 3",1000));
-
-        return l;
     }
 
     @RequestMapping(value = "/tractors", method = RequestMethod.GET, produces = "application/json")

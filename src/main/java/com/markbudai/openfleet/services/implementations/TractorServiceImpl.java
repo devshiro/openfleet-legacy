@@ -28,7 +28,7 @@ public class TractorServiceImpl implements TractorService {
     @Autowired
     public TractorServiceImpl(TractorRepository repository){
         this.tractorRepository = repository;
-        logger.debug("{} Service created.", TractorServiceImpl.class);
+        logger.trace("{} Service created.", TractorServiceImpl.class);
     }
 
     @Override

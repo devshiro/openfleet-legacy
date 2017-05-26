@@ -25,29 +25,35 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     public EmployeeServiceImpl(EmployeeRepository repository){
         this.employeeRepository = repository;
+        logger.trace("{} service created.",EmployeeServiceImpl.class);
     }
 
     @Override
     public List<Employee> getAllEmployees() {
-       return employeeRepository.getAllEmployees().stream()
-               .filter(p->p.getEndOfEmploymentDate()==null)
-               .collect(Collectors.toList());
+        List<Employee> employees = employeeRepository.getAllEmployees().stream()
+                .filter(p->p.getEndOfEmploymentDate()==null)
+                .collect(Collectors.toList());
+        logger.trace("Serving {} employees.",employees.size());
+       return employees;
     }
 
     @Override
     public Employee getEmployeeById(long id) {
         Employee e = employeeRepository.getEmployeeById(id);
-        return employeeRepository.getEmployeeById(id);
+        logger.trace("Serving employee {} with id {}.",e,id);
+        return e;
     }
 
     @Override
     public void addEmployee(Employee e) {
         employeeRepository.addEmployee(e);
+        logger.trace("Added employee {}.",e);
     }
 
     @Override
     public void updateEmployee(Employee e) {
         employeeRepository.updateEmployee(e);
+        logger.trace("Employee {} updated.",e);
     }
 
     @Override
@@ -55,5 +61,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee e = employeeRepository.getEmployeeById(id);
         e.setEndOfEmploymentDate(LocalDate.now());
         employeeRepository.updateEmployee(e);
+        logger.trace("Employee {} was fired today.",e);
     }
 }

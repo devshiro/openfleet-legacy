@@ -15,7 +15,9 @@ public class Payout {
     private Currency currency;
     private List<Transport> billedTransport;
 
-    public Payout(){}
+    public Payout(){
+        currency = Currency.getInstance("EUR");
+    }
 
     public long getWorkDays() {
         return work_days;
@@ -74,8 +76,7 @@ public class Payout {
         String ret = new StringBuilder().append("Payout: ").append(amount).append(" ").append(currency.getSymbol())
                 .append(" for ")
                 .append(work_days).append(" worked days, ")
-                .append(rest_days).append(" rest days, ")
-                .append(" during ").append(billedTransport.size()).append(" transports.").toString();
+                .append(rest_days).append(" rest days, ").toString();
         return ret;
     }
 }
