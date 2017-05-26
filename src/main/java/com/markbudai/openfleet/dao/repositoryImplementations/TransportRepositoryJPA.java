@@ -27,23 +27,23 @@ public class TransportRepositoryJPA implements TransportRepository {
     }
 
     @Override
-    public List<Transport> getAllTransports(){
+    public List<Transport> getAll(){
         Query query = entityManager.createQuery("select t from Transport t");
         return query.getResultList();
     }
 
     @Override
-    public void addTransport(Transport t){
+    public void add(Transport t){
         entityManager.persist(t);
     }
 
     @Override
-    public void updateTransport(Transport t){
+    public void update(Transport t){
         entityManager.merge(t);
     }
 
     @Override
-    public Transport getTransportById(long id){
+    public Transport getById(long id){
         Transport t = entityManager.find(Transport.class, id);
         if(t == null) throw new NotFoundException(Transport.class);
         return t;

@@ -27,6 +27,6 @@ public class TrailerRepositoryTest {
 
     @Test(expected = NotFoundException.class)
     public void exceptionWhenNoTrailerFound(){
-        trailerRepository.getTrailerById(99);
+        trailerRepository.getById(99);
     }
 }

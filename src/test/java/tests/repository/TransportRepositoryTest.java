@@ -27,8 +27,7 @@ public class TransportRepositoryTest {
 
     @Test(expected = NotFoundException.class)
     public void exceptionWhenNoTransportFound(){
-        transportRepository.getTransportById(99);
+        transportRepository.getById(99);
     }
-
 
 }

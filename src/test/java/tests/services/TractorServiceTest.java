@@ -27,7 +27,7 @@ public class TractorServiceTest {
         tractorRepository = Mockito.mock(TractorRepositoryJPA.class);
         List<Tractor> tractorList = new ArrayList<>();
         tractorList.add(TractorSupplier.getSampleTractor());
-        Mockito.when(tractorRepository.getAllTractors()).thenReturn(tractorList);
+        Mockito.when(tractorRepository.getAll()).thenReturn(tractorList);
         service = new TractorServiceImpl(tractorRepository);
     }
 

@@ -29,25 +29,25 @@ public class EmployeeRepositoryJPA implements EmployeeRepository {
     }
 
     @Override
-    public List<Employee> getAllEmployees() {
+    public List<Employee> getAll() {
         Query query = entityManager.createQuery("select e from Employee e");
         return query.getResultList();
     }
 
     @Override
-    public Employee getEmployeeById(long id) {
+    public Employee getById(long id) {
         Employee e = entityManager.find(Employee.class,id);
         if(e==null) throw new NotFoundException(Employee.class);
         return e;
     }
 
     @Override
-    public void addEmployee(Employee e){
+    public void add(Employee e){
         entityManager.persist(e);
     }
 
     @Override
-    public void updateEmployee(Employee e){
+    public void update(Employee e){
         entityManager.merge(e);
     }
 }

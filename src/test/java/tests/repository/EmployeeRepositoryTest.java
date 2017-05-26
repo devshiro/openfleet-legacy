@@ -26,6 +26,6 @@ public class EmployeeRepositoryTest {
 
     @Test(expected = NotFoundException.class)
     public void exceptionThrownWhenNonExistingIdSupplied(){
-        employeeRepository.getEmployeeById(99);
+        employeeRepository.getById(99);
     }
 }

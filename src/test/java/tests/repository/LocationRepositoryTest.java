@@ -41,19 +41,19 @@ public class LocationRepositoryTest {
 
     @Test
     public void getAllLocationsReturnsASingleElement(){
-        Assert.assertEquals(1,locationRepository.getAllLocations().size());
+        Assert.assertEquals(1,locationRepository.getAll().size());
     }
 
     @Test
     public void getAllLocationsReturnsThatOneLocation(){
         List<Location> expected = new ArrayList<>();
         expected.add(LocationSupplier.getSampleLocation());
-        Assert.assertEquals(expected,locationRepository.getAllLocations());
+        Assert.assertEquals(expected,locationRepository.getAll());
     }
 
     @Test(expected = NotFoundException.class)
     public void exceptionWhenNoLocationFound(){
-        locationRepository.getLocationById(99);
+        locationRepository.getById(99);
     }
 
     @Test(expected = NotFoundException.class)

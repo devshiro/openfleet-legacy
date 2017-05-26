@@ -28,27 +28,27 @@ public class LocationServiceImpl implements LocationService {
 
     @Override
     public List<Location> getAllLocations(){
-        List<Location> locations = locationRepository.getAllLocations();
+        List<Location> locations = locationRepository.getAll();
         logger.trace("Serving {} locations.",locations.size());
         return locations;
     }
 
     @Override
     public Location getLocationById(long id) {
-        Location location = locationRepository.getLocationById(id);
+        Location location = locationRepository.getById(id);
         logger.trace("Serving location {} with id {}",location,id);
         return location;
     }
 
     @Override
     public void addLocation(Location location) {
-        locationRepository.saveLocation(location);
+        locationRepository.add(location);
         logger.trace("Added location {}",location);
     }
 
     @Override
     public void updateLocation(Location location){
-        locationRepository.updateLocation(location);
+        locationRepository.update(location);
         logger.trace("Location {} updated.",location);
     }
 

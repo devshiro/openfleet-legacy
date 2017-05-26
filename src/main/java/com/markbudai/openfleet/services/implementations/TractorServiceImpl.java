@@ -33,7 +33,7 @@ public class TractorServiceImpl implements TractorService {
 
     @Override
     public List<Tractor> getAllTractors() {
-        List<Tractor> tractorList = tractorRepository.getAllTractors();
+        List<Tractor> tractorList = tractorRepository.getAll();
         tractorList = tractorList.stream().filter(p->p.getDateOfSell() == null).collect(Collectors.toList());
         logger.debug("Serving {} tractors",tractorList.size());
         return tractorList;
@@ -41,7 +41,7 @@ public class TractorServiceImpl implements TractorService {
 
     @Override
     public Tractor getTractorById(long id) {
-        Tractor tractor = tractorRepository.getTractorById(id);
+        Tractor tractor = tractorRepository.getById(id);
         logger.debug("Serving tractor {}.",tractor);
         return tractor;
     }
@@ -49,22 +49,22 @@ public class TractorServiceImpl implements TractorService {
     @Override
     public void addTractor(Tractor tractor) {
         logger.debug("Adding {} tractor.",tractor);
-        tractorRepository.addTractor(tractor);
+        tractorRepository.add(tractor);
     }
 
     @Override
     public void updateTractor(Tractor tractor) {
         logger.debug("Updating tractor {}",tractor);
-        tractorRepository.updateTractor(tractor);
+        tractorRepository.update(tractor);
     }
 
     @Override
     public void sellTractor(long id) {
         logger.debug("Selling tractor with id {}",id);
-        Tractor t = tractorRepository.getTractorById(id);
+        Tractor t = tractorRepository.getById(id);
         logger.debug("Found tractor {}",t);
         t.setDateOfSell(LocalDate.now());
-        tractorRepository.updateTractor(t);
+        tractorRepository.update(t);
     }
 
     @Override

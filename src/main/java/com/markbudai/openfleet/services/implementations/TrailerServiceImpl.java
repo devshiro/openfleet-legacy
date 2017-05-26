@@ -35,7 +35,7 @@ public class TrailerServiceImpl implements TrailerService {
 
     @Override
     public List<Trailer> getAllTrailers() {
-        List<Trailer> trailerList = trailerRepository.getAllTrailers();
+        List<Trailer> trailerList = trailerRepository.getAll();
         trailerList = trailerList.stream().filter(p->p.getDateOfSell() == null).collect(Collectors.toList());
         logger.debug("Serving {} trailers",trailerList.size());
         return trailerList;
@@ -43,7 +43,7 @@ public class TrailerServiceImpl implements TrailerService {
 
     @Override
     public Trailer getTrailerById(long id) {
-        Trailer t = trailerRepository.getTrailerById(id);
+        Trailer t = trailerRepository.getById(id);
         logger.debug("Found: {} trailer",t);
         return t;
     }
@@ -51,13 +51,13 @@ public class TrailerServiceImpl implements TrailerService {
     @Override
     public void addTrailer(Trailer trailer) {
         logger.trace("Adding.. {}",trailer);
-        trailerRepository.addTrailer(trailer);
+        trailerRepository.add(trailer);
     }
 
     @Override
     public void updateTrailer(Trailer trailer) {
         logger.trace("Updating.. {}",trailer);
-        trailerRepository.updateTrailer(trailer);
+        trailerRepository.update(trailer);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class TrailerServiceImpl implements TrailerService {
         Trailer t = getTrailerById(id);
         logger.debug("Trailer found for selling: {}",t);
         t.setDateOfSell(LocalDate.now());
-        trailerRepository.updateTrailer(t);
+        trailerRepository.update(t);
     }
 
     @Override

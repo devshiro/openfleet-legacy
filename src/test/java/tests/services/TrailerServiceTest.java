@@ -26,7 +26,7 @@ public class TrailerServiceTest {
         trailerRepository = Mockito.mock(TrailerRepositoryJPA.class);
         List<Trailer> trailerList = new ArrayList<>();
         trailerList.add(TrailerSupplier.getSampleTrailer());
-        Mockito.when(trailerRepository.getAllTrailers()).thenReturn(trailerList);
+        Mockito.when(trailerRepository.getAll()).thenReturn(trailerList);
         service = new TrailerServiceImpl(trailerRepository);
     }
 

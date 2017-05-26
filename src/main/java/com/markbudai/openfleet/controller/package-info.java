@@ -1,6 +1,4 @@
 /**
- * Created by Mark on 2017. 05. 18..
+ * Package containing classes for view controllers.
  */
 package com.markbudai.openfleet.controller;
-
-//TODO: Clean up the routing

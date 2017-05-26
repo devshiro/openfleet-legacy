@@ -5,14 +5,7 @@ import com.markbudai.openfleet.model.Tractor;
 import java.util.List;
 
 /**
- * Created by Mark on 2017. 05. 23..
+ * Interface describing DAO operations for managing Tractor objects.
  */
-public interface TractorRepository {
-    List<Tractor> getAllTractors();
-
-    Tractor getTractorById(long id);
-
-    void addTractor(Tractor t);
-
-    void updateTractor(Tractor t);
+public interface TractorRepository extends Repository<Tractor>{
 }

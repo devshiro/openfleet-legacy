@@ -30,20 +30,20 @@ public class TransportServiceImpl implements TransportService {
 
     @Override
     public List<Transport> getAllTransports() {
-        List<Transport> transports = transportRepository.getAllTransports();
+        List<Transport> transports = transportRepository.getAll();
         logger.trace("Serving {} transports.",transports.size());
         return transports;
     }
 
     @Override
     public void addTransport(Transport t) {
-        transportRepository.addTransport(t);
+        transportRepository.add(t);
         logger.trace("Added transport {}",t);
     }
 
     @Override
     public List<Transport> getTransportByEmployee(Employee e) {
-        List<Transport> transports = transportRepository.getAllTransports();
+        List<Transport> transports = transportRepository.getAll();
         transports = transports.stream().filter(p->p.getEmployee().equals(e)).collect(Collectors.toList());
         logger.trace("Serving {} transports for employee {}",transports.size(),e);
         return transports;
@@ -51,14 +51,14 @@ public class TransportServiceImpl implements TransportService {
 
     @Override
     public Transport getTransportById(long id){
-        Transport transport = transportRepository.getTransportById(id);
+        Transport transport = transportRepository.getById(id);
         logger.trace("Serving transport {} identified by {}",transport,id);
         return transport;
     }
 
     @Override
     public void updateTransport(Transport t) {
-        transportRepository.updateTransport(t);
+        transportRepository.update(t);
         logger.trace("Transport {} updated.",t);
     }
 

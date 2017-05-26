@@ -28,25 +28,25 @@ public class TractorRepositoryJPA implements TractorRepository {
     }
 
     @Override
-    public List<Tractor> getAllTractors() {
+    public List<Tractor> getAll() {
         Query query = entityManager.createQuery("select e from Tractor e");
         return query.getResultList();
     }
 
     @Override
-    public Tractor getTractorById(long id) {
+    public Tractor getById(long id) {
         Tractor t = entityManager.find(Tractor.class,id);
         if(t == null) throw new NotFoundException(Tractor.class);
         return t;
     }
 
     @Override
-    public void addTractor(Tractor t){
+    public void add(Tractor t){
         entityManager.persist(t);
     }
 
     @Override
-    public void updateTractor(Tractor t){
+    public void update(Tractor t){
         entityManager.merge(t);
     }
 }

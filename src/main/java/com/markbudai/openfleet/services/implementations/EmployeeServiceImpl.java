@@ -30,7 +30,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> getAllEmployees() {
-        List<Employee> employees = employeeRepository.getAllEmployees().stream()
+        List<Employee> employees = employeeRepository.getAll().stream()
                 .filter(p->p.getEndOfEmploymentDate()==null)
                 .collect(Collectors.toList());
         logger.trace("Serving {} employees.",employees.size());
@@ -39,28 +39,28 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee getEmployeeById(long id) {
-        Employee e = employeeRepository.getEmployeeById(id);
+        Employee e = employeeRepository.getById(id);
         logger.trace("Serving employee {} with id {}.",e,id);
         return e;
     }
 
     @Override
     public void addEmployee(Employee e) {
-        employeeRepository.addEmployee(e);
+        employeeRepository.add(e);
         logger.trace("Added employee {}.",e);
     }
 
     @Override
     public void updateEmployee(Employee e) {
-        employeeRepository.updateEmployee(e);
+        employeeRepository.update(e);
         logger.trace("Employee {} updated.",e);
     }
 
     @Override
     public void fireEmployee(long id) {
-        Employee e = employeeRepository.getEmployeeById(id);
+        Employee e = employeeRepository.getById(id);
         e.setEndOfEmploymentDate(LocalDate.now());
-        employeeRepository.updateEmployee(e);
+        employeeRepository.update(e);
         logger.trace("Employee {} was fired today.",e);
     }
 }

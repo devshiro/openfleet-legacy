@@ -13,7 +13,7 @@ import org.springframework.security.ldap.DefaultSpringSecurityContextSource;
 import java.util.Arrays;
 
 /**
- * Created by Mark on 2017. 04. 29..
+ * This class represents a configuration bean for ldap authentication.
  */
 @Configuration
 @EnableWebSecurity

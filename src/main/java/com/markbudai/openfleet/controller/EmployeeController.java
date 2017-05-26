@@ -20,7 +20,8 @@ import org.springframework.web.context.request.WebRequest;
 import java.time.LocalDate;
 
 /**
- * Created by Mark on 2017. 04. 15..
+ * This class represents a view controller for managing employees.
+ * Maps to /employee
  */
 @Controller
 @RequestMapping("/employee")
@@ -34,25 +35,49 @@ public class EmployeeController {
 
     private static String viewPrefix = "employee/";
 
+    /**
+     * Empty constructor for creating EmployeeController objects.
+     */
     public EmployeeController(){
         logger.trace("{} created.",this.getClass());
     }
 
+    /**
+     * Sets the EmployeeService for the EmployeeController object.
+     * Used for Dependency Injection.
+     * @param employeeService the EmployeeService object.
+     */
     @Autowired
     public void setEmployeeService(EmployeeService employeeService){
         this.employeeService = employeeService;
     }
 
+    /**
+     * Sets the EmployeeBuilder for the EmployeeController object.
+     * Used for Dependency Injection.
+     * @param employeeBuilder the EmployeeBuilder object.
+     */
     @Autowired
     public void setEmployeeBuilder(EmployeeBuilder employeeBuilder){
         this.builder = employeeBuilder;
     }
 
+    /**
+     * Sets the PaymentService for the EmployeeController object.
+     * Used for Dependency Injection.
+     * @param paymentService the PaymentService object.
+     */
     @Autowired
     public void setPaymentService(PaymentService paymentService){
         this.paymentService = paymentService;
     }
 
+    /**
+     * Lists all the employees in the browser.
+     * Maps to /employee/list.
+     * @param model the Model used to pass attributes to the html site.
+     * @return the Thymeleaf template name which needs to be passed to the client's browser.
+     */
     @RequestMapping("/list")
     public String listEmployees(Model model){
         logger.debug("Serving /employee/list");
@@ -62,6 +87,12 @@ public class EmployeeController {
         return viewPrefix+"listEmployees";
     }
 
+    /**
+     * Shows a new employee form to add new Employees to the database.
+     * Maps to /employee/new.
+     * @param model the Model used to pass attributes to the html site.
+     * @return the Thymeleaf template name which needs to be passed to the client's browser.
+     */
     @RequestMapping("/new")
     public String newEmployeeForm(Model model){
         logger.debug("Serving /employee/new");
@@ -69,6 +100,12 @@ public class EmployeeController {
         return viewPrefix+"employeeDetails";
     }
 
+    /**
+     * Processes the POST request sent by the browser to create a new Employee object and store it in the database.
+     * @param model the Model used to pass attributes to the html site.
+     * @param request the WebRequest containing the form data.
+     * @return the Thymeleaf template name which needs to be passed to the client's browser.
+     */
     @PostMapping("/add")
     public String employeeSubmit(Model model, WebRequest request){
         Employee e = builder.buildFromWebRequest(request);

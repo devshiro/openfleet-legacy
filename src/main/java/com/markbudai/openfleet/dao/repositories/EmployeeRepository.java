@@ -5,14 +5,7 @@ import com.markbudai.openfleet.model.Employee;
 import java.util.List;
 
 /**
- * Created by Mark on 2017. 05. 23..
+ * Interface describing DAO operations for managing Employee objects.
  */
-public interface EmployeeRepository {
-    List<Employee> getAllEmployees();
-
-    Employee getEmployeeById(long id);
-
-    void addEmployee(Employee e);
-
-    void updateEmployee(Employee e);
+public interface EmployeeRepository extends Repository<Employee>{
 }

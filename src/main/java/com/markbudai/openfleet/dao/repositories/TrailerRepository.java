@@ -5,14 +5,7 @@ import com.markbudai.openfleet.model.Trailer;
 import java.util.List;
 
 /**
- * Created by Mark on 2017. 05. 23..
+ * Interface describing DAO operations for managing Trailer objects.
  */
-public interface TrailerRepository {
-    List<Trailer> getAllTrailers();
-
-    Trailer getTrailerById(long id);
-
-    void addTrailer(Trailer t);
-
-    void updateTrailer(Trailer t);
+public interface TrailerRepository extends Repository<Trailer>{
 }

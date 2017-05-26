@@ -28,31 +28,31 @@ public class TransferCostRepositoryJPA implements TransferCostRepository {
     }
 
     @Override
-    public List<TransferCost> getAllCosts(){
+    public List<TransferCost> getAll(){
         Query query = entityManager.createQuery("select c from transfercost c");
         return query.getResultList();
     }
 
     @Override
-    public TransferCost getCostById(long id){
+    public TransferCost getById(long id){
         TransferCost cost = entityManager.find(TransferCost.class,id);
         if(cost == null) throw new NotFoundException(TransferCost.class);
         return cost;
     }
 
     @Override
-    public void addCost(TransferCost cost){
+    public void add(TransferCost cost){
         entityManager.persist(cost);
     }
 
     @Override
-    public void updateCost(TransferCost cost){
+    public void update(TransferCost cost){
         entityManager.merge(cost);
     }
 
     @Override
     public void deleteCost(long id){
-        TransferCost cost = getCostById(id);
+        TransferCost cost = getById(id);
         if(cost != null){
             entityManager.remove(cost);
         }

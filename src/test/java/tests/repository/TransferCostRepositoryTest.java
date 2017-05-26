@@ -27,6 +27,6 @@ public class TransferCostRepositoryTest {
 
     @Test(expected = NotFoundException.class)
     public void exceptionWhenNoTransferCostFound(){
-        transferCostRepository.getCostById(99);
+        transferCostRepository.getById(99);
     }
 }

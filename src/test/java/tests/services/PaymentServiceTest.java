@@ -1,12 +1,12 @@
 package tests.services;
 
-import com.markbudai.openfleet.model.Tractor;
+import com.markbudai.openfleet.pojo.Payout;
 import com.markbudai.openfleet.services.EmployeeService;
+import com.markbudai.openfleet.services.implementations.PaymentServiceImpl;
 import com.markbudai.openfleet.services.TransportService;
 import com.markbudai.openfleet.model.Employee;
 import com.markbudai.openfleet.model.Transport;
 import com.markbudai.openfleet.services.PaymentService;
-import nz.net.ultraq.thymeleaf.fragments.mergers.ElementMerger;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -31,31 +31,15 @@ public class PaymentServiceTest {
     public static void init(){
         mockedEmployeeService = EmployeeSupplier.getMockProvider();
         mockedTransportService = TransportSupplier.getMockProvider();
-        service = new PaymentService(mockedEmployeeService, mockedTransportService);
+        service = new PaymentServiceImpl(mockedEmployeeService, mockedTransportService);
     }
 
     @Test
-    public void testGetThisMonthsTransportsForEmployee(){
+    public void testPayoutGeneration(){
         Employee employee = EmployeeSupplier.getSampleEmployee();
-        Assert.assertEquals(1,service.getThisMonthsTransportsForEmployee(employee).size());
-    }
-
-    @Test
-    public void testGetWorkDaysIThisMonthForEmployee(){
-        Employee employee = EmployeeSupplier.getSampleEmployee();
-        Assert.assertEquals(10,service.getWorkDaysInThisMonthForEmployee(employee));
-    }
-
-    @Test
-    public void testGetPayoutForSingleTransport(){
-        Transport transport = TransportSupplier.getSampleTransport();
-        Assert.assertEquals(500,service.getPayoutForSingleTransport(transport));
-    }
-
-    @Test
-    public void testTotalWorkDaysForEmployee(){
-        Employee employee = EmployeeSupplier.getSampleEmployee();
-        Assert.assertEquals(20,service.getTotalWorkDaysForEmployee(employee));
+        Payout payout = service.getPayout(employee,2017,LocalDate.now().getMonthValue());
+        Assert.assertEquals(500,payout.getAmount());
+        Assert.assertEquals(10,payout.getWorkDays());
     }
 
     @Test
@@ -75,7 +59,7 @@ public class PaymentServiceTest {
         mockedTransportService = Mockito.mock(TransportService.class);
         Mockito.when(mockedTransportService.getTransportByEmployee(EmployeeSupplier.getSampleEmployee()))
                 .thenReturn(TransportSupplier.getDateList());
-        PaymentService service = new PaymentService(mockedEmployeeService,mockedTransportService);
+        PaymentService service = new PaymentServiceImpl(mockedEmployeeService,mockedTransportService);
         Assert.assertEquals(0.8,service.getDriversPerformance(2017,1).get(0).getSecond().getFirst(),0.001);
         Assert.assertEquals(0.2,service.getDriversPerformance(2017,1).get(0).getSecond().getSecond(),0.001);
     }

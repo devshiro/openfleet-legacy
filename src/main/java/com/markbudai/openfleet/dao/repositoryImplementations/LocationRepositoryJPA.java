@@ -31,14 +31,19 @@ public class LocationRepositoryJPA implements LocationRepository {
         this.entityManager = entityManager;
     }
 
+
     @Override
-    public List<Location> getAllLocations() {
-        Query query = entityManager.createQuery("select e from Location e");
-        return query.getResultList();
+    public void add(Location location) {
+        entityManager.persist(location);
     }
 
     @Override
-    public Location getLocationById(long id) {
+    public void update(Location location) {
+        entityManager.merge(location);
+    }
+
+    @Override
+    public Location getById(long id) {
         logger.debug("Id: {}",id);
         Location location = entityManager.find(Location.class,id);
         logger.debug("location: {}",location);
@@ -47,13 +52,9 @@ public class LocationRepositoryJPA implements LocationRepository {
     }
 
     @Override
-    public void saveLocation(Location location){
-        entityManager.persist(location);
-    }
-
-    @Override
-    public void updateLocation(Location location){
-        entityManager.merge(location);
+    public List<Location> getAll() {
+        Query query = entityManager.createQuery("select e from Location e");
+        return query.getResultList();
     }
 
     @Override

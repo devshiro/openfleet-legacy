@@ -20,8 +20,6 @@ public class TrailerRepositoryJPA implements TrailerRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
-    //private List<Trailer> trailerList;
-
     public TrailerRepositoryJPA(){
     }
 
@@ -30,25 +28,25 @@ public class TrailerRepositoryJPA implements TrailerRepository {
     }
 
     @Override
-    public List<Trailer> getAllTrailers() {
+    public List<Trailer> getAll() {
         Query query = entityManager.createQuery("select t from Trailer t");
         return query.getResultList();
     }
 
     @Override
-    public Trailer getTrailerById(long id) {
+    public Trailer getById(long id) {
         Trailer t = entityManager.find(Trailer.class, id);
         if(t==null) throw new NotFoundException(Trailer.class);
         return t;
     }
 
     @Override
-    public void addTrailer(Trailer t){
+    public void add(Trailer t){
         entityManager.persist(t);
     }
 
     @Override
-    public void updateTrailer(Trailer t){
+    public void update(Trailer t){
         entityManager.merge(t);
     }
 }

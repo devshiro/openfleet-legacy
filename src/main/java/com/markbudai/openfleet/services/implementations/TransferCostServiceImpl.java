@@ -25,29 +25,29 @@ public class TransferCostServiceImpl implements TransferCostService {
 
     @Override
     public List<TransferCost> getAllCosts() {
-        return costRepository.getAllCosts();
+        return costRepository.getAll();
     }
 
     @Override
     public List<TransferCost> getAllCostsByDate(LocalDate date) {
-        return costRepository.getAllCosts().stream()
+        return costRepository.getAll().stream()
                 .filter(p->p.getDate().equals(date))
                 .collect(Collectors.toList());
     }
 
     @Override
     public TransferCost getCostById(long id) {
-        return costRepository.getCostById(id);
+        return costRepository.getById(id);
     }
 
     @Override
     public void addCost(TransferCost cost) {
-        costRepository.addCost(cost);
+        costRepository.add(cost);
     }
 
     @Override
     public void updateCost(TransferCost cost) {
-        costRepository.updateCost(cost);
+        costRepository.update(cost);
     }
 
     @Override

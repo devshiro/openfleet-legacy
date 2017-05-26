@@ -5,16 +5,12 @@ import com.markbudai.openfleet.model.Location;
 import java.util.List;
 
 /**
- * Created by Mark on 2017. 05. 23..
+ * Interface describing DAO operations for managing Location objects.
  */
-public interface LocationRepository {
-    List<Location> getAllLocations();
-
-    Location getLocationById(long id);
-
-    void saveLocation(Location location);
-
-    void updateLocation(Location location);
-
+public interface LocationRepository extends Repository<Location>{
+    /**
+     * Delete Location object with given id.
+     * @param id the id of the deleted Location object.
+     */
     void deleteLocation(long id);
 }

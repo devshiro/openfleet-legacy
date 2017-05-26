@@ -29,16 +29,22 @@ public class TransportController {
     private static String viewPrefix = "transport/";
 
     private TransportService transportService;
-
-    @Autowired
     private TransferCostService costProvider;
-
-    @Autowired
     private TransportBuilder builder;
 
     @Autowired
     public TransportController(TransportService provider){
         this.transportService = provider;
+    }
+
+    @Autowired
+    public void setTransportBuilder(TransportBuilder transportBuilder){
+        this.builder = transportBuilder;
+    }
+
+    @Autowired
+    public void setTransferCostService(TransferCostService transferCostService){
+        this.costProvider = transferCostService;
     }
 
 

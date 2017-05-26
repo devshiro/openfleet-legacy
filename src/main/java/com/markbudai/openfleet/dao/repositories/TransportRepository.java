@@ -1,18 +1,12 @@
 package com.markbudai.openfleet.dao.repositories;
 
 import com.markbudai.openfleet.model.Transport;
+import org.apache.catalina.startup.ClassLoaderFactory;
 
 import java.util.List;
 
 /**
- * Created by Mark on 2017. 05. 23..
+ * Interface describing DAO operations for managing Transport objects.
  */
-public interface TransportRepository {
-    List<Transport> getAllTransports();
-
-    void addTransport(Transport t);
-
-    void updateTransport(Transport t);
-
-    Transport getTransportById(long id);
+public interface TransportRepository  extends Repository<Transport>{
 }

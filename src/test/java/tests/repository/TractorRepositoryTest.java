@@ -26,6 +26,6 @@ public class TractorRepositoryTest {
 
     @Test(expected = NotFoundException.class)
     public void exceptionThrownWhenNoTractorFound(){
-        tractorRepository.getTractorById(99);
+        tractorRepository.getById(99);
     }
 }
