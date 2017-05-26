@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 /**
- * Created by Mark on 2017. 05. 09..
+ * Class to persist TransferCost objects using JPA.
  */
 @Transactional
 @Repository

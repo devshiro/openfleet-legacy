@@ -13,7 +13,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 /**
- * Created by Mark on 2017. 04. 28..
+ * Class to persist Location objects using JPA.
  */
 @Transactional
 @Repository

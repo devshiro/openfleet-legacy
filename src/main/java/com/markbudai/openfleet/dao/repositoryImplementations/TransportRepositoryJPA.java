@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 /**
- * Created by Mark on 2017. 04. 29..
+ * Class to persist Transport objects using JPA.
  */
 @Transactional
 @Repository
