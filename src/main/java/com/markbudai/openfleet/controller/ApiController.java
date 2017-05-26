@@ -24,7 +24,6 @@ public class ApiController {
 
     private static Logger logger = LoggerFactory.getLogger(ApiController.class);
 
-    private TransferCostService provider;
     private TractorService tractorService;
     private TrailerService trailerService;
     private EmployeeService employeeService;
@@ -32,17 +31,36 @@ public class ApiController {
     private TransportService transportService;
     private PaymentService paymentService;
 
-    @Autowired
-    public ApiController(TractorService tractorService, TrailerService trailerService,
-                         EmployeeService employeeService, LocationService locationService,
-                         TransportService transportService, PaymentService paymentService){
-        this.employeeService = employeeService;
-        this.trailerService = trailerService;
-        this.tractorService = tractorService;
-        this.locationService = locationService;
-        this.transportService = transportService;
-        this.paymentService = paymentService;
+    public ApiController(){}
 
+    @Autowired
+    public void setTractorService(TractorService tractorService){
+        this.tractorService = tractorService;
+    }
+
+    @Autowired
+    public void setTrailerService(TrailerService trailerService){
+        this.trailerService = trailerService;
+    }
+
+    @Autowired
+    public void setEmployeeService(EmployeeService employeeService){
+        this.employeeService = employeeService;
+    }
+
+    @Autowired
+    public void setLocationService(LocationService locationService){
+        this.locationService = locationService;
+    }
+
+    @Autowired
+    public void setTransportService(TransportService transportService){
+        this.transportService = transportService;
+    }
+
+    @Autowired
+    public void setPaymentService(PaymentService paymentService){
+        this.paymentService = paymentService;
     }
 
     @RequestMapping(value = "/tractors", method = RequestMethod.GET, produces = "application/json")
@@ -82,8 +100,5 @@ public class ApiController {
     public @ResponseBody  List<Pair<String,Pair<Double,Double>>> getDriversPerformance(){
         return paymentService.getDriversPerformance(LocalDate.now().getYear(), LocalDate.now().getMonth().getValue());
     }
-
-
-
 
 }
