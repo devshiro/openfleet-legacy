@@ -43,7 +43,7 @@ public class Employee implements Serializable{
     private LocalDate endOfEmploymentDate;
 
     /**
-     * Empty constructor for creating an Employee Object
+     * Empty constructor for creating an Employee Object.
      */
     public Employee() {
     }
@@ -79,7 +79,7 @@ public class Employee implements Serializable{
     }
 
     /**
-     * Gets the id of the employee
+     * Gets the id of the employee.
      * @return the id of the employee
      */
     public long getId() {
@@ -87,7 +87,7 @@ public class Employee implements Serializable{
     }
 
     /**
-     * Sets the id of the employee
+     * Sets the id of the employee.
      * @param id the id of the employee
      */
     public void setId(long id) {
@@ -95,7 +95,7 @@ public class Employee implements Serializable{
     }
 
     /**
-     * Gets the first name of the employee
+     * Gets the first name of the employee.
      * @return the first name of the employee
      */
     public String getFirstName() {
@@ -103,7 +103,7 @@ public class Employee implements Serializable{
     }
 
     /**
-     * Sets the first name of the employee
+     * Sets the first name of the employee.
      * @param firstName the first name of the employee
      */
     public void setFirstName(String firstName) {
@@ -111,7 +111,7 @@ public class Employee implements Serializable{
     }
 
     /**
-     * Gets the last name of the employee
+     * Gets the last name of the employee.
      * @return the last name of the employee
      */
     public String getLastName() {
@@ -119,7 +119,7 @@ public class Employee implements Serializable{
     }
 
     /**
-     * Sets the last name of the employee
+     * Sets the last name of the employee.
      * @param lastName the last name of the employee
      */
     public void setLastName(String lastName) {
@@ -127,7 +127,7 @@ public class Employee implements Serializable{
     }
 
     /**
-     * Gets the birthdate of the employee
+     * Gets the birthdate of the employee.
      * @return the birthdate of the employee
      */
     public LocalDate getDateOfBirth() {
@@ -135,7 +135,7 @@ public class Employee implements Serializable{
     }
 
     /**
-     * Sets the birthdate of the employee
+     * Sets the birthdate of the employee.
      * @param dateOfBirth the birthdate of the employee
      */
     public void setDateOfBirth(LocalDate dateOfBirth) {
@@ -143,7 +143,7 @@ public class Employee implements Serializable{
     }
 
     /**
-     * Gets the birthplace of the employee
+     * Gets the birthplace of the employee.
      * @return the birthplace of the employee
      */
     public Location getPlaceOfBirth() {
@@ -151,7 +151,7 @@ public class Employee implements Serializable{
     }
 
     /**
-     * Sets the birthplace of the employee
+     * Sets the birthplace of the employee.
      * @param placeOfBirth the birthplace of the employee
      */
     public void setPlaceOfBirth(Location placeOfBirth) {
@@ -159,7 +159,7 @@ public class Employee implements Serializable{
     }
 
     /**
-     * Gets the social insurance number of the employee
+     * Gets the social insurance number of the employee.
      * @return the social insurance number of the employee
      */
     public String getSocialInsuranceNo() {
@@ -167,7 +167,7 @@ public class Employee implements Serializable{
     }
 
     /**
-     * Sets the social insurance number of the employee
+     * Sets the social insurance number of the employee.
      * @param socialInsuranceNo the social insurance number of the employee
      */
     public void setSocialInsuranceNo(String socialInsuranceNo) {
@@ -175,7 +175,7 @@ public class Employee implements Serializable{
     }
 
     /**
-     * Gets the employee's mother's full name
+     * Gets the employee's mother's full name.
      * @return the employee's mother's full name
      */
     public String getMothersName() {
@@ -183,7 +183,7 @@ public class Employee implements Serializable{
     }
 
     /**
-     * Sets the employee's mother's full name
+     * Sets the employee's mother's full name.
      * @param mothersName the employee's mother's full name
      */
     public void setMothersName(String mothersName) {
@@ -191,7 +191,7 @@ public class Employee implements Serializable{
     }
 
     /**
-     * Gets the tax number of the employee
+     * Gets the tax number of the employee.
      * @return the tax number of the employee
      */
     public String getTaxNo() {
@@ -199,7 +199,7 @@ public class Employee implements Serializable{
     }
 
     /**
-     * Sets the tax number of the employee
+     * Sets the tax number of the employee.
      * @param taxNo the tax number of the employee
      */
     public void setTaxNo(String taxNo) {
@@ -207,7 +207,7 @@ public class Employee implements Serializable{
     }
 
     /**
-     * Gets the driver's card number of the employee
+     * Gets the driver's card number of the employee.
      * @return the driver's card number of the employee
      */
     public String getDriversCardNo() {
@@ -215,7 +215,7 @@ public class Employee implements Serializable{
     }
 
     /**
-     * Sets the driver's card number of the employee
+     * Sets the driver's card number of the employee.
      * @param driversCardNo the driver's card number of the employee
      */
     public void setDriversCardNo(String driversCardNo) {
@@ -223,7 +223,7 @@ public class Employee implements Serializable{
     }
 
     /**
-     * Gets the address of the employee
+     * Gets the address of the employee.
      * @return the address of the employee
      */
     public Location getPlaceOfLiving() {
@@ -231,7 +231,7 @@ public class Employee implements Serializable{
     }
 
     /**
-     * Sets the address of the employee
+     * Sets the address of the employee.
      * @param placeOfLiving the address of the employee
      */
     public void setPlaceOfLiving(Location placeOfLiving) {
@@ -239,7 +239,7 @@ public class Employee implements Serializable{
     }
 
     /**
-     * Gets the employment date of the employee
+     * Gets the employment date of the employee.
      * @return the employment date of the employee
      */
     public LocalDate getEmploymentDate() {
@@ -247,7 +247,7 @@ public class Employee implements Serializable{
     }
 
     /**
-     * Sets the employment date of the employee
+     * Sets the employment date of the employee.
      * @param employmentDate the employment date of the employee
      */
     public void setEmploymentDate(LocalDate employmentDate) {
@@ -255,7 +255,7 @@ public class Employee implements Serializable{
     }
 
     /**
-     * Gets the end of employment date of the employee
+     * Gets the end of employment date of the employee.
      * @return the end of employment date of the employee
      */
     public LocalDate getEndOfEmploymentDate() {
@@ -263,7 +263,7 @@ public class Employee implements Serializable{
     }
 
     /**
-     * Sets the end of employment date of the employee
+     * Sets the end of employment date of the employee.
      * @param endOfEmploymentDate the end of employment date of the employee
      */
     public void setEndOfEmploymentDate(LocalDate endOfEmploymentDate) {

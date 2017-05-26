@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Class for calculations involving {@link java.time.LocalDate} and {@link java.time.LocalDateTime}
+ * Class for calculations involving {@link java.time.LocalDate} and {@link java.time.LocalDateTime}.
  */
 public class DateUtils {
 
