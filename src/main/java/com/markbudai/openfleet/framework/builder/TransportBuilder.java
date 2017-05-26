@@ -38,7 +38,7 @@ public class TransportBuilder {
     public Transport buildFromWebRequest(WebRequest request){
         Transport transport = new Transport();
         logger.debug("Trying to build Transport object from WebRequest");
-        if(request.getParameter("id").isEmpty()){
+        if(request.getParameter("id") == null){
             logger.debug("New transport will be built.");
         } else {
             transport.setId(Long.parseLong(request.getParameter("id")));

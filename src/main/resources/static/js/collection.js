@@ -7,8 +7,8 @@ function drawChart() {
         var buffer = "";
         for(var i in Obj){
             counter++;
-            if(counter>2) counter = 0;
-            if(counter === 2){
+            if(counter>3) counter = 0;
+            if(counter === 3){
                 $('#charts').append(createRow(buffer));
                 buffer = "";
             }
@@ -39,7 +39,12 @@ function drawChart() {
             console.log(array);
             data.addRows(array);
             var chart = new google.visualization.PieChart(document.getElementById('chart'+i));
-            var options = {'legend' : 'none'};
+            var options = {'legend' : 'none',
+                            'chartArea':{
+                                'left':0,'top':0,'width':"100%",'height':"100%"},
+                            'height': 200,
+                            'width': 200
+            };
             chart.draw(data,options);
         }
     });

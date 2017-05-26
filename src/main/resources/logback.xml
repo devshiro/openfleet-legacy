@@ -21,6 +21,9 @@
             <onMismatch>DENY</onMismatch>
         </filter>
     </appender>
+    <logger name="com.markbudai.openfleet" level="ALL">
+        <appender-ref ref="STDOUT"/>
+    </logger>
     <logger name="com.markbudai.openfleet" level="TRACE">
         <appender-ref ref="SYSLOG"/>
         <appender-ref ref="SYSLOG_ERROR"/>
