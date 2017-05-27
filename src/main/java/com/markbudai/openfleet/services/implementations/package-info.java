@@ -1,4 +1,5 @@
 /**
- * Created by Mark on 2017. 05. 27..
+ * Package containing implementations for the service interfaces.
+ * @see com.markbudai.openfleet.services
  */
 package com.markbudai.openfleet.services.implementations;

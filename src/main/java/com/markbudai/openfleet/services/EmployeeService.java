@@ -10,6 +10,7 @@ import java.util.List;
 public interface EmployeeService {
     /**
      * Lists all employee objects from the database.
+     * <p>Note: The fired employees will not show in this list.</p>
      * @return list of Employee objects stored in the database.
      */
     List<Employee> getAllEmployees();

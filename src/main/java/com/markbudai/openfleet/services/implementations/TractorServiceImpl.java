@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Created by Mark on 2017. 05. 07..
+ * Service class for providing interactions between the UI controller and the {@link com.markbudai.openfleet.dao.repositories.TractorRepository}.
  */
 @Service
 public class TractorServiceImpl implements TractorService {
@@ -25,6 +25,11 @@ public class TractorServiceImpl implements TractorService {
 
     private TractorRepository tractorRepository;
 
+    /**
+     * Constructor for creating {@link com.markbudai.openfleet.services.implementations.TractorServiceImpl} object.
+     * Used for Dependency Injection.
+     * @param repository the {@link com.markbudai.openfleet.dao.repositories.TractorRepository} used by this service.
+     */
     @Autowired
     public TractorServiceImpl(TractorRepository repository){
         this.tractorRepository = repository;

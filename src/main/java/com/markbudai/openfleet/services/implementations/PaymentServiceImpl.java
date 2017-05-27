@@ -20,7 +20,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * Created by Mark on 2017. 05. 13..
+ * Service class for calculating payments for employees based on the finished transports in the given time period.
+ * <p>Could be used for weekly, monthly, yearly payments as well.</p>
  */
 @Service
 public class PaymentServiceImpl implements PaymentService {
@@ -35,6 +36,11 @@ public class PaymentServiceImpl implements PaymentService {
     private TransportService transportService;
     private MNBExchangeService exchangeService;
 
+    /**
+     * Constructor for creating {@link com.markbudai.openfleet.services.implementations.PaymentServiceImpl} object.
+     * @param employeeService the {@link com.markbudai.openfleet.services.EmployeeService} used by this service.
+     * @param transportService the {@link com.markbudai.openfleet.services.TransportService} used by this service.
+     */
     @Autowired
     public PaymentServiceImpl(EmployeeService employeeService, TransportService transportService){
         this.employeeService = employeeService;

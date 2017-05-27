@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * Created by Mark on 2017. 05. 03..
+ * Service class for providing interactions between the UI controller and the {@link com.markbudai.openfleet.dao.repositories.LocationRepository}.
  */
 @Service
 public class LocationServiceImpl implements LocationService {
@@ -20,6 +20,11 @@ public class LocationServiceImpl implements LocationService {
 
     private LocationRepository locationRepository;
 
+    /**
+     * Constructor for creating {@link com.markbudai.openfleet.services.implementations.LocationServiceImpl} object.
+     * Used for Dependency Injection.
+     * @param repository the {@link com.markbudai.openfleet.dao.repositories.LocationRepository} used by this service.
+     */
     @Autowired
     public LocationServiceImpl(LocationRepository repository){
         this.locationRepository = repository;

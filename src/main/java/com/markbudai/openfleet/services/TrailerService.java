@@ -19,6 +19,7 @@ public interface TrailerService {
 
     /**
      * Gets a {@link com.markbudai.openfleet.model.Trailer} object with corresponding {@code id}.
+     * <p>Note: the sold trailers will not show up on this list.</p>
      * @param id the {@code id} of the required {@link com.markbudai.openfleet.model.Trailer} object.
      * @return the {@link com.markbudai.openfleet.model.Trailer} object with corresponding {@code id}.
      */

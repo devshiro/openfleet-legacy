@@ -12,6 +12,7 @@ public interface TractorService {
 
     /**
      * Retrieves all {@link com.markbudai.openfleet.model.Tractor} objects from a {@link com.markbudai.openfleet.dao.repositories.Repository}.
+     * <p>Note: the sold tractors will not show up in this list.</p>
      * @return a {@link java.util.List} of all {@link com.markbudai.openfleet.model.Tractor} objects.
      */
     List<Tractor> getAllTractors();

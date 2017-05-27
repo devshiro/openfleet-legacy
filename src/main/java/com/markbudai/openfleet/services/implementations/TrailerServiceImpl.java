@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Created by Mark on 2017. 05. 09..
+ * Service class for providing interactions between the UI controller and the {@link com.markbudai.openfleet.dao.repositories.TrailerRepository}.
  */
 @Service
 public class TrailerServiceImpl implements TrailerService {
@@ -27,6 +27,11 @@ public class TrailerServiceImpl implements TrailerService {
 
     private TrailerRepository trailerRepository;
 
+    /**
+     * Constructor for creating {@link com.markbudai.openfleet.services.implementations.TrailerServiceImpl} object.
+     * Used for Dependency Injection.
+     * @param repository the {@link com.markbudai.openfleet.dao.repositories.TrailerRepository} used by this service.
+     */
     @Autowired
     public TrailerServiceImpl(TrailerRepository repository){
         this.trailerRepository = repository;

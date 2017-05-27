@@ -17,7 +17,8 @@ import java.math.MathContext;
 import java.util.Currency;
 
 /**
- * Created by Mark on 2017. 04. 13..
+ * Service class providing exchange services using the WSDL service of the Central Bank of Hungary.
+ * <p>The base currency for exchange is the HUF.</p>
  */
 public class MNBExchangeService implements ExchangeService {
 
@@ -27,18 +28,28 @@ public class MNBExchangeService implements ExchangeService {
     private Document exchangeRates;
 
 
-    //constructors
+    /**
+     * Empty constructor for creating {@link com.markbudai.openfleet.services.implementations.MNBExchangeService} object.
+     */
     public MNBExchangeService(){
         mnb.MNBArfolyamServiceSoapImpl impl = new mnb.MNBArfolyamServiceSoapImpl();
         this.service = impl.getCustomBindingMNBArfolyamServiceSoap();
         generateExchangeRates();
     }
 
+    /**
+     * Constructor for creating {@link com.markbudai.openfleet.services.implementations.MNBExchangeService} object.
+     * @param impl the {@link mnb.MNBArfolyamServiceSoapImpl} used by this service.
+     */
     public MNBExchangeService(mnb.MNBArfolyamServiceSoapImpl impl){
         this.service = impl.getCustomBindingMNBArfolyamServiceSoap();
         generateExchangeRates();
     }
 
+    /**
+     * Constructor for creating {@link com.markbudai.openfleet.services.implementations.MNBExchangeService} object.
+     * @param soap the {@link mnb.MNBArfolyamServiceSoap} used by this service.
+     */
     public MNBExchangeService(mnb.MNBArfolyamServiceSoap soap){
         this.service = soap;
         generateExchangeRates();

@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Created by Mark on 2017. 05. 03..
+ * Service class for providing interactions between the UI controller and the {@link com.markbudai.openfleet.dao.repositories.EmployeeRepository}.
  */
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -22,6 +22,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private EmployeeRepository employeeRepository;
 
+    /**
+     * Constructor for creating {@link com.markbudai.openfleet.services.implementations.EmployeeServiceImpl} objects.
+     * Used for Dependency Injection.
+     * @param repository the {@link com.markbudai.openfleet.dao.repositories.EmployeeRepository} the service uses.
+     */
     @Autowired
     public EmployeeServiceImpl(EmployeeRepository repository){
         this.employeeRepository = repository;

@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Created by Mark on 2017. 05. 10..
+ * Service class for providing interactions between the UI controller and the {@link com.markbudai.openfleet.dao.repositories.TransportRepository}.
  */
 @Service
 public class TransportServiceImpl implements TransportService {
@@ -22,6 +22,11 @@ public class TransportServiceImpl implements TransportService {
 
     private TransportRepository transportRepository;
 
+    /**
+     * Constructor for creating {@link com.markbudai.openfleet.services.implementations.TransportServiceImpl} object.
+     * Used for Dependency Injection.
+     * @param repository the {@link com.markbudai.openfleet.dao.repositories.TransportRepository} used by this service.
+     */
     @Autowired
     public TransportServiceImpl(TransportRepository repository){
         this.transportRepository = repository;
