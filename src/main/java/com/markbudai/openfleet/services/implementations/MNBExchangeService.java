@@ -1,8 +1,8 @@
-package com.markbudai.openfleet.services;
+package com.markbudai.openfleet.services.implementations;
 
+import com.markbudai.openfleet.services.ExchangeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;

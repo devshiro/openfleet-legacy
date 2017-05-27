@@ -6,7 +6,6 @@ import com.markbudai.openfleet.model.Employee;
 import com.markbudai.openfleet.model.Transport;
 import com.markbudai.openfleet.pojo.Payout;
 import com.markbudai.openfleet.services.EmployeeService;
-import com.markbudai.openfleet.services.MNBExchangeService;
 import com.markbudai.openfleet.services.PaymentService;
 import com.markbudai.openfleet.services.TransportService;
 import org.slf4j.Logger;

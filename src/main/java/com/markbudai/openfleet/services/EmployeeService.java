@@ -5,7 +5,7 @@ import com.markbudai.openfleet.model.Employee;
 import java.util.List;
 
 /**
- * Interface describing operations required to manage Employee objects.
+ * Interface describing operations required to manage {@link com.markbudai.openfleet.model.Employee} objects.
  */
 public interface EmployeeService {
     /**
