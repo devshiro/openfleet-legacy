@@ -25,7 +25,7 @@ public class Tractor {
     private LocalDate date_of_sell;
 
     /**
-     * Empty constructor for the truck.
+     * Empty constructor for creating {@link com.markbudai.openfleet.model.Tractor} objects.
      */
     public Tractor() {}
 
@@ -58,16 +58,16 @@ public class Tractor {
     }
 
     /**
-     * Gets the id of the truck object.
-     * @return the id of the truck object.
+     * Gets the {@code id} of the truck object.
+     * @return the {@code id} the truck object.
      */
     public long getId() {
         return id;
     }
 
     /**
-     * Sets the id of the truck object.
-     * @param id the id of the truck object.
+     * Sets the {@code id} of the truck object.
+     * @param id the {@code id} of the truck object.
      */
     public void setId(long id) {
         this.id = id;
@@ -106,48 +106,48 @@ public class Tractor {
     }
 
     /**
-     * Gets the date when the truck was manufactured.
-     * @return the date when the truck was manufactured.
+     * Gets the {@link java.time.LocalDate} when the truck was manufactured.
+     * @return the {@link java.time.LocalDate} when the truck was manufactured.
      */
     public LocalDate getDateOfManufacture() {
         return date_of_manufacture;
     }
 
     /**
-     * Sets the date when the truck was manufactured.
-     * @param date_of_manufacture the date when the truck was manufactured.
+     * Sets the {@link java.time.LocalDate} when the truck was manufactured.
+     * @param date_of_manufacture the {@link java.time.LocalDate} when the truck was manufactured.
      */
     public void setDateOfManufacture(LocalDate date_of_manufacture) {
         this.date_of_manufacture = date_of_manufacture;
     }
 
     /**
-     * Gets the date when the company acquired the truck.
-     * @return the date when the company acquired the truck.
+     * Gets the {@link java.time.LocalDate} when the company acquired the truck.
+     * @return the {@link java.time.LocalDate} when the company acquired the truck.
      */
     public LocalDate getDateOfAcquire() {
         return date_of_acquire;
     }
 
     /**
-     * Sets the date when the company acquired the truck.
-     * @param date_of_acquire the date when the company acquired the truck.
+     * Sets the {@link java.time.LocalDate} when the company acquired the truck.
+     * @param date_of_acquire the {@link java.time.LocalDate} when the company acquired the truck.
      */
     public void setDateOfAcquire(LocalDate date_of_acquire) {
         this.date_of_acquire = date_of_acquire;
     }
 
     /**
-     * Gets the date when the truck needs to be inspected again.
-     * @return the date when the truck needs to be inspected again.
+     * Gets the {@link java.time.LocalDate} when the truck needs to be inspected again.
+     * @return the {@link java.time.LocalDate} when the truck needs to be inspected again.
      */
     public LocalDate getDateOfSupervision() {
         return date_of_supervision;
     }
 
     /**
-     * Sets the date when the truck needs to be inspected again.
-     * @param date_of_supervision the date when the truck needs to be inspected again.
+     * Sets the {@link java.time.LocalDate} when the truck needs to be inspected again.
+     * @param date_of_supervision the {@link java.time.LocalDate} when the truck needs to be inspected again.
      */
     public void setDateOfSupervision(LocalDate date_of_supervision) {
         this.date_of_supervision = date_of_supervision;
@@ -201,26 +201,50 @@ public class Tractor {
         this.fuel_norm = fuel_norm;
     }
 
+    /**
+     * Gets the empty weight of the truck.
+     * @return the empty weight of the truck.
+     */
     public long getWeight() {
         return weight;
     }
 
+    /**
+     * Sets the empty weight of the truck.
+     * @param weight the empty weight of the truck.
+     */
     public void setWeight(long weight) {
         this.weight = weight;
     }
 
+    /**
+     * Gets the maximum loaded weight of the truck.
+     * @return the maximum loaded weight of the truck.
+     */
     public long getMaxWeight() {
         return max_weight;
     }
 
+    /**
+     * Sets the maximum loaded weight of the truck.
+     * @param max_weight the maximum loaded weight of the truck.
+     */
     public void setMaxWeight(long max_weight) {
         this.max_weight = max_weight;
     }
 
+    /**
+     * Gets the {@link java.time.LocalDate} when the truck was sold.
+     * @return the {@link java.time.LocalDate} when the truck was sold.
+     */
     public LocalDate getDateOfSell() {
         return date_of_sell;
     }
 
+    /**
+     * Sets the {@link java.time.LocalDate} when the truck was sold.
+     * @return the {@link java.time.LocalDate} when the truck was sold.
+     */
     public void setDateOfSell(LocalDate date_of_sell) {
         this.date_of_sell = date_of_sell;
     }

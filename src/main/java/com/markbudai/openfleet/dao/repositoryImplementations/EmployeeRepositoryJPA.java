@@ -4,11 +4,10 @@ import com.markbudai.openfleet.dao.repositories.EmployeeRepository;
 import com.markbudai.openfleet.exception.NotFoundException;
 import com.markbudai.openfleet.model.Employee;
 import org.springframework.stereotype.Repository;
-
+import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.transaction.Transactional;
 import java.util.List;
 
 /**

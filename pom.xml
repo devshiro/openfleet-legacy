@@ -94,6 +94,7 @@
             <artifactId>spring-security-web</artifactId>
             <version>4.2.2.RELEASE</version>
         </dependency>
+        <!-- Spring LDAP -->
         <dependency>
             <groupId>org.springframework.ldap</groupId>
             <artifactId>spring-ldap-core</artifactId>
@@ -102,11 +103,12 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-ldap</artifactId>
         </dependency>
+        <!-- Embedded LDAP Server -->
         <dependency>
             <groupId>com.unboundid</groupId>
             <artifactId>unboundid-ldapsdk</artifactId>
         </dependency>
-        <!-- Spring Boot h2-->
+        <!-- Spring Data JPA-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -116,6 +118,7 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.6</version>
         </dependency>
+        <!-- Spring Boot embedded tomcat -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
@@ -140,6 +143,7 @@
             <version>1.2.2</version>
             <scope>runtime</scope>
         </dependency>
+        <!-- Mpckito -->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
@@ -151,17 +155,17 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>javax.interceptor</groupId>
-            <artifactId>javax.interceptor-api</artifactId>
-            <version>1.2</version>
-        </dependency>
-        <!-- JAX-WS -->
-        <dependency>
-            <groupId>com.sun.xml.ws</groupId>
-            <artifactId>jaxws-rt</artifactId>
-            <version>2.2.8</version>
-        </dependency>
+        <!-- <dependency>
+             <groupId>javax.interceptor</groupId>
+             <artifactId>javax.interceptor-api</artifactId>
+             <version>1.2</version>
+         </dependency>
+          JAX-WS
+         <dependency>
+             <groupId>com.sun.xml.ws</groupId>
+             <artifactId>jaxws-rt</artifactId>
+             <version>2.2.8</version>
+         </dependency>-->
     </dependencies>
 
     <build>
@@ -232,11 +236,11 @@
                     </dependency>
                 </dependencies>
             </plugin>
-            <!--<plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>3.0.0</version>
-            </plugin>-->
+            </plugin>
             <!-- WSQL Gen -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -261,27 +265,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- NPM BOWER
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <executable>cmd</executable>
-                    <arguments>
-                        <argument>/c</argument>
-                        <argument>"bower install"</argument>
-                    </arguments>
-                    <workingDirectory>${basedir}/src/main/resources/static</workingDirectory>
-                </configuration>
-            </plugin>-->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -345,20 +328,11 @@
                         </excludes>
                     </configuration>
             </plugin>
-            <!--<plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>3.0.0</version>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>2.9</version>
-                <configuration>
-                    <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
-                </configuration>
-            </plugin>-->
-
         </plugins>
     </reporting>
 </project>

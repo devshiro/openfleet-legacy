@@ -1,7 +1,7 @@
 package com.markbudai.openfleet.pojo;
 
 /**
- * Created by Mark on 2017. 05. 19..
+ * Class for packaging
  */
 public class Badge {
     private long location_count;
@@ -12,43 +12,43 @@ public class Badge {
 
     public Badge() {}
 
-    public long getLocation_count() {
+    public long getLocationCount() {
         return location_count;
     }
 
-    public void setLocation_count(long location_count) {
+    public void setLocationCount(long location_count) {
         this.location_count = location_count;
     }
 
-    public long getEmployee_count() {
+    public long getEmployeeCount() {
         return employee_count;
     }
 
-    public void setEmployee_count(long employee_count) {
+    public void setEmployeeCount(long employee_count) {
         this.employee_count = employee_count;
     }
 
-    public long getTractor_count() {
+    public long getTractorCount() {
         return tractor_count;
     }
 
-    public void setTractor_count(long tractor_count) {
+    public void setTractorCount(long tractor_count) {
         this.tractor_count = tractor_count;
     }
 
-    public long getTrailer_count() {
+    public long getTrailerCount() {
         return trailer_count;
     }
 
-    public void setTrailer_count(long trailer_count) {
+    public void setTrailerCount(long trailer_count) {
         this.trailer_count = trailer_count;
     }
 
-    public long getJob_count() {
+    public long getJobCount() {
         return job_count;
     }
 
-    public void setJob_count(long job_count) {
+    public void setJobCount(long job_count) {
         this.job_count = job_count;
     }
 }

@@ -23,6 +23,18 @@ public class LocationSupplier {
         return loc;
     }
 
+    public static Location getUniqueLocation(){
+        Location loc = new Location();
+        loc.setZipcode("4400");
+        loc.setHouseNo("12");
+        loc.setStreet("Sample strt");
+        loc.setRegion("Sample Region");
+        loc.setCity("Sample City");
+        loc.setCountry("Sample Country");
+        loc.setId(99);
+        return loc;
+    }
+
     public static List<Location> getSampleLocationList(){
         List<Location> list = new ArrayList<>();
         list.add(getSampleLocation());

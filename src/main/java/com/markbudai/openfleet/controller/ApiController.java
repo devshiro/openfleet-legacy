@@ -114,11 +114,11 @@ public class ApiController {
     @RequestMapping(value = "/badges", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody Badge badge(){
         Badge badges = new Badge();
-        badges.setLocation_count(this.allLocations().size());
-        badges.setEmployee_count(this.employees().size());
-        badges.setTrailer_count(this.trailers().size());
-        badges.setTractor_count(this.tractors().size());
-        badges.setJob_count(this.transportService.getAllTransports().size());
+        badges.setLocationCount(this.allLocations().size());
+        badges.setEmployeeCount(this.employees().size());
+        badges.setTrailerCount(this.trailers().size());
+        badges.setTractorCount(this.tractors().size());
+        badges.setJobCount(this.transportService.getAllTransports().size());
         return badges;
     }
 

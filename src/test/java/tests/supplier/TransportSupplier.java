@@ -1,5 +1,6 @@
 package tests.supplier;
 
+import com.markbudai.openfleet.dao.repositories.TransportRepository;
 import com.markbudai.openfleet.services.TransportService;
 import com.markbudai.openfleet.model.Transport;
 import org.mockito.Mockito;
@@ -106,5 +107,13 @@ public class TransportSupplier {
         t4.setFinish(LocalDateTime.of(2017,1,8,16,2));
 
         return Arrays.asList(t3,t1,t2,t4);
+    }
+
+    public static TransportRepository getMockedRepository(){
+        TransportRepository repository = Mockito.mock(TransportRepository.class);
+        Mockito.when(repository.getAll()).thenReturn(getSampleTransportList());
+        Mockito.when(repository.getById(1)).thenReturn(getSampleTransport());
+
+        return repository;
     }
 }
