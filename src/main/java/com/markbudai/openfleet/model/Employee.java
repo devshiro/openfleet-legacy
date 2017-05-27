@@ -43,13 +43,13 @@ public class Employee implements Serializable{
     private LocalDate endOfEmploymentDate;
 
     /**
-     * Empty constructor for creating an Employee Object.
+     * Empty constructor for creating an {@link com.markbudai.openfleet.model.Employee} object.
      */
     public Employee() {
     }
 
     /**
-     * Constructor for creating an Employee Object.
+     * Constructor for creating an {@link com.markbudai.openfleet.model.Employee} Object.
      * @param id the id of the Employee
      * @param firstName the first name of the Employee
      * @param lastName the last name of the employee
