@@ -1,4 +1,4 @@
 /**
- * Created by Mark on 2017. 03. 24..
+ * The main package of the Application.
  */
 package com.markbudai.openfleet;
