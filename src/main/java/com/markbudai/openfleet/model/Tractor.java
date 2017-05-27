@@ -243,7 +243,7 @@ public class Tractor {
 
     /**
      * Sets the {@link java.time.LocalDate} when the truck was sold.
-     * @return the {@link java.time.LocalDate} when the truck was sold.
+     * @param date_of_sell the {@link java.time.LocalDate} when the truck was sold.
      */
     public void setDateOfSell(LocalDate date_of_sell) {
         this.date_of_sell = date_of_sell;
