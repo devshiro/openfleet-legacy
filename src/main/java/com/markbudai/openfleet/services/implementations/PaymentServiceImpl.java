@@ -36,7 +36,6 @@ public class PaymentServiceImpl implements PaymentService {
 
     private EmployeeService employeeService;
     private TransportService transportService;
-    private MNBExchangeService exchangeService;
 
     /**
      * Constructor for creating {@link com.markbudai.openfleet.services.implementations.PaymentServiceImpl} object.
@@ -49,6 +48,13 @@ public class PaymentServiceImpl implements PaymentService {
         this.transportService = transportService;
     }
 
+    /**
+     * Calculates the work days from a {@link java.util.List} of {@link com.markbudai.openfleet.model.Transport}s.
+     * <p>Whenever transports are overlapping (a transport is not finished when the next transport is started),
+     * the overlapped days are count as a single work day.</p>
+     * @param transports the {@link java.util.List} of {@link com.markbudai.openfleet.model.Transport}s.
+     * @return the number of worked days.
+     */
     @Override
     public long getWorkDays(List<Transport> transports){
         if(transports.size() > 0){
@@ -60,6 +66,17 @@ public class PaymentServiceImpl implements PaymentService {
         }
     }
 
+    /**
+     * Gets a {@link com.markbudai.openfleet.pojo.Payout} object representing payout given for the employee in the given year and month.
+     * <p>The payout is calculated after each finished transports in that month. If a transport is finished in the next month,
+     * that transport will count during the next month's payout.</p>
+     * <p>The payout for each transport is calculated from the days spent for that transport. That's the count of days between the start and the finish.
+     * Then each day is multiplied with the {@code dailyFee}. The currency for this fee is the {@code feeCurrency}.</p>
+     * @param employee the {@link com.markbudai.openfleet.model.Employee} whose payment information needs to be generated.
+     * @param year the year of the payment.
+     * @param month the month of the payment.
+     * @return the {@link com.markbudai.openfleet.pojo.Payout} object representing payout given for the employee in the given year and month.
+     */
     @Override
     public Payout getPayout(Employee employee, int year, int month){
         if(employee == null) throw new NullException(Employee.class);
@@ -103,7 +120,14 @@ public class PaymentServiceImpl implements PaymentService {
         return payout;
     }
 
-
+    /**
+     * Calculates a percentage value for work / rest days for all employees in the given year and month.
+     * <p>The driver's percentage is based on the proportion of work days and rest days to elapsed days.
+     * If the function is checking a past month, then the elapsed days will be the number of days in that month.</p>
+     * @param year the year to be evaluated.
+     * @param month the month to be evaluated.
+     * @return a {@link java.util.List} of {@link org.springframework.data.util.Pair}s containing the driver's name and work / rest days percentages.
+     */
     @Override
     public List<Pair<String,Pair<Double,Double>>> getDriversPerformance(int year, int month) {
         LocalDate today = LocalDate.now();
@@ -147,19 +171,6 @@ public class PaymentServiceImpl implements PaymentService {
             }
         }
         return performanceList;
-    }
-
-    @Override
-    public List<Pair<Employee,Payout>> getAllPayouts(int year, int month) {
-        List<Employee> employees = employeeService.listAllStoredEmployees();
-        List<Pair<Employee,Payout>> payoutList = new ArrayList<>();
-        for(Employee employee : employees){
-            Payout payout = getPayout(employee,year,month);
-            if(!payout.isEmpty()){
-                payoutList.add(Pair.of(employee,payout));
-            }
-        }
-        return payoutList;
     }
 
     @Override

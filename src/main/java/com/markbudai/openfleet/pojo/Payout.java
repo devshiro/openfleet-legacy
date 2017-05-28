@@ -128,6 +128,11 @@ public class Payout {
         billedTransport.add(transport);
     }
 
+    /**
+     * Checks the object for empty values.
+     * <p>If the {@code amount} or {@code work_days} fields are 0 then the {@link com.markbudai.openfleet.pojo.Payout} object is useless therefore empty.</p>
+     * @return true if the object is empty.
+     */
     public boolean isEmpty(){
         if(this.amount == 0){
             return true;

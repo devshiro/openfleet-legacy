@@ -159,8 +159,8 @@ public class EmployeeController {
         int year = 0;
         int month = 0;
         if(request.getParameter("year") != null && request.getParameter("month") != null){
-            year = request.getParameter("year") != "" ? Integer.parseInt(request.getParameter("year")) : 0;
-            month = request.getParameter("month") != "" ? Integer.parseInt(request.getParameter("month")) : 0;
+            year = !request.getParameter("year").equals("") ? Integer.parseInt(request.getParameter("year")) : 0;
+            month = !request.getParameter("month").equals("") ? Integer.parseInt(request.getParameter("month")) : 0;
             model.addAttribute("year",year);
             model.addAttribute("month",month);
         }

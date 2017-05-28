@@ -36,7 +36,13 @@ public interface PaymentService {
      */
     List<Pair<String,Pair<Double,Double>>> getDriversPerformance(int year, int month);
 
-    List<Pair<Employee,Payout>> getAllPayouts(int year, int month);
-
+    /**
+     * Creates a list of payouts for all employees whom worked in the given year's given month.
+     * <p>The payout'll be in the given currency.</p>
+     * @param year the year of the payout.
+     * @param month the month of the payout.
+     * @param currency the currency we'd like to see the payout amount.
+     * @return a {@link java.util.List} of {@link org.springframework.data.util.Pair}s containing the {@link com.markbudai.openfleet.model.Employee} and the {@link com.markbudai.openfleet.pojo.Payout} for that employee in the given year's given month in the given currency.
+     */
     List<Pair<Employee,Payout>> getAllPayoutsInCurrency(int year, int month, Currency currency);
 }

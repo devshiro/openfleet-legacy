@@ -9,37 +9,40 @@ import java.util.List;
  */
 public interface EmployeeService {
     /**
-     * Lists all employee objects from the database.
+     * Lists all {@link com.markbudai.openfleet.model.Employee} objects from the database.
      * <p>Note: The fired employees will not show in this list.</p>
-     * @return list of Employee objects stored in the database.
+     * @return list of {@link com.markbudai.openfleet.model.Employee} objects stored in the database.
      */
     List<Employee> getAllEmployees();
 
     /**
-     * Gets the Employee object identified by the id.
+     * Gets the {@link com.markbudai.openfleet.model.Employee} object identified by the id.
      * @param id the id of the Employee object.
-     * @return the Employee object identified by the id.
+     * @return the {@link com.markbudai.openfleet.model.Employee} object identified by the id.
      */
     Employee getEmployeeById(long id);
 
     /**
-     * Stores an Employee object in the database.
-     * @param e the Employee object.
+     * Stores an {@link com.markbudai.openfleet.model.Employee} object in the database.
+     * @param e the {@link com.markbudai.openfleet.model.Employee} object.
      */
     void addEmployee(Employee e);
 
     /**
-     * Updates an Employee object in the database.
-     * @param e the Employee object.
+     * Updates an {@link com.markbudai.openfleet.model.Employee} object in the database.
+     * @param e the {@link com.markbudai.openfleet.model.Employee} object.
      */
     void updateEmployee(Employee e);
 
     /**
-     * Logical delete of an Employee object.
-     * @param id the id of the Employee object which needs to be logically deleted.
+     * Logical delete of an {@link com.markbudai.openfleet.model.Employee} object.
+     * @param id the id of the {@link com.markbudai.openfleet.model.Employee} object which needs to be logically deleted.
      */
     void fireEmployee(long id);
 
-
+    /**
+     * Lists all {@link com.markbudai.openfleet.model.Employee} objects from the database including the fired employees as well.
+     * @return {@link java.util.List} of all {@link com.markbudai.openfleet.model.Employee} objects from the database.
+     */
     List<Employee> listAllStoredEmployees();
 }
