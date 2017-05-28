@@ -60,6 +60,7 @@ public class MNBExchangeService implements ExchangeService {
         try{
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
+            logger.debug(this.service.getCurrentExchangeRates());
             this.exchangeRates = builder.parse(new InputSource(new StringReader(this.service.getCurrentExchangeRates())));
             this.exchangeRates.getDocumentElement().normalize();
         } catch(Exception e)

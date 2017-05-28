@@ -1,0 +1,38 @@
+<MNBCurrentExchangeRates>
+    <Day date="2017-05-26">
+        <Rate unit="1" curr="AUD">203,59</Rate>
+        <Rate unit="1" curr="BGN">157,14</Rate>
+        <Rate unit="1" curr="BRL">83,6</Rate>
+        <Rate unit="1" curr="CAD">203,24</Rate>
+        <Rate unit="1" curr="CHF">282,14</Rate>
+        <Rate unit="1" curr="CNY">39,89</Rate>
+        <Rate unit="1" curr="CZK">11,62</Rate>
+        <Rate unit="1" curr="DKK">41,3</Rate>
+        <Rate unit="1" curr="EUR">307,33</Rate>
+        <Rate unit="1" curr="GBP">352,45</Rate>
+        <Rate unit="1" curr="HKD">35,14</Rate>
+        <Rate unit="1" curr="HRK">41,41</Rate>
+        <Rate unit="100" curr="IDR">2,06</Rate>
+        <Rate unit="1" curr="ILS">76,64</Rate>
+        <Rate unit="1" curr="INR">4,25</Rate>
+        <Rate unit="1" curr="ISK">2,73</Rate>
+        <Rate unit="100" curr="JPY">246,59</Rate>
+        <Rate unit="100" curr="KRW">24,47</Rate>
+        <Rate unit="1" curr="MXN">14,79</Rate>
+        <Rate unit="1" curr="MYR">64,12</Rate>
+        <Rate unit="1" curr="NOK">32,66</Rate>
+        <Rate unit="1" curr="NZD">192,86</Rate>
+        <Rate unit="1" curr="PHP">5,5</Rate>
+        <Rate unit="1" curr="PLN">73,51</Rate>
+        <Rate unit="1" curr="RON">67,46</Rate>
+        <Rate unit="1" curr="RSD">2,5</Rate>
+        <Rate unit="1" curr="RUB">4,82</Rate>
+        <Rate unit="1" curr="SEK">31,56</Rate>
+        <Rate unit="1" curr="SGD">197,85</Rate>
+        <Rate unit="1" curr="THB">8,04</Rate>
+        <Rate unit="1" curr="TRY">76,54</Rate>
+        <Rate unit="1" curr="UAH">10,38</Rate>
+        <Rate unit="1" curr="USD">273,79</Rate>
+        <Rate unit="1" curr="ZAR">21,13</Rate>
+    </Day>
+</MNBCurrentExchangeRates>
