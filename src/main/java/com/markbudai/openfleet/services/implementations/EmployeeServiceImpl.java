@@ -68,4 +68,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeRepository.update(e);
         logger.trace("Employee {} was fired today.",e);
     }
+
+    @Override
+    public List<Employee> listAllStoredEmployees() {
+        return employeeRepository.getAll();
+    }
 }

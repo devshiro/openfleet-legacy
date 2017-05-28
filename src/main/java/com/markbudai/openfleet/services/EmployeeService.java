@@ -39,4 +39,7 @@ public interface EmployeeService {
      * @param id the id of the Employee object which needs to be logically deleted.
      */
     void fireEmployee(long id);
+
+
+    List<Employee> listAllStoredEmployees();
 }

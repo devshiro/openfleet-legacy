@@ -5,6 +5,7 @@ import com.markbudai.openfleet.model.Transport;
 import com.markbudai.openfleet.pojo.Payout;
 import org.springframework.data.util.Pair;
 
+import java.util.Currency;
 import java.util.List;
 
 /**
@@ -34,4 +35,8 @@ public interface PaymentService {
      * @return a {@link java.util.List} of {@link org.springframework.data.util.Pair}s containing the driver's name and work / rest days percentages.
      */
     List<Pair<String,Pair<Double,Double>>> getDriversPerformance(int year, int month);
+
+    List<Pair<Employee,Payout>> getAllPayouts(int year, int month);
+
+    List<Pair<Employee,Payout>> getAllPayoutsInCurrency(int year, int month, Currency currency);
 }

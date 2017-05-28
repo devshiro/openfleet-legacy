@@ -22,124 +22,134 @@
 <!-- Main -->
 <section id="main">
     <div class="container-fluid">
-        <h1>New Transport</h1>
-        <form class="inline-form" method="post" action="/transport/job/add">
-            <input th:if="${transport}" name="id" type="hidden" th:value="${transport} ? ${transport.id} : ''"/>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group" id="tractorGroup">
-                        <label class="control-label col-sm-2" for="tractorInput">Tractor</label>
-                        <div class="col-sm-8">
-                            <input type="hidden" id="hiddenTractorId" th:value="${transport} ? ${transport.tractor.id} : ''"/>
-                            <select id="tractorInput" name="tractor" class="form-control"></select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group" id="trailerGroup">
-                        <label class="control-label col-sm-2" for="trailerInput">Trailer</label>
-                        <div class="col-sm-8">
-                            <input type="hidden" id="hiddenTrailerId" th:value="${transport} ? ${transport.trailer.id} : ''"/>
-                            <select id="trailerInput" name="trailer" class="form-control"></select>
-                        </div>
-                    </div>
-                </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">New Transport</h3>
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group" id="employeeGroup">
-                        <label class="control-label col-sm-2" for="employeeInput">Employee</label>
-                        <div class="col-sm-8">
-                            <input type="hidden" id="hiddenEmployeeId" th:value="${transport} ? ${transport.employee.id} : ''"/>
-                            <select id="employeeInput" name="employee" class="form-control"></select>
+            <div class="panel-body">
+                <form class="inline-form" method="post" action="/transport/job/add">
+                    <input th:if="${transport}" name="id" type="hidden" th:value="${transport} ? ${transport.id} : ''"/>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group" id="tractorGroup">
+                                <label class="control-label col-sm-2" for="tractorInput">Tractor</label>
+                                <div class="col-sm-8">
+                                    <input type="hidden" id="hiddenTractorId" th:value="${transport} ? ${transport.tractor.id} : ''"/>
+                                    <select id="tractorInput" name="tractor" class="form-control"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group" id="trailerGroup">
+                                <label class="control-label col-sm-2" for="trailerInput">Trailer</label>
+                                <div class="col-sm-8">
+                                    <input type="hidden" id="hiddenTrailerId" th:value="${transport} ? ${transport.trailer.id} : ''"/>
+                                    <select id="trailerInput" name="trailer" class="form-control"></select>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group" id="cargoNameGroup">
-                        <label class="control-label col-sm-2" for="cargoNameInput">Cargo Name</label>
-                        <div class="col-sm-8">
-                            <input type="text" id="cargoNameInput" name="cargo_name" class="form-control col-sm-8" th:value="${transport} ? ${transport.CargoName} : ''"/>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group" id="employeeGroup">
+                                <label class="control-label col-sm-2" for="employeeInput">Employee</label>
+                                <div class="col-sm-8">
+                                    <input type="hidden" id="hiddenEmployeeId" th:value="${transport} ? ${transport.employee.id} : ''"/>
+                                    <select id="employeeInput" name="employee" class="form-control"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group" id="cargoNameGroup">
+                                <label class="control-label col-sm-2" for="cargoNameInput">Cargo Name</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="cargoNameInput" name="cargo_name" class="form-control col-sm-8" th:value="${transport} ? ${transport.CargoName} : ''"/>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group" id="cargoCountGroup">
+                                <label class="control-label col-sm-2" for="cargoCountInput">Cargo Count</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="cargoCountInput" name="cargo_count" class="form-control col-sm-8" th:value="${transport} ? ${transport.CargoCount} : ''"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group" id="cargoWeightGroup">
+                                <label class="control-label col-sm-2" for="cargoWeightInput">Cargo Weight</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="cargoWeightInput" name="cargo_weight" class="form-control col-sm-8" th:value="${transport} ? ${transport.CargoWeight} : ''"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group" id="placeOfLoadGroup">
+                                <label class="control-label col-sm-2" for="placeOfLoadInput">Place of Load</label>
+                                <div class="col-sm-8">
+                                    <input th:if="${transport}" type="hidden" id="hiddenPlaceOfLoad" th:value="${transport.PlaceOfLoad} ? ${transport.PlaceOfLoad.id} : ''"/>
+                                    <select id="placeOfLoadInput" name="place_of_load" class="form-control"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group" id="timeOfLoadGroup">
+                                <label class="control-label col-sm-2" for="timeOfLoadInput">Time of Load</label>
+                                <div class="col-sm-8">
+                                    <input type="datetime-local" id="timeOfLoadInput" name="time_of_load" class="form-control col-sm-8" th:value="${transport} ? ${transport.TimeOfLoad} : ''"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group" id="placeOfUnloadGroup">
+                                <label class="control-label col-sm-2" for="placeOfUnloadInput">Place of Unload</label>
+                                <div class="col-sm-8">
+                                    <input th:if="${transport}" type="hidden" id="hiddenPlaceOfUnload" th:value="${transport.PlaceOfLoad} ? ${transport.PlaceOfLoad.id} : ''"/>
+                                    <select id="placeOfUnloadInput" name="place_of_unload" class="form-control"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group" id="timeOfUnloadGroup">
+                                <label class="control-label col-sm-2" for="timeOfUnloadInput">Time of Unload</label>
+                                <div class="col-sm-8">
+                                    <input type="datetime-local" id="timeOfUnloadInput" name="time_of_unload" class="form-control col-sm-8" th:value="${transport} ? ${transport.TimeOfUnload} : ''"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group" id="timeOfStartGroup">
+                                <label class="control-label col-sm-2" for="timeOfStartInput">Time of Start</label>
+                                <div class="col-sm-8">
+                                    <input type="datetime-local" id="timeOfStartInput" name="start" class="form-control col-sm-8" th:value="${transport} ? ${transport.start}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group" id="timeOfFinishGroup">
+                                <label class="control-label col-sm-2" for="timeOfFinishInput">Time of Finish</label>
+                                <div class="col-sm-8">
+                                    <input type="datetime-local" id="timeOfFinishInput" name="finish" class="form-control col-sm-8" th:value="${transport} ? ${transport.start}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                            <input type="submit" class="btn btn-default" value="Save"/>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group" id="cargoCountGroup">
-                        <label class="control-label col-sm-2" for="cargoCountInput">Cargo Count</label>
-                        <div class="col-sm-8">
-                            <input type="text" id="cargoCountInput" name="cargo_count" class="form-control col-sm-8" th:value="${transport} ? ${transport.CargoCount} : ''"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group" id="cargoWeightGroup">
-                        <label class="control-label col-sm-2" for="cargoWeightInput">Cargo Weight</label>
-                        <div class="col-sm-8">
-                            <input type="text" id="cargoWeightInput" name="cargo_weight" class="form-control col-sm-8" th:value="${transport} ? ${transport.CargoWeight} : ''"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group" id="placeOfLoadGroup">
-                        <label class="control-label col-sm-2" for="placeOfLoadInput">Place of Load</label>
-                        <div class="col-sm-8">
-                            <input th:if="${transport}" type="hidden" id="hiddenPlaceOfLoad" th:value="${transport.PlaceOfLoad} ? ${transport.PlaceOfLoad.id} : ''"/>
-                            <select id="placeOfLoadInput" name="place_of_load" class="form-control"></select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group" id="timeOfLoadGroup">
-                        <label class="control-label col-sm-2" for="timeOfLoadInput">Time of Load</label>
-                        <div class="col-sm-8">
-                            <input type="datetime-local" id="timeOfLoadInput" name="time_of_load" class="form-control col-sm-8" th:value="${transport} ? ${transport.TimeOfLoad} : ''"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group" id="placeOfUnloadGroup">
-                        <label class="control-label col-sm-2" for="placeOfUnloadInput">Place of Unload</label>
-                        <div class="col-sm-8">
-                            <input th:if="${transport}" type="hidden" id="hiddenPlaceOfUnload" th:value="${transport.PlaceOfLoad} ? ${transport.PlaceOfLoad.id} : ''"/>
-                            <select id="placeOfUnloadInput" name="place_of_unload" class="form-control"></select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group" id="timeOfUnloadGroup">
-                        <label class="control-label col-sm-2" for="timeOfUnloadInput">Time of Unload</label>
-                        <div class="col-sm-8">
-                            <input type="datetime-local" id="timeOfUnloadInput" name="time_of_unload" class="form-control col-sm-8" th:value="${transport} ? ${transport.TimeOfUnload} : ''"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group" id="timeOfStartGroup">
-                        <label class="control-label col-sm-2" for="timeOfStartInput">Time of Start</label>
-                        <div class="col-sm-8">
-                            <input type="datetime-local" id="timeOfStartInput" name="start" class="form-control col-sm-8" th:value="${transport} ? ${transport.start}"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group" id="timeOfFinishGroup">
-                        <label class="control-label col-sm-2" for="timeOfFinishInput">Time of Finish</label>
-                        <div class="col-sm-8">
-                            <input type="datetime-local" id="timeOfFinishInput" name="finish" class="form-control col-sm-8" th:value="${transport} ? ${transport.start}"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <input type="submit" value="Save"/>
-        </form>
+        </div>
     </div>
 </section>
 

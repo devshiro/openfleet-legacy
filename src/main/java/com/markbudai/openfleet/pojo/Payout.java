@@ -128,6 +128,16 @@ public class Payout {
         billedTransport.add(transport);
     }
 
+    public boolean isEmpty(){
+        if(this.amount == 0){
+            return true;
+        }
+        if(this.work_days == 0){
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         String ret = new StringBuilder().append("Payout: ").append(amount).append(" ").append(currency.getSymbol())

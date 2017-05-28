@@ -6,6 +6,7 @@ import com.markbudai.openfleet.model.Employee;
 import com.markbudai.openfleet.model.Transport;
 import com.markbudai.openfleet.pojo.Payout;
 import com.markbudai.openfleet.services.EmployeeService;
+import com.markbudai.openfleet.services.ExchangeService;
 import com.markbudai.openfleet.services.PaymentService;
 import com.markbudai.openfleet.services.TransportService;
 import org.slf4j.Logger;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -145,5 +147,37 @@ public class PaymentServiceImpl implements PaymentService {
             }
         }
         return performanceList;
+    }
+
+    @Override
+    public List<Pair<Employee,Payout>> getAllPayouts(int year, int month) {
+        List<Employee> employees = employeeService.listAllStoredEmployees();
+        List<Pair<Employee,Payout>> payoutList = new ArrayList<>();
+        for(Employee employee : employees){
+            Payout payout = getPayout(employee,year,month);
+            if(!payout.isEmpty()){
+                payoutList.add(Pair.of(employee,payout));
+            }
+        }
+        return payoutList;
+    }
+
+    @Override
+    public List<Pair<Employee, Payout>> getAllPayoutsInCurrency(int year, int month, Currency currency) {
+        List<Employee> employees = employeeService.listAllStoredEmployees();
+        List<Pair<Employee,Payout>> payoutList = new ArrayList<>();
+        for(Employee employee : employees){
+            Payout payout = getPayout(employee,year,month);
+            if(!payout.getCurrency().equals(currency)){
+                ExchangeService exchangeService = new MNBExchangeService();
+                long amount = exchangeService.exchange(payout.getCurrency(), BigDecimal.valueOf(payout.getAmount()),currency).longValue();
+                payout.setCurrency(currency);
+                payout.setAmount(amount);
+            }
+            if(!payout.isEmpty()){
+                payoutList.add(Pair.of(employee,payout));
+            }
+        }
+        return payoutList;
     }
 }

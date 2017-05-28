@@ -10,6 +10,7 @@ import com.markbudai.openfleet.services.PaymentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 
 import java.time.LocalDate;
+import java.util.Currency;
+import java.util.List;
 
 /**
  * This class represents a view controller for managing employees.
@@ -149,5 +152,32 @@ public class EmployeeController {
         logger.debug("/employee/payment Payout: {}",payout);
         model.addAttribute("payout",payout);
         return viewPrefix+"employeePayments";
+    }
+
+    @RequestMapping("/payouts")
+    public String showPayouts(Model model, WebRequest request){
+        int year = 0;
+        int month = 0;
+        if(request.getParameter("year") != null && request.getParameter("month") != null){
+            year = request.getParameter("year") != "" ? Integer.parseInt(request.getParameter("year")) : 0;
+            month = request.getParameter("month") != "" ? Integer.parseInt(request.getParameter("month")) : 0;
+            model.addAttribute("year",year);
+            model.addAttribute("month",month);
+        }
+        logger.debug("Requested year: {} Requested month: {}",year, month);
+        if(year != 0 && month != 0 && !request.getParameter("currency").isEmpty()){
+            if(!request.getParameter("currency").equals("EUR")){
+                model.addAttribute(request.getParameter("currency"));
+            }
+            Currency currency = Currency.getInstance(request.getParameter("currency"));
+            logger.trace("List all employees payments in year {} month {}",year,month);
+            List<Pair<Employee,Payout>> payoutList = paymentService.getAllPayoutsInCurrency(year,month,currency);
+            if(payoutList.size() > 0){
+                model.addAttribute("payoutList",payoutList);
+            }
+        }
+
+        model.addAttribute("title","Employee Payments");
+        return viewPrefix+"payments";
     }
 }
