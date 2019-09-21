@@ -1,0 +1,4 @@
+rootProject.name = 'openfleet'
+include 'openfleet-api'
+include 'openfleet-webapp'
+
